@@ -1,0 +1,22 @@
+|=================================================================================================================================================|
+Prioritization:
+Which jobs are most crucial?
+- We must first start by creating the two object plants. The class plants will be assigned a group of properties which will be set with variables.
+We will also create a way for the plants and the environment to interact with each other. 
+
+Which components constitute core functionality (vs non-essential)?
+- Variables such as growth rate, health, water level, and nutrients will definitely be important.  The way that the environment interacts through 
+temperature, rainfall is also required to this simulation to function. Components such as predators or bacterias will be added on later on.
+
+Which components are prerequisites for others?
+-
+
+|=================================================================================================================================================|
+Workload Sharing:
+Which tasks can be delegated, and which must be collaboratively tackled?
+-
+|=================================================================================================================================================|
+Chronology:
+What is the timeline, and how does it accommodate setbacks, course changes?
+-
+|=================================================================================================================================================|
