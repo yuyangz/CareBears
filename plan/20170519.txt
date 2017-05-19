@@ -6,12 +6,12 @@ plan/20170519
 |=================================================================================================================================================|
 Prioritization:
 Which jobs are most crucial?
-- We must first start by creating the two object plants. The class plants will be assigned a group of properties which will be set with variables.
+- We must first start by creating the object plants. The class plants will be assigned a group of properties which will be set with variables.
 We will also create a way for the plants and the environment to interact with each other. 
 
 Which components constitute core functionality (vs non-essential)?
 - Variables such as growth rate, health, water level, and nutrients will definitely be important.  The way that the environment interacts through 
-temperature, rainfall is also required to this simulation to function. Components such as predators or bacterias will be added on later on.
+temperature, rainfall, etc is also required to this simulation to function. Components such as predators or bacterias will be added later on.
 
 Which components are prerequisites for others?
 - Before adding the predator and the bacteria, we must make sure have a fundamental plant structure as the plants are perhaps the base of our project. 
@@ -26,5 +26,5 @@ this project. However, the interactions between these objects might require coll
 Chronology:
 What is the timeline, and how does it accommodate setbacks, course changes?
 - We will plan to have our planned final project done a week before the actual due date. This will give us a week to fix minor mistakes or add on
-extra features.
+extra features. This also gives us a little room if we do not finish on by this proposed date.
 |=================================================================================================================================================|
