@@ -3,6 +3,7 @@ Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
 APCS2 pd01
 plan/20170519
 2017-05-18  
+
 |=================================================================================================================================================|
 Prioritization:
 Which jobs are most crucial?
@@ -22,9 +23,11 @@ Workload Sharing:
 Which tasks can be delegated, and which must be collaboratively tackled?
 - As for properties of the plant, we may split that and each work on certain properties. Same can apply for the environment and other objects in 
 this project. However, the interactions between these objects might require collaborate work. 
+
 |=================================================================================================================================================|
 Chronology:
 What is the timeline, and how does it accommodate setbacks, course changes?
-- We will plan to have our planned final project done a week before the actual due date. This will give us a week to fix minor mistakes or add on
+- We will plan to have a working version of our final project done a week before the actual due date. This will give us a week to fix minor mistakes or add on
 extra features. This also gives us a little room if we do not finish on by this proposed date.
+
 |=================================================================================================================================================|
