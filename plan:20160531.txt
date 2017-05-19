@@ -1,3 +1,8 @@
+CareBears
+Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
+APCS2 pd01
+plan/20170519
+2017-05-18  
 |=================================================================================================================================================|
 Prioritization:
 Which jobs are most crucial?
