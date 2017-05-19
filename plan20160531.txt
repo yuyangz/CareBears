@@ -9,14 +9,17 @@ Which components constitute core functionality (vs non-essential)?
 temperature, rainfall is also required to this simulation to function. Components such as predators or bacterias will be added on later on.
 
 Which components are prerequisites for others?
--
+- Before adding the predator and the bacteria, we must make sure have a fundamental plant structure as the plants are perhaps the base of our project. 
+Without creating the plants, we are unable to create the environment either as we need the plants to check if the environment functions.
 
 |=================================================================================================================================================|
 Workload Sharing:
 Which tasks can be delegated, and which must be collaboratively tackled?
--
+- As for properties of the plant, we may split that and each work on certain properties. Same can apply for the environment and other objects in 
+this project. However, the interactions between these objects might require collaborate work. 
 |=================================================================================================================================================|
 Chronology:
 What is the timeline, and how does it accommodate setbacks, course changes?
--
+- We will plan to have our planned final project done a week before the actual due date. This will give us a week to fix minor mistakes or add on
+extra features.
 |=================================================================================================================================================|
