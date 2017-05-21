@@ -14,13 +14,13 @@ Day 02(May 18, 2017):
     Joshel: Updated plan.
     Yuyang: Created "CareBears" repository; added it as a submodule to "stunning-octo-waddle" repository. Updated plan.
 |==============================================================================|
-Day 03(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 03(May 19, 2017):
+    Ibnul: Discussed project plans for certain features and dates.
+    Joshel: Discussed project plans for certain features and dates.
+    Yuyang: Discussed project plans for certain features and dates.
 |==============================================================================|
-Day 04(May 00, 2017):
-    Ibnul:
+Day 04(May 20, 2017):
+    Ibnul: Created initial processing file, and started code on general plant class and main tab.
     Joshel:
     Yuyang:
 |==============================================================================|
