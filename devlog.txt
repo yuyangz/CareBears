@@ -22,7 +22,7 @@ Day 03(May 19, 2017):
 Day 04(May 20, 2017):
     Ibnul: Created initial processing file, and started code on general plant class and main tab.
     Joshel:
-    Yuyang:
+    Yuyang: Expended on plan to more specific details. Began considering variables for plants and how the user may control the environment.
 |==============================================================================|
 Day 05(May 00, 2017):
     Ibnul:
