@@ -1,0 +1,24 @@
+Steps for Execution (BASIC PLAN):
+1. Create class plants [made, but incomplete](By May 25th, 2017)
+   -Variables include:
+    a. Height.
+    b. Health.
+    c. Temperature resistance.
+    d. Hunger.
+    e. Heat.
+        1. Will be used to affect temperature.
+	
+2. Create class environment (By May 25th, 2017)(By May 28th, 2017)
+   -User will be able to control factors such as:
+    a. Temperature
+        1. Will have radii that creates a range around the plant planted.
+        2. Will depend on the type of plant being planted.
+    b. Food Levels
+        1. Based on water levels and temperature, the plant will require more or less food.
+    c. Water Levels (through rain or other methods of watering)
+        1. Based on temperature and food levels, the plant will require more or less water.
+        2. Rain will be generated in random positions, and will be consumed in order of plant priority in the proximity.
+    d. Soil Nutrients
+        1. Can be set up in the beginning or we may allow the user to change the settings through the simulation at different points.
+	
+3. Connect environment with plants (allow them to interact with each other) (By May 30th).
