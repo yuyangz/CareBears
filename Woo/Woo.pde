@@ -40,8 +40,9 @@ void removeDeadPlants() {
 
 void keyPressed() {
   if (key == 'r') {
-      environment.fakerain();
-      environment.rain(30);
-    }
+    //for (int i = 0; i < 60; i++) {
+    //  environment.fakerain();
+    //}
+    environment.rain(30);
   }
 }
