@@ -22,7 +22,7 @@ Day 03(May 19, 2017):
 Day 04(May 20, 2017):
     Ibnul: Created initial processing file, and started code on general plant class and main tab. Plants can grow until the peak of their life, and shrink past that. Later further ideas will likely replace how this works.
     Joshel:
-    Yuyang:
+    Yuyang: Expended on plan to more specific details. Began considering variables for plants and how the user may control the environment.
 |==============================================================================|
 Day 05(May 21, 2017):
     Ibnul: Discussed how rain and the environment should be factored into the environment. Started to code rain as a 2D array the size of the screen, where random indices would get incremented but random amounts, but did not push.

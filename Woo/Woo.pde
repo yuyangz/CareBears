@@ -1,5 +1,6 @@
 ArrayList<Plant> plants = new ArrayList<Plant>();
 ArrayList<Plant> allPlants = new ArrayList<Plant>();
+Environment environment;
 boolean rain; //generates array[height][width] with random coordinates having water
 // plants w waterPriority n will go in order or priority, and will take all the water in a circle of radius r
 boolean snow;
@@ -9,7 +10,8 @@ boolean thunderstorm;
 
 void setup() {
   frameRate(60);
-  size(600, 800);
+  size(600, 600);
+  environment = new Environment(height, width);
 }
 
 void draw() {
@@ -18,6 +20,9 @@ void draw() {
     plants.get(i).run();
   }
   removeDeadPlants();
+  //if ((frameCount%1000) <= 20) {
+  //  environment.rain(30);
+  //}
 }
 
 void mouseClicked() {
@@ -29,6 +34,14 @@ void removeDeadPlants() {
   for (int i = plants.size() - 1; i >= 0; i--) {
     if (plants.get(i).size <= 0) { 
       plants.remove(i);
+    }
+  }
+}
+
+void keyPressed() {
+  if (key == 'r') {
+      environment.fakerain();
+      environment.rain(30);
     }
   }
 }

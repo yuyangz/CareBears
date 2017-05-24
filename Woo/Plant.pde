@@ -9,7 +9,7 @@ class Plant {
   int birthDate;
   int r, g, b;
   boolean peakStated; //prime of life/ largest size
-  
+
   Plant( int x, int y) {
     xcor = x;
     ycor = y;
@@ -52,6 +52,7 @@ class Plant {
   }
 
   void display() {
+    stroke(r, g, b);
     fill(color(r, g, b));
     ellipse(xcor, ycor, size, size);
   }
