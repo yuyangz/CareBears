@@ -20,26 +20,26 @@ Day 03(May 19, 2017):
     Yuyang: Discussed project plans for certain features and dates.
 |==============================================================================|
 Day 04(May 20, 2017):
-    Ibnul: Created initial processing file, and started code on general plant class and main tab.
+    Ibnul: Created initial processing file, and started code on general plant class and main tab. Plants can grow until the peak of their life, and shrink past that. Later further ideas will likely replace how this works.
     Joshel:
     Yuyang:
 |==============================================================================|
-Day 05(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 05(May 21, 2017):
+    Ibnul: Discussed how rain and the environment should be factored into the environment. Started to code rain as a 2D array the size of the screen, where random indices would get incremented but random amounts, but did not push.
+    Joshel: Discussed how rain and the environment should be factored into the environment. 
+    Yuyang: Discussed how rain and the environment should be factored into the environment. 
 |==============================================================================|
-Day 06(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 06(May 22, 2017):
+    Ibnul: Worked on updating new plan.
+    Joshel: Worked on updating new plan.
+    Yuyang: Worked on updating new plan.
 |==============================================================================|
-Day 07(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 07(May 23, 2017):
+    Ibnul: Continued work on the protocols for rain and pushed code. Ran into a problem where we will need a fake animation to show the user it has rained, because the current way of doing it finishes in one frame. Worked on creating flowcharts and UML diagrams.
+    Joshel: Worked on creating flowcharts and UML diagrams.
+    Yuyang: Worked on creating flowcharts and UML diagrams.
 |==============================================================================|
-Day 08(May 00, 2017):
+Day 08(May 24, 2017):
     Ibnul:
     Joshel:
     Yuyang:
