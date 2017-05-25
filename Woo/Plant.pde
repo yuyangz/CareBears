@@ -8,6 +8,7 @@ class Plant {
   int lifeTime;
   int birthDate;
   int r, g, b;
+  int temp;
   boolean peakStated; //prime of life/ largest size
 
   Plant( int x, int y) {

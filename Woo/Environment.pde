@@ -2,13 +2,33 @@ class Environment {
   int[][] rain;
   int[][] snow;
   int[][] soil;
+  int[][] sun;
 
   Environment(int w, int h ) {
     rain = new int[w][h];
     snow = new int[w][h];
     soil = new int[w][h];
+    sun = new int[w][h];
   }
 
+void sunlight (int intensity){
+    for (int row = 0; row < sun.length; row += 3){
+     for (int col = 0; col < sun[row].length; col += 3){
+       sun[row][col] += intensity;
+       stroke(255, 255, 0);
+       fill(0,0,120);
+       ellipse(row,col,1,1,);
+     }
+    }
+   println("God has released light");
+   fill(120);
+   stroke(120);
+   text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4),10);
+   
+   
+}
+       
+    
   void rain(int intensity) {
     //print(rain.length, rain[0].length);
     //int time = millis();
@@ -25,10 +45,10 @@ class Environment {
         }
       }
     }
-    println("it has rained");
+    println("It has rained");
     fill(120);
     stroke(120);
-    text("It Has Rained",(width-(0.2*width))/2-("It Has Rained".length()*4), 10);
+    text("It has rained",(width-(0.2*width))/2-("It has rained".length()*4), 10);
 
     frameRate(60);
   }
