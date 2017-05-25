@@ -4,13 +4,14 @@ ArrayList<Button> buttons = new ArrayList<Button>();
 Environment environment;
 boolean rain, showRain; //generates array[height][width] with random coordinates having water
 // plants w waterPriority n will go in order or priority, and will take all the water in a circle of radius r
+boolean sunlight, showSunlight;
 boolean snow;
 boolean earthquake;
 boolean thunderstorm;
 
 
 void setup() {
-  frameRate(60);
+  frameRate(600);
   size(1000, 600);
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
@@ -23,6 +24,7 @@ void setup() {
 void makeButtons() {
   buttons.add(new Button(width - (int)(0.2*width), 0, width/10, height/10, color(0, 0, 120), color(120, 0, 0), "Rain"));
   buttons.add(new Button(width - (int)(0.1*width), 0, width/10, height/10, color(0, 120, 0), color(120, 0, 0), "Plant"));
+  buttons.add(new Button(width - (int)(0.2*width), height/10, width/10, height/10, color(255, 255, 0), color(120, 0, 0), "Sunlight"));
 }
 void draw() {
   background(255);
@@ -34,6 +36,7 @@ void draw() {
   removeDeadPlants();
   showTheRain();
   showRaining();
+  showTheSun();
   resetBools();
   int i = 0;
   //while (keyPressed) {
@@ -55,14 +58,9 @@ void runButtons() {
 }
 
 void mouseClicked() {
-  //plants.add(new Plant(mouseX, mouseY));
-  //allPlants.add(plants.get(plants.size()-1));
-  print("planted");
   for (Button button : buttons) {
     if (button.active) {
-      print("planted");
       if (mouseX < environment.rain.length) {
-        print("planted");
         if (button.name == "Plant") {
           plants.add(new Plant(mouseX, mouseY));
           allPlants.add(plants.get(plants.size()-1));
@@ -75,7 +73,10 @@ void mouseClicked() {
     if (button.mouseOver()) {
       if (button.name == "Rain") {
         rain = true;
-      } else {//else if (button.name == "Plant"){
+      } else if (button.name == "Sunlight") {
+        sunlight = true;
+      } else {
+        //else if (button.name == "Plant"){
         //button.active = !button.active;
         //} else {
         button.click();
@@ -112,11 +113,18 @@ void showRaining() {
     rain = false;
   }
 }
+void showTheSun() {
+  if (sunlight) {
+    environment.sunlight(30);
+    sunlight = false;
+  }
+}
 
 void resetBools() {
   if (!keyPressed) {
     rain = false;
     showRain = false;
+    sunlight = false;
     snow = false; 
     earthquake = false;
   }
