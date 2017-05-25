@@ -22,6 +22,7 @@ void setup() {
 
 void makeButtons() {
   buttons.add(new Button(width - (int)(0.2*width), 0, width/10, height/10, color(0, 0, 120), color(120, 0, 0), "Rain"));
+  buttons.add(new Button(width - (int)(0.1*width), 0, width/10, height/10, color(0, 120, 0), color(120, 0, 0), "Plant"));
 }
 void draw() {
   background(255);
@@ -56,11 +57,27 @@ void runButtons() {
 void mouseClicked() {
   //plants.add(new Plant(mouseX, mouseY));
   //allPlants.add(plants.get(plants.size()-1));
+  print("planted");
+  for (Button button : buttons) {
+    if (button.active) {
+      print("planted");
+      if (mouseX < environment.rain.length) {
+        print("planted");
+        if (button.name == "Plant") {
+          plants.add(new Plant(mouseX, mouseY));
+          allPlants.add(plants.get(plants.size()-1));
+          print("planted");
+        }
+      }
+    }
+  }
   for (Button button : buttons) {
     if (button.mouseOver()) {
       if (button.name == "Rain") {
         rain = true;
-      } else {
+      } else {//else if (button.name == "Plant"){
+        //button.active = !button.active;
+        //} else {
         button.click();
       }
     }

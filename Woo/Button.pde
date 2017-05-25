@@ -28,28 +28,30 @@ class Button {
     }
   }
 
-  void display(){
-   stroke(255);
-   fill(rectColor);
-   if (mouseOver()){
-     fill(rectHighlight);
-   }
-   rect(x,y,w,h);
-   fill(255);
-   text(name,x+(int)(w/2)-(name.length()*4), y+(int)(h/2));
+  void display() {
+    stroke(255);
+    fill(rectColor);
+    if (mouseOver()) {
+      fill(rectHighlight);
+    }
+    rect(x, y, w, h);
+    fill(255);
+    text(name, x+(int)(w/2)-(name.length()*4), y+(int)(h/2));
   }
-  
+
   void click() {
     if (mouseOver()) {
-      if (name == "Rain"){
-          active = true;
+      if (name == "Rain") {
+        active = true;
+      } else {
+        active = !active;
       }
     } else {
       text("Put the mouse on the button please", 5, 5);
     }
   }
-  
-  void update(){
-     display(); 
+
+  void update() {
+    display();
   }
 }
