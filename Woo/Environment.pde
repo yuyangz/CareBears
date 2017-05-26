@@ -15,6 +15,13 @@ class Environment {
     for (int row = 0; row < sun.length; row += 3) {
       for (int col = 0; col < sun[row].length; col += 3) {
         sun[row][col] += intensity;
+        if (random(intensity) <= 1) {
+          rain[row][col] -= random(4); 
+          stroke(0, 0, 120);
+          fill(0, 0, 120);
+          ellipse(row, col, 1, 1);
+        }
+        //rain[row][col] -=;
         stroke(255, 255, 0);
         fill(120, 120, 0);
         ellipse(row, col, 1, 1 );
