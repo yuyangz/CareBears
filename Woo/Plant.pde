@@ -15,8 +15,8 @@ class Plant {
     xcor = x;
     ycor = y;
     size = 5;
-    maxSize = 30 + (int)random(10);
-    growthRate = 1 +(int)random(5);
+    maxSize = 300 + (int)random(100);
+    growthRate = 1 +(int)random(3);
     waterPriority = (int)random(5);
     lifeTime= 0;
     birthDate = frameCount;
@@ -25,8 +25,22 @@ class Plant {
     peakStated = false;
   }
 
-  void grow() {
-    if (!peakStated) {
+int health(){
+  return size;
+}
+
+
+boolean checkWater(int x ,int y, Environment e){
+  if (e.rain[x][y] > 0){
+    return true;
+  }
+  return false;
+}
+
+ 
+  
+  void grow(Environment e) {
+    if (!peakStated && checkWater(xcor, ycor, e)) {
       size += growthRate;
       if (g < 255) { 
         g += (int)random(30);
@@ -58,9 +72,9 @@ class Plant {
     ellipse(xcor, ycor, size, size);
   }
 
-  void run() {
+  void run(Environment e) {
     if ((frameCount - birthDate) % 20 == 0) { 
-      grow();
+      grow(e);
     }
     display();
   }
