@@ -1,5 +1,8 @@
 ArrayList<Plant> plants = new ArrayList<Plant>();
 ArrayList<Plant> allPlants = new ArrayList<Plant>();
+ArrayList<Bacteria> bacteria = new ArrayList<Bacteria>();
+ArrayList<Bacteria> allBacteria = new ArrayList<Bacteria>();
+
 ArrayList<Button> buttons = new ArrayList<Button>();
 Environment environment;
 boolean rain, showRain; //generates array[height][width] with random coordinates having water
@@ -17,6 +20,8 @@ void setup() {
   makeButtons();
   buttons.get(0).display();
   plants.add(new Plant((int)random(0.8*width), (int)random(height)));
+  bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
+
   //allPlants.add(plants.get(plants.size()-1));
   environment.rain(30);
 }
@@ -25,13 +30,17 @@ void makeButtons() {
   buttons.add(new Button(width - (int)(0.2*width), 0, width/10, height/10, color(0, 0, 120), color(120, 0, 0), "Rain"));
   buttons.add(new Button(width - (int)(0.1*width), 0, width/10, height/10, color(0, 120, 0), color(120, 0, 0), "Plant"));
   buttons.add(new Button(width - (int)(0.2*width), height/10, width/10, height/10, color(255, 255, 0), color(120, 0, 0), "Sunlight"));
+  buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
 }
 void draw() {
   background(255);
   runButtons();
   //environment.showRain();
   for (int i = 0; i < plants.size(); i++) {
-    plants.get(i).run();
+    plants.get(i).run(environment);
+  }
+  for (int i = 0; i < bacteria.size(); i++) {
+    bacteria.get(i).run();
   }
   removeDeadPlants();
   showTheRain();
@@ -65,6 +74,11 @@ void mouseClicked() {
           plants.add(new Plant(mouseX, mouseY));
           allPlants.add(plants.get(plants.size()-1));
           print("planted");
+        }
+        if (button.name == "Bacteria") {
+          bacteria.add(new Bacteria(mouseX, mouseY));
+          allBacteria.add(bacteria.get(bacteria.size()-1));
+          print("bacteriaed");
         }
       }
     }
