@@ -12,6 +12,8 @@ boolean snow;
 boolean earthquake;
 boolean thunderstorm;
 
+boolean b;
+
 
 void setup() {
   frameRate(600);
@@ -22,6 +24,7 @@ void setup() {
   plants.add(new Plant((int)random(0.8*width), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
 
+  b = false;
   //allPlants.add(plants.get(plants.size()-1));
   environment.rain(30);
 }
@@ -47,7 +50,13 @@ void draw() {
   showRaining();
   showTheSun();
   resetBools();
-  int i = 0;
+  //if (b){
+  //  background(0);
+  //  fill(255,0,0);
+  //  text("RESTARTING", 100,100);
+  //}
+    
+  //int i = 0;
   //while (keyPressed) {
   //  print(i);
   //  if (key == 'r') {
@@ -67,6 +76,17 @@ void runButtons() {
 }
 
 void mouseClicked() {
+  
+  for (Button button : buttons){
+    if (button.active){
+      if(button.mouseOver()){
+        if (button.name == "Restart"){
+          b = true;
+        }
+      }
+    }
+  }
+  
   for (Button button : buttons) {
     if (button.active) {
       if (mouseX < environment.rain.length) {
@@ -113,6 +133,17 @@ void keyPressed() {
   }
   if (key == 'q') {
     showRain = true;
+  }
+  
+  if (key == 'b'){
+   frameRate(600);
+  size(1000, 600);
+  environment = new Environment(width-(int)(0.2*width), height);
+  makeButtons();
+  buttons.get(0).display();
+  plants.add(new Plant((int)random(0.8*width), (int)random(height)));
+  bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
+
   }
 }
 

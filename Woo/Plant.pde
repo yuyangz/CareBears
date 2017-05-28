@@ -11,6 +11,7 @@ class Plant {
   int temp;
   boolean peakStated; //prime of life/ largest size
 
+
   Plant( int x, int y) {
     xcor = x;
     ycor = y;
@@ -37,56 +38,60 @@ class Plant {
     for (
       int ydisplacement = - width/40; ydisplacement < width / 40; ydisplacement += 1) {
       for (
-        int xdisplacement = - height/40; xdisplacement < height / 40; xdisplacement += 1){
-      avgwater += e.rain[xcenter+xdisplacement][ycenter+ydisplacement];
-        }
-      }
-     if (avgwater > 0) {
-        return true;
-      }
-      return false;
-    }
-
-
-
-
-    void grow(Environment e) {
-      if (!peakStated && checkWater(xcor, ycor, e)) {
-        size += growthRate;
-        if (g < 255) { 
-          g += (int)random(30);
-        }
-        if (random(3) <= 1) {
-          waterPriority++;
-        }
-        if (size >= maxSize) {
-          peakStated = true;
-        }
-      } else {
-        if (size <= 0) {
-          size = 0;
-          return;
-        }
-        size -= 1 + growthRate/2;
-        g -= (int)random(20);
-        r += (int)random(10);
-        b += (int)random(10);
-        if (random(3) <= 1) {
-          waterPriority--;
-        }
+        int xdisplacement = - height/40; xdisplacement < height / 40; xdisplacement += 1) {
+        avgwater += e.rain[xcenter+xdisplacement][ycenter+ydisplacement]; //occasionally exceptions
       }
     }
-
-    void display() {
-      stroke(r, g, b);
-      fill(color(r, g, b));
-      ellipse(xcor, ycor, size, size);
+    if (avgwater > 0) {
+      return true;
     }
+    return false;
+  }
 
-    void run(Environment e) {
-      if ((frameCount - birthDate) % 20 == 0) { 
-        grow(e);
+
+
+
+  void grow(Environment e) {
+    Plant second = new Plant(mouseX,mouseY);
+    if (!peakStated && checkWater(xcor, ycor, e)) {
+      size += growthRate;
+      if (g < 255) { 
+        g += (int)random(30);
       }
-      display();
+      if (random(3) <= 1) {
+        waterPriority++;
+      }
+      if (size >= maxSize) {
+        peakStated = true;
+      }
+      if (dist(this.xcor, this.ycor, second.xcor, second.ycor) <= 0) {
+        peakStated = true;
+      }
+    } else {
+      if (size <= 0) {
+        size = 0;
+        return;
+      }
+      size -= 1 + growthRate/2;
+      g -= (int)random(20);
+      r += (int)random(10);
+      b += (int)random(10);
+      if (random(3) <= 1) {
+        waterPriority--;
+      }
     }
   }
+
+  void display() {
+    stroke(r, g, b);
+    fill(color(r, g, b));
+    ellipse(xcor, ycor, size, size);
+  }
+
+  void run(Environment e) {
+    if ((frameCount - birthDate) % 20 == 0) { 
+      grow(e);
+    }
+    display();
+  }
+}
