@@ -70,6 +70,10 @@ class Environment {
           for (int xdisplacement = -1* rain.length/20; xdisplacement < rain.length/20; xdisplacement++) {
             set(xcenter+xdisplacement, ycenter+ydisplacement, color(r, g, b));
             avgwater += rain[xcenter+xdisplacement][ycenter+ydisplacement];
+            if (avgwater <= 0){
+              avgwater = 0;
+            }
+              
           }
         }
         r-=2;
