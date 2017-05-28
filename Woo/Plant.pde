@@ -25,57 +25,68 @@ class Plant {
     peakStated = false;
   }
 
-int health(){
-  return size;
-}
-
-
-boolean checkWater(int x ,int y, Environment e){
-  if (e.rain[x][y] > 0){
-    return true;
+  int health() {
+    return size;
   }
-  return false;
-}
 
- 
-  
-  void grow(Environment e) {
-    if (!peakStated && checkWater(xcor, ycor, e)) {
-      size += growthRate;
-      if (g < 255) { 
-        g += (int)random(30);
+
+  boolean checkWater(int x, int y, Environment e) {
+    int avgwater = 0;
+    int ycenter = y; 
+    int xcenter = x;
+    for (
+      int ydisplacement = - width/40; ydisplacement < width / 40; ydisplacement += 1) {
+      for (
+        int xdisplacement = - height/40; xdisplacement < height / 40; xdisplacement += 1){
+      avgwater += e.rain[xcenter+xdisplacement][ycenter+ydisplacement];
+        }
       }
-      if (random(3) <= 1) {
-        waterPriority++;
+     if (avgwater > 0) {
+        return true;
       }
-      if (size >= maxSize) {
-        peakStated = true;
-      }
-    } else {
-      if (size <= 0) {
-        size = 0;
-        return;
-      }
-      size -= 1 + growthRate/2;
-      g -= (int)random(20);
-      r += (int)random(10);
-      b += (int)random(10);
-      if (random(3) <= 1) {
-        waterPriority--;
+      return false;
+    }
+
+
+
+
+    void grow(Environment e) {
+      if (!peakStated && checkWater(xcor, ycor, e)) {
+        size += growthRate;
+        if (g < 255) { 
+          g += (int)random(30);
+        }
+        if (random(3) <= 1) {
+          waterPriority++;
+        }
+        if (size >= maxSize) {
+          peakStated = true;
+        }
+      } else {
+        if (size <= 0) {
+          size = 0;
+          return;
+        }
+        size -= 1 + growthRate/2;
+        g -= (int)random(20);
+        r += (int)random(10);
+        b += (int)random(10);
+        if (random(3) <= 1) {
+          waterPriority--;
+        }
       }
     }
-  }
 
-  void display() {
-    stroke(r, g, b);
-    fill(color(r, g, b));
-    ellipse(xcor, ycor, size, size);
-  }
-
-  void run(Environment e) {
-    if ((frameCount - birthDate) % 20 == 0) { 
-      grow(e);
+    void display() {
+      stroke(r, g, b);
+      fill(color(r, g, b));
+      ellipse(xcor, ycor, size, size);
     }
-    display();
+
+    void run(Environment e) {
+      if ((frameCount - birthDate) % 20 == 0) { 
+        grow(e);
+      }
+      display();
+    }
   }
-}
