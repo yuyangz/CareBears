@@ -58,6 +58,16 @@ class Environment {
     frameRate(60);
   }
 
+void getGrid(){
+  int x = 0;
+  stroke(0);
+  strokweight(2);
+  x = width / 10;
+  while( x < width){
+    line(x, 0, x, width);
+    x += width / 10;
+  }
+}
 
   void showRain() {
     int r = 255;
