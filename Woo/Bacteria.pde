@@ -37,13 +37,14 @@ class Bacteria {
       ycor += dy;
     }
   }
-  
-  void display(){
-   rect(xcor-size/2, ycor-size/2,size,size); 
+
+  void display() {
+    stroke(r, g, b);
+    fill(color(r, g, b));
+    rect(xcor-size/2, ycor-size/2, size, size);
   }
-  void run(){
-     move();
-     display();
-    
+  void run() {
+    move();
+    display();
   }
 }

@@ -5,6 +5,7 @@ class Plant {
   int maxSize;
   int growthRate;
   int waterPriority;
+  int waterNeed;
   int lifeTime;
   int birthDate;
   int r, g, b;
@@ -19,6 +20,7 @@ class Plant {
     maxSize = 300 + (int)random(100);
     growthRate = 1 +(int)random(3);
     waterPriority = (int)random(5);
+    waterNeed = 1 + (int)random(4);
     lifeTime= 0;
     birthDate = frameCount;
     int r = b = 0;
@@ -31,29 +33,47 @@ class Plant {
   }
 
 
-  boolean checkWater(int x, int y, Environment e) {
+  boolean checkWater(Environment e) {
     int avgwater = 0;
-    int ycenter = y; 
-    int xcenter = x;
-    for (
-      int ydisplacement = - width/40; ydisplacement < width / 40; ydisplacement += 1) {
-      for (
-        int xdisplacement = - height/40; xdisplacement < height / 40; xdisplacement += 1) {
-        avgwater += e.rain[xcenter+xdisplacement][ycenter+ydisplacement]; //occasionally exceptions
+    int ycenter = ycor; 
+    int xcenter = xcor;
+    for (int ydisplacement = -1* e.rain[0].length/20; ydisplacement < e.rain[0].length/20; ydisplacement++) {
+      for (int xdisplacement = -1* e.rain.length/20; xdisplacement < e.rain.length/20; xdisplacement++) {
+        if (dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size*3) {
+          avgwater += e.rain[xcenter+xdisplacement][ycenter+ydisplacement]; //occasionally exceptions
+        }
       }
     }
-    if (avgwater > 0) {
+    if (avgwater > waterNeed) {
       return true;
     }
     return false;
   }
 
+  void takeWater(Environment e) {
+    int temp = waterNeed;
+    int ycenter = ycor; 
+    int xcenter = xcor;
+    while (temp > 0) {
+      //for (int ydisplacement = -1* e.rain[0].length/20; ydisplacement < e.rain[0].length/20; ydisplacement++) {
+      //for (int xdisplacement = -1* e.rain.length/20; xdisplacement < e.rain.length/20; xdisplacement++) {
+      for (int ydisplacement = -1* (int)random(e.rain[0].length/20); ydisplacement < (int)random(e.rain[0].length/20); ydisplacement++) {
+        for (int xdisplacement = -1* (int)random(e.rain.length/20); xdisplacement < (int)random(e.rain.length/20); xdisplacement++) {
+          if (dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size*3) {
 
+            e.rain[xcenter+xdisplacement][ycenter+ydisplacement] -= 1;
+            temp -= 1;//occasionally exceptions
+          }
+        }
+      }
+    }
+  }
 
 
   void grow(Environment e) {
-    Plant second = new Plant(mouseX,mouseY);
-    if (!peakStated && checkWater(xcor, ycor, e)) {
+    Plant second = new Plant(mouseX, mouseY);
+    if (!peakStated && checkWater(e)) {
+      takeWater(e);
       size += growthRate;
       if (g < 255) { 
         g += (int)random(30);

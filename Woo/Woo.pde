@@ -12,6 +12,8 @@ boolean snow;
 boolean earthquake;
 boolean thunderstorm;
 
+boolean showGrid;
+
 boolean b;
 
 
@@ -21,7 +23,7 @@ void setup() {
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
   buttons.get(0).display();
-  plants.add(new Plant((int)random(0.8*width), (int)random(height)));
+  plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
 
   b = false;
@@ -37,7 +39,7 @@ void makeButtons() {
 }
 void draw() {
   background(255);
-  environment.getGrid();
+  //environment.getGrid();
   runButtons();
   //environment.showRain();
   for (int i = 0; i < plants.size(); i++) {
@@ -50,6 +52,7 @@ void draw() {
   showTheRain();
   showRaining();
   showTheSun();
+  showTheGrid();
   resetBools();
   //if (b){
   //  background(0);
@@ -135,6 +138,10 @@ void keyPressed() {
   if (key == 'q') {
     showRain = true;
   }
+  if (key == 'g') {
+    showGrid = true;
+    //environment.getGrid();
+  }
   
   if (key == 'b'){
    frameRate(600);
@@ -165,6 +172,11 @@ void showTheSun() {
     sunlight = false;
   }
 }
+void showTheGrid() {
+  if (showGrid) {
+    environment.getGrid();
+  }
+}
 
 void resetBools() {
   if (!keyPressed) {
@@ -173,5 +185,6 @@ void resetBools() {
     sunlight = false;
     snow = false; 
     earthquake = false;
+    showGrid = false;
   }
 }
