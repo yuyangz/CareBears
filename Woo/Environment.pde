@@ -68,7 +68,7 @@ class Environment {
     x = 0; //width / 10;
     while ( x<= grid.length) {
       line(x, 0, x, grid[0].length);
-      x += grid.length / 10;
+      x += grid.length / 20;
     }
     int y = 0;
     stroke(0);
@@ -76,19 +76,23 @@ class Environment {
     y = 0; //grid[0].length / 10;
     while ( y <=grid[0].length) {
       line(0, y, grid.length, y);
-      y += grid[0].length / 10;
+      y += grid[0].length / 20;
     }
   }
 
   void showRain() {
-    int r = 255;
-    int g = 255;
-    int b = 255;
-    for (int ycenter = rain[0].length/20; ycenter < rain[0].length; ycenter += rain[0].length/10) {
-      for (int xcenter = rain.length/20; xcenter < rain.length; xcenter += rain.length/10) {
+    int r = 30;
+    int g = 30;
+    int b = 120;
+    //for (int ycenter = rain[0].length/20; ycenter < rain[0].length; ycenter += rain[0].length/10) {
+    //for (int xcenter = rain.length/20; xcenter < rain.length; xcenter += rain.length/10) {
+    for (int ycenter = rain[0].length/40; ycenter < rain[0].length; ycenter += rain[0].length/20) {
+      for (int xcenter = rain.length/40; xcenter < rain.length; xcenter += rain.length/20) {
         int avgwater = 0;
-        for (int ydisplacement = -1* rain[0].length/20; ydisplacement < rain[0].length/20; ydisplacement++) {
-          for (int xdisplacement = -1* rain.length/20; xdisplacement < rain.length/20; xdisplacement++) {
+        //for (int ydisplacement = -1* rain[0].length/20; ydisplacement < rain[0].length/20; ydisplacement++) {
+        //for (int xdisplacement = -1* rain.length/20; xdisplacement < rain.length/20; xdisplacement++) {
+        for (int ydisplacement = -1* rain[0].length/40; ydisplacement < rain[0].length/40; ydisplacement++) {
+          for (int xdisplacement = -1* rain.length/40; xdisplacement < rain.length/40; xdisplacement++) {
             set(xcenter+xdisplacement, ycenter+ydisplacement, color(r, g, b));
             avgwater += rain[xcenter+xdisplacement][ycenter+ydisplacement];
             if (avgwater <= 0) {
@@ -96,12 +100,12 @@ class Environment {
             }
           }
         }
-        r-=2;
-        g-=2;
-        b-=1;
+        //r-=2;
+        //g-=2;
+        //b-=1;
         stroke(color(255, 255, 0));
         fill(color(255, 255, 0));
-        text(avgwater, xcenter, ycenter);
+        text(avgwater, xcenter-5, ycenter);
       }
       r-=2;
       g-=2;

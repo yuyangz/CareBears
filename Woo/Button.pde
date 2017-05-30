@@ -35,6 +35,9 @@ class Button {
   void display() {
     stroke(255);
     fill(rectColor);
+    if (active) {
+      fill(color(120,0,0));
+    }
     if (mouseOver()) {
       fill(rectHighlight);
     }

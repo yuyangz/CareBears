@@ -42,6 +42,9 @@ void draw() {
   //environment.getGrid();
   runButtons();
   //environment.showRain();
+  showTheRain();
+  showRaining();
+  showTheSun();
   for (int i = 0; i < plants.size(); i++) {
     plants.get(i).run(environment);
   }
@@ -49,9 +52,9 @@ void draw() {
     bacteria.get(i).run();
   }
   removeDeadPlants();
-  showTheRain();
-  showRaining();
-  showTheSun();
+  //showTheRain();
+  //showRaining();
+  //showTheSun();
   showTheGrid();
   resetBools();
   //if (b){
