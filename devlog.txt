@@ -1,67 +1,148 @@
 CareBears
-Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
-APCS2 pd01
-devlog
+Ibnul Jahan
+Joshel Xiedeng
+Yuyang Zhang
+pd 01
+---------------------
+Plants and Bacteria
 
-|==============================================================================|
-Day 01(May 17, 2017):
+devlog--
+Use keyboard shortcut to jump to end,
+ replicate entry template,
+ modify appropriately.
+
+zone of reflection--
+Flesh out each category whenever necessary, appropriate.
+ Need not be fully filled in until end of project,
+ but best done as you go along.
+
+
+/////////// Zone of Reflection \\\\\\\\\\\
+------------------------------------------
+OBSTACLES OVERCOME
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow we so BOSS bc...
+
+UNRESOLVED ISSUES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+blah blah pesky bug...
+maybe some of these will move into the Obs.Ovrcm section...
+
+COOL STUFF LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+wow! oo!...
+
+MID-DEVELOPMENT DESIGN CHANGES
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+we changed ___ to ___ bc...
+
+LESSONS LEARNED
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tales of wisdom gained...
+||||||||||||||||||||||||||||||||||||||||||
+
+
+
+ ______   ______   __   __   __       ______   _______     
+/_____/\ /_____/\ /_/\ /_/\ /_/\     /_____/\ /______/\    
+\:::_ \ \\::::_\/_\:\ \\ \ \\:\ \    \:::_ \ \\::::__\/__  
+ \:\ \ \ \\:\/___/\\:\ \\ \ \\:\ \    \:\ \ \ \\:\ /____/\ 
+  \:\ \ \ \\::___\/_\:\_/.:\ \\:\ \____\:\ \ \ \\:\\_  _\/ 
+   \:\/.:| |\:\____/\\ ..::/ / \:\/___/\\:\_\ \ \\:\_\ \ \ 
+    \____/_/ \_____\/ \___/_(   \_____\/ \_____\/ \_____\/ 
+==============================================================
+
+
+2017-05-17 (Day 01):
+--------------------------------------------------------------
     Ibnul: Worked on proposal.
     Joshel: Worked on proposal.
     Yuyang: Created google doc for proposal; worked on proposal.
-|==============================================================================|
-Day 02(May 18, 2017): 
+==============================================================
+
+2017-05-18 (Day 02):
+--------------------------------------------------------------
     Ibnul: Updated plan.
     Joshel: Updated plan.
     Yuyang: Created "CareBears" repository; added it as a submodule to "stunning-octo-waddle" repository. Updated plan.
-|==============================================================================|
-Day 03(May 19, 2017):
+|==============================================================
+
+2017-05-19 (Day 03):
+--------------------------------------------------------------
     Ibnul: Discussed project plans for certain features and dates.
     Joshel: Discussed project plans for certain features and dates.
     Yuyang: Discussed project plans for certain features and dates.
-|==============================================================================|
-Day 04(May 20, 2017):
+|==============================================================
+
+2017-05-20 (Day 04):
+--------------------------------------------------------------
     Ibnul: Created initial processing file, and started code on general plant class and main tab. Plants can grow until the peak of their life, and shrink past that. Later further ideas will likely replace how this works.
     Joshel:
     Yuyang: Expended on plan to more specific details. Began considering variables for plants and how the user may control the environment.
-|==============================================================================|
-Day 05(May 21, 2017):
+|==============================================================
+
+2017-05-21 (Day 05):
+--------------------------------------------------------------
     Ibnul: Discussed how rain and the environment should be factored into the environment. Started to code rain as a 2D array the size of the screen, where random indices would get incremented but random amounts, but did not push.
     Joshel: Discussed how rain and the environment should be factored into the environment. 
     Yuyang: Discussed how rain and the environment should be factored into the environment. 
-|==============================================================================|
-Day 06(May 22, 2017):
+|==============================================================
+
+2017-05-22 (Day 06):
+--------------------------------------------------------------
     Ibnul: Worked on updating new plan.
     Joshel: Worked on updating new plan.
     Yuyang: Worked on updating new plan.
-|==============================================================================|
-Day 07(May 23, 2017):
+|==============================================================
+
+2017-05-23 (Day 07):
+--------------------------------------------------------------
     Ibnul: Continued work on the protocols for rain and pushed code. Ran into a problem where we will need a fake animation to show the user it has rained, because the current way of doing it finishes in one frame. Worked on creating flowcharts and UML diagrams.
     Joshel: Worked on creating flowcharts and UML diagrams.
     Yuyang: Worked on creating flowcharts and UML diagrams.
-|==============================================================================|
-Day 08(May 24, 2017):
+|==============================================================
+
+2017-05-24 (Day 08):
+--------------------------------------------------------------
     Ibnul:Updated environment interface. Added rain features and updated animations.
     Joshel:Contributed to the concepts behind rain and and certain animations.
     Yuyang: Contributed to the concepts behind rain and and certain animations.
-|==============================================================================|
-Day 09(May 25, 2017):
+==============================================================
+
+2017-05-25 (Day 09):
+--------------------------------------------------------------
     Ibnul: Created button to summon light. Created plant button.
     Joshel: Contributed to concept behind sunlight and plant button.
     Yuyang: Created sunlight and allowed sunlight to affect rainfall.
-|==============================================================================|
-Day 10(May 26, 2017):
+==============================================================
+
+2017-05-26 (Day 10):
+--------------------------------------------------------------
     Ibnul: Added bacteria button, updated sunlight.
     Joshel: Consulted group with ideas regarding future implementation of pollen.
     Yuyang: Updated plant health.
-|==============================================================================|
-Day 11(May 28, 2017):
+==============================================================
+
+2017-05-28 (Day 12):
+--------------------------------------------------------------
     Ibnul: Planned implementation of pollen.
     Joshel: Planned implementation of pollen.
     Yuyang: Updated water levels so that it will not become negative. Attempted to update  
     plants so that collisions would not occur. Attempted to create reset button. Limited 
     areas in which plants can be grown depending on amount of avgwater. Proposed issues.
-|==============================================================================|
-Day 12(May 29, 2017):
+==============================================================
+
+2017-05-29 (Day 13):
+--------------------------------------------------------------
     Ibnul: More work on good stuff.
     Joshel: Updated README file to show general out of simulation.
     Yuyang: Attempted to create grid.
+==============================================================
+
+
+yyyy-mm-dd
+--------------------------------------------------------------
+<Member> :: <Thing member did.>
+<Member> :: <Thing member did.>
+<Member> :: <Thing member did.>
+==============================================================
