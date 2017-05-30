@@ -37,7 +37,7 @@ void makeButtons() {
 }
 void draw() {
   background(255);
-  getGrid();
+  environment.getGrid();
   runButtons();
   //environment.showRain();
   for (int i = 0; i < plants.size(); i++) {

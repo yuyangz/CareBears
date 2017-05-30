@@ -1,10 +1,13 @@
 class Environment {
+  int[][] grid;
   int[][] rain;
   int[][] snow;
   int[][] soil;
   int[][] sun;
 
+
   Environment(int w, int h ) {
+    grid = new int[w][h];
     rain = new int[w][h];
     snow = new int[w][h];
     soil = new int[w][h];
@@ -58,16 +61,24 @@ class Environment {
     frameRate(60);
   }
 
-void getGrid(){
-  int x = 0;
-  stroke(0);
-  strokweight(2);
-  x = width / 10;
-  while( x < width){
-    line(x, 0, x, width);
-    x += width / 10;
+  void getGrid() {
+    int x = 0;
+    stroke(0);
+    //strokweight(2);
+    x = 0; //width / 10;
+    while ( x<= grid.length) {
+      line(x, 0, x, grid[0].length);
+      x += grid.length / 10;
+    }
+    int y = 0;
+    stroke(0);
+    //strokweight(2);
+    y = 0; //grid[0].length / 10;
+    while ( y <=grid[0].length) {
+      line(0, y, grid.length, y);
+      y += grid[0].length / 10;
+    }
   }
-}
 
   void showRain() {
     int r = 255;
@@ -80,10 +91,9 @@ void getGrid(){
           for (int xdisplacement = -1* rain.length/20; xdisplacement < rain.length/20; xdisplacement++) {
             set(xcenter+xdisplacement, ycenter+ydisplacement, color(r, g, b));
             avgwater += rain[xcenter+xdisplacement][ycenter+ydisplacement];
-            if (avgwater <= 0){
+            if (avgwater <= 0) {
               avgwater = 0;
             }
-              
           }
         }
         r-=2;
