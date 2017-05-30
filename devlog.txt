@@ -40,21 +40,28 @@ Day 07(May 23, 2017):
     Yuyang: Worked on creating flowcharts and UML diagrams.
 |==============================================================================|
 Day 08(May 24, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+    Ibnul:Updated environment interface. Added rain features and updated animations.
+    Joshel:Contributed to the concepts behind rain and and certain animations.
+    Yuyang: Contributed to the concepts behind rain and and certain animations.
 |==============================================================================|
-Day 09(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 09(May 25, 2017):
+    Ibnul: Created button to summon light. Created plant button.
+    Joshel: Contributed to concept behind sunlight and plant button.
+    Yuyang: Created sunlight and allowed sunlight to affect rainfall.
 |==============================================================================|
-Day 10(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 10(May 26, 2017):
+    Ibnul: Added bacteria button, updated sunlight.
+    Joshel: Consulted group with ideas regarding future implementation of pollen.
+    Yuyang: Updated plant health.
 |==============================================================================|
-Day 11(May 00, 2017):
-    Ibnul:
-    Joshel:
-    Yuyang:
+Day 11(May 28, 2017):
+    Ibnul: Planned implementation of pollen.
+    Joshel: Planned implementation of pollen.
+    Yuyang: Updated water levels so that it will not become negative. Attempted to update  
+    plants so that collisions would not occur. Attempted to create reset button. Limited 
+    areas in which plants can be grown depending on amount of avgwater. Proposed issues.
+|==============================================================================|
+Day 12(May 29, 2017):
+    Ibnul: More work on good stuff.
+    Joshel: Updated README file to show general out of simulation.
+    Yuyang: Attempted to create grid.
