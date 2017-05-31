@@ -32,11 +32,13 @@ class Bacteria {
   void move() {
     xcor+=dx;
     ycor+=dy;
+    //checks horizontal size
     if ((xcor > width*0.8) || (xcor < 0) ) {
       xcor -= dx;
       dx *= -1;
       xcor += dx;
     }
+    //checks vertical size
     if ((ycor > height) || (ycor < 0) ) {
       ycor -= dx;
       dy *= -1;
