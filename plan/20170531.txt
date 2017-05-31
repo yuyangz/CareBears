@@ -1,0 +1,27 @@
+TEAM CareBears
+Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
+
+As the basic functionalities of our classes are mostly complete, we will now 
+work to combine and link the classes together so they can interact. We will 
+soon implement pollen so the bacteria and plants may interact with each other 
+more. We plan to have the the interactions between the environment and plants 
+complete by the end of this week. This would include limiting where the plants
+can be placed depending on the amount of water on each block (when pressing g
+to see the grid). In addition, we will work on spacing out plants so that they 
+cannot overlap with each other. If two plants are too close, they will both 
+begin to shrink. Due to the fact, the user may spam the plants button, we will
+add a timer in the near future to limit the amount of times the user can plant 
+within a certain time frame. The same will apply for bacteria. As of now,
+bacteria is still rather simply. We will work to modify bacteria so that it will
+have similar functions to a real life “bug” such that it may both help and deter
+the living qualities of the plant.
+
+By Friday (June 2nd): Affect of sunlight and rain on plants.
+
+By Saturday (June 3rd): Limit the areas in which plants can be grown and limit the 
+                        amount of times a plant can be grown.
+
+By Sunday (June 4th): Modify bacteria class so that it will have more useful 
+                      functionality.
+
+ 
