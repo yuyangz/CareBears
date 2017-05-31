@@ -13,7 +13,7 @@ class Plant {
   boolean peakStated; //prime of life/ largest size
 
 
-  Plant( int x, int y) {
+  Plant( int x, int y) { //initizalization of plants
     xcor = x;
     ycor = y;
     size = 5;
@@ -28,14 +28,14 @@ class Plant {
     peakStated = false;
   }
 
-  int health() {
+  int health() { //uses size as the health count
     return size;
   }
 
 
-  boolean checkWater(Environment e) {
+  boolean checkWater(Environment e) { //checks if the sum of the water in a block is 0
     int avgwater = 0;
-    int ycenter = ycor; 
+    int ycenter = ycor;  //starts at one certain point
     int xcenter = xcor;
     //for (int ydisplacement = -1* e.rain[0].length/20; ydisplacement < e.rain[0].length/20; ydisplacement++) {
     //  for (int xdisplacement = -1* e.rain.length/20; xdisplacement < e.rain.length/20; xdisplacement++) {
@@ -44,20 +44,20 @@ class Plant {
     //    }
     //  }
     //}
-    for (int ydisplacement = -1* size*3; ydisplacement < size*3; ydisplacement++) {
+    for (int ydisplacement = -1* size*3; ydisplacement < size*3; ydisplacement++) {  //moves to surrounding points
       for (int xdisplacement = -1* size*3; xdisplacement < size*3; xdisplacement++) {
         if (dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size*3) {
           avgwater += e.rain[xcenter+xdisplacement][ycenter+ydisplacement]; //occasionally exceptions
         }
       }
     }
-    if (avgwater > waterNeed) {
+    if (avgwater > waterNeed) { 
       return true;
     }
     return false;
   }
 
-  int takeWater(Environment e) {
+  int takeWater(Environment e) { 
     int temp = waterNeed;
     int waterTaken = 0;
     int ycenter = ycor; 
@@ -86,14 +86,14 @@ class Plant {
   }
 
 
-  void grow(Environment e) {
-    Plant second = new Plant(mouseX, mouseY);
-    if (!peakStated) {// && checkWater(e)) {
+  void grow(Environment e) { //allows plant to grow
+    //Plant second = new Plant(mouseX, mouseY); 
+    if (!peakStated) {// && checkWater(e)) { //if plant is not at its max size
       float findGrowth = takeWater(e)/waterNeed;
-      if (findGrowth == 1) {
+      if (findGrowth == 1) {  //plant will grow based on specific growth rates and waterNeed
         size += growthRate;
         waterNeed *= growthRate;
-      } else if (findGrowth > 0.75) {
+      } else if (findGrowth > 0.75) { 
         size += growthRate/2;
         waterNeed *= growthRate/2;
       } else if (findGrowth >= 0.5) {
@@ -131,13 +131,13 @@ class Plant {
     }
   }
 
-  void display() {
+  void display() {//displays each plant
     stroke(r, g, b);
     fill(color(r, g, b));
     ellipse(xcor, ycor, size, size);
   }
 
-  void run(Environment e) {
+  void run(Environment e) { //display growth of plants
     if ((frameCount - birthDate) % 60 == 0) { 
       //if (second() % 1 == 0) {
       grow(e);
