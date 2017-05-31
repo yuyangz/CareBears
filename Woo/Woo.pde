@@ -82,8 +82,9 @@ void runButtons() {
   }
 }
 
+
+//goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
 void mouseClicked() {
-  
   for (Button button : buttons){
     if (button.active){
       if(button.mouseOver()){
@@ -126,6 +127,8 @@ void mouseClicked() {
   }
 }
 
+//removes plants when they have a size that is less than or equal to 0
+//this means they have shrunk to the point where they are negative size
 void removeDeadPlants() {
   for (int i = plants.size() - 1; i >= 0; i--) {
     if (plants.get(i).size <= 0) { 
@@ -134,6 +137,7 @@ void removeDeadPlants() {
   }
 }
 
+//pressing keys allows the user to make it rain, to see the rainfall graph, to see the blocked grid, and to in the future reset
 void keyPressed() {
   if (key == 'r') {
     rain = true;
@@ -158,29 +162,33 @@ void keyPressed() {
   }
 }
 
+//method for showing the rainfall graph
 void showTheRain() {
   if (showRain) {
     environment.showRain();
   }
 }
+//method to make it rain
 void showRaining() {
   if (rain) {
     environment.rain(30);
     rain = false;
   }
 }
+//method to make the sun come out (leads to evaporated water)
 void showTheSun() {
   if (sunlight) {
     environment.sunlight(30);
     sunlight = false;
   }
 }
+//method to show the grid
 void showTheGrid() {
   if (showGrid) {
     environment.getGrid();
   }
 }
-
+//turns all the boolean variables to false, so any graphs don't stay on after they are released
 void resetBools() {
   if (!keyPressed) {
     rain = false;
