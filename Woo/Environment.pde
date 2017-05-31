@@ -14,12 +14,12 @@ class Environment {
     sun = new int[w][h];
   }
 
-  void sunlight (int intensity) {
+  void sunlight (int intensity) { //allows the presence of sunlight based on a certain intensity
     for (int row = 0; row < sun.length; row += 3) {
       for (int col = 0; col < sun[row].length; col += 3) {
         sun[row][col] += intensity;
         if (random(intensity) <= 1) {
-          rain[row][col] -= random(4); 
+          rain[row][col] -= random(4);  //decreases the water in each spot of the coordinate system
           stroke(0, 0, 120);
           fill(0, 0, 120);
           ellipse(row, col, 1, 1);
@@ -30,14 +30,14 @@ class Environment {
         ellipse(row, col, 1, 1 );
       }
     }
-    println("God has released light");
+    println("God has released light"); //gives statement that shows that sun has been released
     fill(120);
     stroke(120);
     text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4), 10);
   }
 
 
-  void rain(int intensity) {
+  void rain(int intensity) { //provides rain to each individual coordinate point on the grid
     //print(rain.length, rain[0].length);
     //int time = millis();
     //while (millis() < time + 1000) {
@@ -53,7 +53,7 @@ class Environment {
         }
       }
     }
-    println("It has rained");
+    println("It has rained"); //gives statement that show that rain has been released
     fill(120);
     stroke(120);
     text("It has rained", (width-(0.2*width))/2-("It has rained".length()*4), 10);
@@ -61,12 +61,12 @@ class Environment {
     frameRate(60);
   }
 
-  void getGrid() {
+  void getGrid() { //displays grid so that the user can more easily place plants
     int x = 0;
     stroke(0);
     //strokweight(2);
     x = 0; //width / 10;
-    while ( x<= grid.length) {
+    while ( x<= grid.length) { //horizontal
       line(x, 0, x, grid[0].length);
       x += grid.length / 20;
     }
@@ -74,13 +74,13 @@ class Environment {
     stroke(0);
     //strokweight(2);
     y = 0; //grid[0].length / 10;
-    while ( y <=grid[0].length) {
+    while ( y <=grid[0].length) { //vertical
       line(0, y, grid.length, y);
       y += grid[0].length / 20;
     }
   }
 
-  void showRain() {
+  void showRain() { //displays rain so that the user can see average rain in each "block"
     int r = 30;
     int g = 30;
     int b = 120;
