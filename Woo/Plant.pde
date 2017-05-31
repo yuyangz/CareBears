@@ -12,7 +12,7 @@ class Plant {
   int temp;
   boolean peakStated; //prime of life/ largest size
 
-
+//default constructor for plants
   Plant( int x, int y) { //initizalization of plants
     xcor = x;
     ycor = y;
@@ -28,11 +28,13 @@ class Plant {
     peakStated = false;
   }
 
+
   int health() { //uses size as the health count
     return size;
   }
 
-
+//checks water in the environment to see how much it will grow/ if it can
+//this may be deleted soon
   boolean checkWater(Environment e) { //checks if the sum of the water in a block is 0
     int avgwater = 0;
     int ycenter = ycor;  //starts at one certain point
@@ -57,6 +59,9 @@ class Plant {
     return false;
   }
 
+//takes water from the surrounding environment
+//returns amount of water taken
+//may run forever if not enough water in the area !!!needs to be fixed!!!
   int takeWater(Environment e) { 
     int temp = waterNeed;
     int waterTaken = 0;
@@ -85,7 +90,7 @@ class Plant {
     return waterTaken;
   }
 
-
+//increments the size of the plant based on hwo much water it received from the environment
   void grow(Environment e) { //allows plant to grow
     //Plant second = new Plant(mouseX, mouseY); 
     if (!peakStated) {// && checkWater(e)) { //if plant is not at its max size
@@ -131,12 +136,15 @@ class Plant {
     }
   }
 
+//each plant is an ellipse
+//colors approach green as it is healthy, and then approach purple as it is dying
   void display() {//displays each plant
     stroke(r, g, b);
     fill(color(r, g, b));
     ellipse(xcor, ycor, size, size);
   }
 
+//grows plant once a second
   void run(Environment e) { //display growth of plants
     if ((frameCount - birthDate) % 60 == 0) { 
       //if (second() % 1 == 0) {

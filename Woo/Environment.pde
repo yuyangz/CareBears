@@ -14,6 +14,8 @@ class Environment {
     sun = new int[w][h];
   }
 
+//enters sunlight onto the map
+//sunlight will be uniform in the sun array, but will decrease water levels randomly
   void sunlight (int intensity) { //allows the presence of sunlight based on a certain intensity
     for (int row = 0; row < sun.length; row += 3) {
       for (int col = 0; col < sun[row].length; col += 3) {
@@ -36,7 +38,7 @@ class Environment {
     text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4), 10);
   }
 
-
+//makes it rain by adding random values to individual spots on the rain array
   void rain(int intensity) { //provides rain to each individual coordinate point on the grid
     //print(rain.length, rain[0].length);
     //int time = millis();
@@ -61,6 +63,7 @@ class Environment {
     frameRate(60);
   }
 
+//draws line in concurrence with the rainfall graph
   void getGrid() { //displays grid so that the user can more easily place plants
     int x = 0;
     stroke(0);
@@ -80,6 +83,8 @@ class Environment {
     }
   }
 
+//splits map into boxes concurrent with the grid
+//adds total water drops in that section in the rain array
   void showRain() { //displays rain so that the user can see average rain in each "block"
     int r = 30;
     int g = 30;
