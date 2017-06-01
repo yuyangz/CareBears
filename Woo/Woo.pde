@@ -18,7 +18,7 @@ boolean b; //will be used in the future for reset
 
 
 void setup() { 
-  frameRate(600);
+  frameRate(60);
   size(1000, 600);
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
@@ -201,8 +201,8 @@ void resetBools() {
     rain = false;
     showRain = false;
     sunlight = false;
-    snow = false; 
-    earthquake = false;
+    //snow = false; 
+    //earthquake = false;
     showGrid = false;
   }
 }
