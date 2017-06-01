@@ -1,0 +1,30 @@
+CareBears
+Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
+APCS2 pd01
+plan/20170519
+2017-05-18  
+|==============================================================================|
+Prioritization:
+Which jobs are most crucial?
+- We must first start by creating the object plants. The class plants will be assigned a group of properties which will be set with variables.
+We will also create a way for the plants and the environment to interact with each other. The order of creation will go: plants, environment, interactions between the prior two and the user, and then the bacteria.
+
+Which components constitute core functionality (vs non-essential)?
+- Variables such as growth rate, health, water level, and nutrients will definitely be important.  The way that the environment interacts through 
+temperature, rainfall, etc is also required to this simulation to function. Necessities include attributes to distinguish plants from each other by. Components such as predators or bacterias will be added later on.
+
+Which components are prerequisites for others?
+- Before adding the predator and the bacteria, we must make sure have a fundamental plant structure as the plants are perhaps the base of our project. 
+Without creating the plants, we are unable to create the environment either as we need the plants to check if the environment functions. Similarly, implementing a bacteria class after having created a functioning plant one should be much easier than implementing it before.
+
+|=================================================================================================================================================|
+Workload Sharing:
+Which tasks can be delegated, and which must be collaboratively tackled?
+- As for properties of the plant, we may split that and each work on certain properties. Same can apply for the environment and other objects in 
+this project. However, the interactions between these objects might require collaborate work. 
+|=================================================================================================================================================|
+Chronology:
+What is the timeline, and how does it accommodate setbacks, course changes?
+- We will plan to have our planned final project done a week before the actual due date. This will give us a week to fix minor mistakes or add on
+extra features. This also gives us a little room if we do not finish on by this proposed date.
+|=================================================================================================================================================|

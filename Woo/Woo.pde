@@ -16,6 +16,7 @@ boolean showGrid; //displays grid for plants
 
 boolean b; //will be used in the future for reset
 
+long time;
 
 void setup() { 
   frameRate(60);
@@ -29,6 +30,7 @@ void setup() {
   b = false;
   //allPlants.add(plants.get(plants.size()-1));
   environment.rain(30);
+  time = 0;
 }
 
 void makeButtons() { //creates buttons
@@ -62,7 +64,7 @@ void draw() { //creates screen
   //  fill(255,0,0);
   //  text("RESTARTING", 100,100);
   //}
-    
+
   //int i = 0;
   //while (keyPressed) {
   //  print(i);
@@ -85,33 +87,36 @@ void runButtons() {
 
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
 void mouseClicked() {
-  for (Button button : buttons){
-    if (button.active){
-      if(button.mouseOver()){
-        if (button.name == "Restart"){
+  for (Button button : buttons) {
+    if (button.active) {
+      if (button.mouseOver()) {
+        if (button.name == "Restart") {
           b = true;
         }
       }
     }
   }
-  
-  for (Button button : buttons) { 
-    //button when pressed will be on until pressed off
-    if (button.active) { //if button is pressed for plants, a plant will be added.
-      if (mouseX < environment.rain.length) {
-        if (button.name == "Plant") {
-          plants.add(new Plant(mouseX, mouseY));
-          allPlants.add(plants.get(plants.size()-1));
-          print("planted");
-        }
-        if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.
-          bacteria.add(new Bacteria(mouseX, mouseY));
-          allBacteria.add(bacteria.get(bacteria.size()-1));
-          print("bacteriaed");
+
+  if (millis() - 10000 > time) {
+    for (Button button : buttons) { 
+      //button when pressed will be on until pressed off
+      if (button.active) { //if button is pressed for plants, a plant will be added.
+        if (mouseX < environment.rain.length) {
+          if (button.name == "Plant") {
+            plants.add(new Plant(mouseX, mouseY));
+            allPlants.add(plants.get(plants.size()-1));
+            print("planted");
+          }
+          if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.
+            bacteria.add(new Bacteria(mouseX, mouseY));
+            allBacteria.add(bacteria.get(bacteria.size()-1));
+            print("bacteriaed");
+          }
         }
       }
     }
   }
+
   for (Button button : buttons) {
     //button will only be on for one press
     if (button.mouseOver()) { 
@@ -127,6 +132,7 @@ void mouseClicked() {
       }
     }
   }
+  time = millis();
 }
 
 //removes plants when they have a size that is less than or equal to 0
@@ -151,17 +157,16 @@ void keyPressed() {
     showGrid = true;
     //environment.getGrid();
   }
-  
-  //used for reset, but currenlt doesn't not work
-  if (key == 'b'){
-   frameRate(600);
-  size(1000, 600);
-  environment = new Environment(width-(int)(0.2*width), height);
-  makeButtons();
-  buttons.get(0).display();
-  plants.add(new Plant((int)random(0.8*width), (int)random(height)));
-  bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
 
+  //used for reset, but currenlt doesn't not work
+  if (key == 'b') {
+    frameRate(600);
+    size(1000, 600);
+    environment = new Environment(width-(int)(0.2*width), height);
+    makeButtons();
+    buttons.get(0).display();
+    plants.add(new Plant((int)random(0.8*width), (int)random(height)));
+    bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
   }
 }
 
