@@ -16,7 +16,7 @@ class Plant {
   Plant( int x, int y) { //initizalization of plants
     xcor = x;
     ycor = y;
-    size = 5;
+    size = 10;
     maxSize = 300 + (int)random(100);
     growthRate = 1 +(int)random(3);
     waterPriority = (int)random(5);
@@ -63,18 +63,19 @@ class Plant {
   //returns amount of water taken
   //may run forever if not enough water in the area !!!needs to be fixed!!!
   int takeWater(Environment e) { 
+    boolean isWater = false;
     int temp = waterNeed;
     int waterTaken = 0;
     int ycenter = ycor; 
     int xcenter = xcor;
     while (temp > 0) {
-      //for (int ydisplacement = -1* (int)random(size*1); ydisplacement < (int)random(size*1); ydisplacement++) {
-      //for (int xdisplacement = -1* (int)random(size*1); xdisplacement < (int)random(size*1); xdisplacement++) {
-      for (int ydisplacement = -1* size; ydisplacement < size; ydisplacement++) {
-        for (int xdisplacement = -1*size; xdisplacement < size; xdisplacement++) {
-          boolean isWater = false;
-          if (dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size*1) {
-            if ((xcenter+xdisplacement >= 0 && xcenter+xdisplacement < e.rain.length) && (ycenter+xdisplacement >= 0 && ycenter+ydisplacement < e.rain[0].length) ) {
+      isWater = false;
+      for (int ydisplacement = -1* (int)random(size*1); ydisplacement < (int)random(size*1); ydisplacement++) {
+        for (int xdisplacement = -1* (int)random(size*1); xdisplacement < (int)random(size*1); xdisplacement++) {
+          //for (int ydisplacement = -1* size; ydisplacement < size; ydisplacement++) {
+          //for (int xdisplacement = -1*size; xdisplacement < size; xdisplacement++) {
+          if ((int)dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size*1) {
+            if ((xcenter+xdisplacement >= 0 && xcenter+xdisplacement < e.rain.length) && (ycenter+ydisplacement >= 0 && ycenter+ydisplacement < e.rain[0].length) ) {
               if (e.rain[xcenter+xdisplacement][ycenter+ydisplacement] > 0) {
                 e.rain[xcenter+xdisplacement][ycenter+ydisplacement] -= 1;
                 temp -= 1;//occasionally exceptions
