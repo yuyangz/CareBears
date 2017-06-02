@@ -2,10 +2,19 @@ TEAM CareBears
 Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
 
 
-As of right, the majority of our project features are in place. We have plants that respond to the environment, and we have different ways to change and increment the environment. We have a lot of different features to make it so the user can see with clarity exactly where they are, in terms of how much water and sun is on the map. We need to add a timer to show when the buttons can be used after a 10 second delay after each press.
+As of right, the majority of our project features are in place. We have plants that respond to the environment, and we have different ways to change and increment the environment. We have a lot of different features to make it so the user can see with clarity exactly where they are, in terms of how much water and sun is on the map. While our water decreasing method works, we are still unsure of why the water levels decrease upward and not just around the plant. We will work on fixing this before the weekend. In addition, we need to work on fixing the spacing between the plants. While we originally had it planned so that when two plants touch, both will begin decreasing. However, we will now update it so that the bigger plant will keep on growing while the smaller plant will begin to shrink. We will also work on incorporating sunlight as it needs to affect water levels. We need to add a timer to show when the buttons can be used after a 10 second delay after each press.
 
 Next step:
 We need to improve how plants receive water. This algorithm is still slightly buggy, and we definitely need to optimize it. We need to make it so plants only receive water from under them, and not from around them.
 We need to add more environment features for us to manipulate. A lot more than just water goes into a plant, so we should try to expand to include these.
 We need to bring bacteria up to the same speed as plant.
 We need to make our code run slightly faster, as there are certain things we do at times that can really slow processing.
+
+
+By Friday (June 2nd): Incorporate the usage of sunlight. Fix so that bigger plant will stop the growth of a smaller plant.
+
+By Saturday (June 3rd): Limit the areas in which plants can be grown and limit theamount of times a plant can be grown. Include timer.
+
+By Sunday (June 4th): Modify bacteria class so that it will have more useful functionality.
+
+ 
