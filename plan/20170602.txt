@@ -2,10 +2,10 @@ TEAM CareBears
 Ibnul Jahan, Joshel Xiedeng, Yuyang Zhang
 
 
-As of right, the majority of our project features are in place. We have plants that respond to the environment, and we have diffferent ways to change and increment the environment. We have a lot of different features to make it so the user can see with clarity exactly where they are, in terms of how much water and sun is on the map.
+As of right, the majority of our project features are in place. We have plants that respond to the environment, and we have different ways to change and increment the environment. We have a lot of different features to make it so the user can see with clarity exactly where they are, in terms of how much water and sun is on the map. We need to add a timer to show when the buttons can be used after a 10 second delay after each press.
 
 Next step:
-We need to improve how plants receive water. This algorithm is still slightly buggy, and we definitely need to optomize it. We need to make it so plants only receive water from under them, and not from around them.
+We need to improve how plants receive water. This algorithm is still slightly buggy, and we definitely need to optimize it. We need to make it so plants only receive water from under them, and not from around them.
 We need to add more environment features for us to manipulate. A lot more than just water goes into a plant, so we should try to expand to include these.
 We need to bring bacteria up to the same speed as plant.
 We need to make our code run slightly faster, as there are certain things we do at times that can really slow processing.
