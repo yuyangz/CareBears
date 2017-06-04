@@ -12,6 +12,7 @@ class Plant {
   int temp;
   boolean peakStated; //prime of life/ largest size
 
+
   //default constructor for plants
   Plant( int x, int y) { //initizalization of plants
     xcor = x;
@@ -29,6 +30,24 @@ class Plant {
   }
 
 
+    
+
+void collision(Plant other){
+  float distance = dist(this.xcor,this.ycor,other.xcor,other.ycor);
+  if (distance <= 0){
+    if(this.size > other.size){
+      other.peakStated = true;
+    }
+    else if (this.size< other.size){
+      this.peakStated = true;
+    }
+    else{
+      this.peakStated = true;
+      other.peakStated = true;
+    }
+  }
+}
+  
   int health() { //uses size as the health count
     return size;
   }
@@ -97,7 +116,7 @@ class Plant {
   }
 
   //increments the size of the plant based on hwo much water it received from the environment
-  void grow(Environment e) { //allows plant to grow
+  void grow(Environment e ) { //allows plant to grow
     //Plant second = new Plant(mouseX, mouseY); 
     if (!peakStated) {// && checkWater(e)) { //if plant is not at its max size
       float findGrowth = takeWater(e)/waterNeed;

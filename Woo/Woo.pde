@@ -76,6 +76,16 @@ void draw() { //creates screen
   //if ((frameCount%1000) <= 20) {
   //  environment.rain(30);
   //}
+  /*
+  for (int x = 0 ; x < allPlants.size(); x += 1){
+    for (int y = 0; y < allPlants.size(); y+= 1){
+      if (x == y){
+        allPlants.get(x).peakStated = false;
+      }
+      allPlants.get(x).collision(allPlants.get(y));
+    }
+  }     
+  */
 }
 
 void runButtons() {
@@ -97,7 +107,7 @@ void mouseClicked() {
     }
   }
 
-  if (millis() - 10000 > time) {
+ // if (millis() - 10000 > time) {
     for (Button button : buttons) { 
       //button when pressed will be on until pressed off
       if (button.active) { //if button is pressed for plants, a plant will be added.
@@ -111,7 +121,7 @@ void mouseClicked() {
             bacteria.add(new Bacteria(mouseX, mouseY));
             allBacteria.add(bacteria.get(bacteria.size()-1));
             print("bacteriaed");
-          }
+       //   }
         }
       }
     }
@@ -132,7 +142,7 @@ void mouseClicked() {
       }
     }
   }
-  time = millis();
+ // time = millis();
 }
 
 //removes plants when they have a size that is less than or equal to 0
