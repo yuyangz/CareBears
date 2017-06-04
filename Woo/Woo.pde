@@ -77,16 +77,18 @@ void draw() { //creates screen
   //if ((frameCount%1000) <= 20) {
   //  environment.rain(30);
   //}
-  /*
-  for (Plant x: plants) {
-   for (Plant y: plants) {
-   if (x == y) {
-   x.peakStated = false;
-   }
-   x.collision(y);
-   }
-   } 
-   */
+if (plants.size() >= 1){
+  for (Plant x : plants) {
+    for (Plant y : plants) {
+      if (x == y) {
+        x.peakStated = false;
+        y.peakStated = false;
+      }
+      x.collision(y);
+    }
+  } 
+}
+
   for (Bacteria z : bacteria) {
     for (Plant a : plants) {
       z.eat(a);
@@ -119,11 +121,11 @@ void mouseClicked() {
   for (Button button : buttons) { 
     //button when pressed will be on until pressed off
     if (button.active) { //if button is pressed for plants, a plant will be added.
-    if (timer.t  == 0){
-            timer.interval += 10;
-          }
-    if (button.name == "Plant") {          
-      if (mouseX < environment.rain.length) {  
+      if (timer.t  == 0) {
+        timer.interval += 10;
+      }
+      if (button.name == "Plant") {          
+        if (mouseX < environment.rain.length) {  
           plants.add(new Plant(mouseX, mouseY));
           allPlants.add(plants.get(plants.size()-1));
           print("planted");
