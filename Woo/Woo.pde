@@ -77,7 +77,7 @@ void draw() { //creates screen
   //if ((frameCount%1000) <= 20) {
   //  environment.rain(30);
   //}
-if (plants.size() >= 1){
+if (plants.size() > 1){
   for (Plant x : plants) {
     for (Plant y : plants) {
       if (x == y) {
