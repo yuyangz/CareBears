@@ -46,6 +46,14 @@ class Bacteria {
     }
   }
 
+void eat(Plant food){
+  if (dist(this.xcor,this.ycor,food.xcor,food.ycor) == 0){
+    food.size -= 10;
+    this.size += 10;
+  }
+}
+
+
 //displayed as a circle for now, but will later be changed to be more distinguishable
   void display() {
     stroke(r, g, b);

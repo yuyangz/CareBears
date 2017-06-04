@@ -76,16 +76,21 @@ void draw() { //creates screen
   //if ((frameCount%1000) <= 20) {
   //  environment.rain(30);
   //}
-  /*
-  for (int x = 0 ; x < allPlants.size(); x += 1){
-    for (int y = 0; y < allPlants.size(); y+= 1){
-      if (x == y){
-        allPlants.get(x).peakStated = false;
+/*
+  for (Plant x: plants) {
+    for (Plant y: plants) {
+      if (x == y) {
+        x.peakStated = false;
       }
-      allPlants.get(x).collision(allPlants.get(y));
+      x.collision(y);
     }
-  }     
+  } 
   */
+  for (Bacteria z : bacteria) {
+    for (Plant a : plants) {
+      z.eat(a);
+    }
+  }
 }
 
 void runButtons() {
@@ -107,21 +112,21 @@ void mouseClicked() {
     }
   }
 
- // if (millis() - 10000 > time) {
-    for (Button button : buttons) { 
-      //button when pressed will be on until pressed off
-      if (button.active) { //if button is pressed for plants, a plant will be added.
-        if (mouseX < environment.rain.length) {
-          if (button.name == "Plant") {
-            plants.add(new Plant(mouseX, mouseY));
-            allPlants.add(plants.get(plants.size()-1));
-            print("planted");
-          }
-          if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.
-            bacteria.add(new Bacteria(mouseX, mouseY));
-            allBacteria.add(bacteria.get(bacteria.size()-1));
-            print("bacteriaed");
-       //   }
+  // if (millis() - 10000 > time) {
+  for (Button button : buttons) { 
+    //button when pressed will be on until pressed off
+    if (button.active) { //if button is pressed for plants, a plant will be added.
+      if (mouseX < environment.rain.length) {
+        if (button.name == "Plant") {
+          plants.add(new Plant(mouseX, mouseY));
+          allPlants.add(plants.get(plants.size()-1));
+          print("planted");
+        }
+        if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.
+          bacteria.add(new Bacteria(mouseX, mouseY));
+          allBacteria.add(bacteria.get(bacteria.size()-1));
+          print("bacteriaed");
+          //   }
         }
       }
     }
@@ -142,7 +147,7 @@ void mouseClicked() {
       }
     }
   }
- // time = millis();
+  // time = millis();
 }
 
 //removes plants when they have a size that is less than or equal to 0
