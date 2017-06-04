@@ -1,26 +1,22 @@
-class timer{
- float last;
- float interval;
- 
- void setup(){
-   size (50,50);
-   strokeWeight(15);
-   last = millis();
-   interval = 0;
-   
- }
- 
- void strokeChange(){
-   if (millis() > last + interval)
-   {
-   last = millis();
-   stroke(random(0,255),random(0,255),random(0,255));
-   }
- }
-   
- 
- void draw(){
-   strokeChange();
-   ellipse (900,400,50, 50);
- }
+class timer {
+
+  PFont font;
+  String time = "010";
+  int t;
+  int interval = 10;
+
+  void setup()
+  {
+    font = createFont("Arial", 100);
+    fill(0);
+  }
+
+  void draw()
+  {
+    if (t >= 0){
+    t = interval-int(millis()/1000);
+    time = "WAIT: " + nf(t, 3);
+    }         
+    text(time, 900, 400);
+  }
 }

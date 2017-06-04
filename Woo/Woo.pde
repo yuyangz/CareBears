@@ -17,6 +17,7 @@ boolean showGrid; //displays grid for plants
 boolean b; //will be used in the future for reset
 
 long time;
+timer timer;
 
 void setup() { 
   frameRate(60);
@@ -26,7 +27,7 @@ void setup() {
   buttons.get(0).display();
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
-
+  timer = new timer();
   b = false;
   //allPlants.add(plants.get(plants.size()-1));
   environment.rain(30);
@@ -76,16 +77,16 @@ void draw() { //creates screen
   //if ((frameCount%1000) <= 20) {
   //  environment.rain(30);
   //}
-/*
+  /*
   for (Plant x: plants) {
-    for (Plant y: plants) {
-      if (x == y) {
-        x.peakStated = false;
-      }
-      x.collision(y);
-    }
-  } 
-  */
+   for (Plant y: plants) {
+   if (x == y) {
+   x.peakStated = false;
+   }
+   x.collision(y);
+   }
+   } 
+   */
   for (Bacteria z : bacteria) {
     for (Plant a : plants) {
       z.eat(a);
@@ -97,6 +98,8 @@ void runButtons() {
   for (int i = 0; i < buttons.size(); i++) {
     buttons.get(i).update();
   }
+  timer.setup();
+  timer.draw();
 }
 
 
@@ -116,13 +119,16 @@ void mouseClicked() {
   for (Button button : buttons) { 
     //button when pressed will be on until pressed off
     if (button.active) { //if button is pressed for plants, a plant will be added.
-      if (mouseX < environment.rain.length) {
-        if (button.name == "Plant") {
+    if (timer.t  == 0){
+            timer.interval += 10;
+          }
+    if (button.name == "Plant") {          
+      if (mouseX < environment.rain.length) {  
           plants.add(new Plant(mouseX, mouseY));
           allPlants.add(plants.get(plants.size()-1));
           print("planted");
         }
-        if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.
+        if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.      
           bacteria.add(new Bacteria(mouseX, mouseY));
           allBacteria.add(bacteria.get(bacteria.size()-1));
           print("bacteriaed");
