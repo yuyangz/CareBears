@@ -34,7 +34,7 @@ class Plant {
 
 void collision(Plant other){
   float distance = dist(this.xcor,this.ycor,other.xcor,other.ycor);
-  if (distance <= 0){
+  if (distance == size + other.size){
     if(this.size > other.size){
       other.peakStated = true;
     }
