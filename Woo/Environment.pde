@@ -48,7 +48,7 @@ class Environment {
     for (int row = 0; row < rain.length; row+=3) {
       for (int col = 0; col < rain[row].length; col+= 3) { 
         if (random(intensity) <= 1) {
-          rain[row][col] += 1+ random(7); 
+          rain[row][col] += 1+ random(4); 
           stroke(0, 0, 120);
           fill(0, 0, 120);
           ellipse(row, col, 1, 1);
