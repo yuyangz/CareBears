@@ -10,9 +10,9 @@ class Bacteria {
   int r, g, b;
 
 
-//constructor for bacteria
-//requires a given x and y coordinate
-//randomizes most other things
+  //constructor for bacteria
+  //requires a given x and y coordinate
+  //randomizes most other things
   Bacteria( int x, int y) {
     xcor = x;
     ycor = y;
@@ -27,8 +27,8 @@ class Bacteria {
     int g = 120;
   }
 
-//basic adds speed to position
-//checks for collisions as to not leave the screen
+  //basic adds speed to position
+  //checks for collisions as to not leave the screen
   void move() {
     xcor+=dx;
     ycor+=dy;
@@ -46,21 +46,21 @@ class Bacteria {
     }
   }
 
-void eat(Plant food){
-  if (dist(this.xcor,this.ycor,food.xcor,food.ycor) == 0){
-    food.size -= 10;
-    this.size += 10;
+  void eat(Plant food) {
+    if (dist(this.xcor, this.ycor, food.xcor, food.ycor) == 0) {
+      food.size -= 10;
+      this.size += 10;
+    }
   }
-}
 
 
-//displayed as a circle for now, but will later be changed to be more distinguishable
+  //displayed as a circle for now, but will later be changed to be more distinguishable
   void display() {
     stroke(r, g, b);
     fill(color(r, g, b));
     rect(xcor-size/2, ycor-size/2, size, size);
   }
-  
+
   //moves and displays the bacteria
   void run() {
     move();
