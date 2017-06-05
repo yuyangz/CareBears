@@ -5,19 +5,22 @@ class Timer {
   int time;
   int secondTime = 0;
   int interval = 10;
+  String type;
+
   Timer() {
     time = interval;
   }
 
-  Timer( int interval ) {
+  Timer( String type, int interval ) {
     //font = createFont("Arial", 100);
+    this.type = type;
     this.interval = interval;
     fill(0);
     time = interval;
   }
 
   void reset() {
-     time = interval; 
+    time = interval;
   }
 
   void run()
@@ -28,10 +31,19 @@ class Timer {
         secondTime = millis();
       }
     }
-    //if (t >= 0){
-    //t = interval-(int)(millis()/1000);
-    //time = "WAIT: " + nf(t, 3);
-    //}         
-    text("PLANTS: " + time, 900, 400);
+    if (type == "Plant" ) {
+      if (time == 0) {
+        text("PLANTS: Ready!", width*0.8, 400);
+      } else {
+        text("PLANTS: " + time,  width*0.8, 400);
+      }
+    }
+    if (type == "Bacteria" ) {
+      if (time == 0) {
+        text("BACTERIA: Ready!",  width*0.8, 450);
+      } else {
+        text("BACTERIA: " + time,  width*0.8, 450);
+      }
+    }
   }
 }

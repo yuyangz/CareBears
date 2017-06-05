@@ -12,6 +12,8 @@ class Plant {
   int temp;
   boolean peakStated; //prime of life/ largest size
 
+  Timer intPlantTimer;
+
 
   //default constructor for plants
   Plant( int x, int y) { //initizalization of plants
@@ -27,27 +29,27 @@ class Plant {
     int r = b = 0;
     int g = 120;
     peakStated = false;
+
+    intPlantTimer = new Timer("Internal Plant", 1);
   }
 
 
-    
 
-void collision(Plant other){
-  float distance = dist(this.xcor,this.ycor,other.xcor,other.ycor);
-  if (distance == size + other.size){
-    if(this.size > other.size){
-      other.peakStated = true;
-    }
-    else if (this.size< other.size){
-      this.peakStated = true;
-    }
-    else{
-      this.peakStated = true;
-      other.peakStated = true;
+
+  void collision(Plant other) {
+    float distance = dist(this.xcor, this.ycor, other.xcor, other.ycor);
+    if (distance == size + other.size) {
+      if (this.size > other.size) {
+        other.peakStated = true;
+      } else if (this.size< other.size) {
+        this.peakStated = true;
+      } else {
+        this.peakStated = true;
+        other.peakStated = true;
+      }
     }
   }
-}
-  
+
   int health() { //uses size as the health count
     return size;
   }
@@ -172,8 +174,10 @@ void collision(Plant other){
   //grows plant once a second
   void run(Environment e) { //display growth of plants
     //if ((frameCount - birthDate) % 60 == 0) { 
-    if (second() % 1 == 0) {
+      intPlantTimer.run();
+    if (intPlantTimer.time == 0) {
       grow(e);
+      intPlantTimer.reset();
     }
     display();
   }

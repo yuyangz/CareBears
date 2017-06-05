@@ -25,15 +25,15 @@ void setup() {
   size(1000, 600);
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
-  buttons.get(0).display();
+  //organisms
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
-  plantTimer = new Timer(5);
-  bacteriaTimer = new Timer(5);
-  b = false;
-  //allPlants.add(plants.get(plants.size()-1));
-  environment.rain(30);
-  time = 0;
+  //timers
+  plantTimer = new Timer("Plant", 5);
+  bacteriaTimer = new Timer("Bacteria", 5);
+  //allOrganisms
+  allPlants.add(plants.get(plants.size()-1));
+  allBacteria.add(bacteria.get(plants.size()-1));
 }
 
 void makeButtons() { //creates buttons
@@ -41,12 +41,11 @@ void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.1*width), 0, width/10, height/10, color(0, 120, 0), color(120, 0, 0), "Plant"));
   buttons.add(new Button(width - (int)(0.2*width), height/10, width/10, height/10, color(255, 255, 0), color(120, 0, 0), "Sunlight"));
   buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
+  buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
 }
 void draw() { //creates screen
   background(255);
-  //environment.getGrid();
   runButtons();
-  //environment.showRain();
   showTheRain();
   showRaining();
   showTheSun();
@@ -57,37 +56,15 @@ void draw() { //creates screen
     bacteria.get(i).run();
   }
   removeDeadPlants();
-  //showTheRain();
-  //showRaining();
-  //showTheSun();
   showTheGrid();
   resetBools();
   runTimers();
-  //if (b){
-  //  background(0);
-  //  fill(255,0,0);
-  //  text("RESTARTING", 100,100);
-  //}
-
-  //int i = 0;
-  //while (keyPressed) {
-  //  print(i);
-  //  if (key == 'r') {
-  //    environment.showRain();
-  //  }
-  //  i++;
-  //}
-  //if ((frameCount%1000) <= 20) {
-  //  environment.rain(30);
-  //}
   if (plants.size() > 1) {
     for (Plant x : plants) {
       for (Plant y : plants) {
-        if (x == y) {
-          x.peakStated = false;
-          y.peakStated = false;
+        if (x != y) {
+          x.collision(y);
         }
-        x.collision(y);
       }
     }
   }
@@ -111,23 +88,13 @@ void runTimers() {
 
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
 void mouseClicked() {
-  for (Button button : buttons) {
-    if (button.active) {
-      if (button.mouseOver()) {
-        if (button.name == "Restart") {
-          b = true;
-        }
-      }
-    }
-  }
-
   // if (millis() - 10000 > time) {
   for (Button button : buttons) { 
     //button when pressed will be on until pressed off
     if (button.active) { //if button is pressed for plants, a plant will be added.
-      if (button.name == "Plant") { 
-        if (plantTimer.time == 0) {
-          if (mouseX < environment.rain.length) {  
+      if (mouseX < environment.rain.length) {  
+        if (button.name == "Plant") { 
+          if (plantTimer.time == 0) {
             plants.add(new Plant(mouseX, mouseY));
             allPlants.add(plants.get(plants.size()-1));
             print("planted");
@@ -140,12 +107,12 @@ void mouseClicked() {
             allBacteria.add(bacteria.get(bacteria.size()-1));
             print("bacteriaed");
             bacteriaTimer.reset();
-            //   }
           }
         }
       }
     }
   }
+
 
   for (Button button : buttons) {
     //button will only be on for one press
