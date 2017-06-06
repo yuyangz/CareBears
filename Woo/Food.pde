@@ -12,6 +12,13 @@ class Food {
     boolean eaten = false;
   }
 
+void consumed(){
+  if (eaten){
+    xcor = 5000;
+    ycor = 5000;
+  }
+}
+
   void display() { //displays each food "pellet"
     stroke(r, g, b);
     fill(color(r, g, b));

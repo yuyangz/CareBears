@@ -37,6 +37,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4), 10);
+    temperature += 5;
   } //end sunlight(int intensity)============================================================================================================================================
 
   //makes it rain by adding random values to individual spots on the rain array
@@ -60,7 +61,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("It has rained", (width-(0.2*width))/2-("It has rained".length()*4), 10);
-
+    temperature -= 5;
     frameRate(60);
   } //end rain(int intensity)================================================================================================================================================
 
@@ -135,11 +136,18 @@ class Environment {
   
  void tempChange(){
   int time = millis();
-  if (millis() - time == 0)
-  {
-    temperature += 1;
-    time = millis();
-  }
+  //if (millis() - time == 0)
+ // {
+ //  temperature += 1;
+  //  time = millis();
+ // }
+   
+   if (temperature > 80){
+     //increase 3 degrees per 5 seconds
+   }
+   else if (temperature < 50){
+     //decrease 1 degree every 5 seconds
+   }
  }
      
 }
