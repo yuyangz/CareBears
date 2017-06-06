@@ -26,7 +26,6 @@ Button startGame;
 
 /////.....ENVIRONMENTAL VARIABLES...../////
 Environment environment;
-Plant plant;
 boolean rain, showRain; //generates array[height][width] with random coordinates having water
 // plants w waterPriority n will go in order or priority, and will take all the water in a circle of radius r
 boolean sunlight, showSunlight; //allows sunlight to be processed
@@ -86,7 +85,7 @@ void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
   buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
   buttons.add(new Button(width - (int)(0.1*width), height/5, width/10, height/10, color(255, 175, 175), color(255, 0, 0), "Food"));
-  buttons.add(new Button(width - (int)(0.2*width), height/5, width/10, height/10, color(255, 162, 51), color(255, 0, 0), "Shop")); 
+  buttons.add(new Button(width - (int)(0.2*width), height/5, width/10, height/10, color(255, 162, 51), color(255, 0, 0), "Shop"));
 } //end makeButtons()========================================================================================================================================================
 
 void draw() { //creates screen
@@ -122,10 +121,8 @@ void draw() { //creates screen
       }
     }
     environment.tempChange();
-  text("Temperature: " + environment.temperature, 800,500);
+    text("Temperature: " + environment.temperature, 800, 500);
   }
-  
-  
 } //end draw()===============================================================================================================================================================
 
 void runButtons() {
@@ -176,7 +173,7 @@ void mouseClicked() {
         }
       }
     }
-  
+
     //for weather  
     for (Button button : buttons) {
       //button will only be on for one press
@@ -197,15 +194,15 @@ void mouseClicked() {
     }
     /*
      for (Button button : buttons) {
-      if (button.mouseOver()) {
-        if (button.name == "Shop") {
-          shop = true;
-        } else {
-          button.click();
-        }
-      }
-    }
-    */
+     if (button.mouseOver()) {
+     if (button.name == "Shop") {
+     shop = true;
+     } else {
+     button.click();
+     }
+     }
+     }
+     */
   }
 } //end mouseClicked()=======================================================================================================================================================
 
@@ -285,11 +282,13 @@ void showTheGrid() {
   }
 } //end showTheGrid()========================================================================================================================================================
 
-void checkFood(){
-  for( Food x : food){
-    plant.toEat(x);
+void checkFood() {
+  for (Plant plant : plants) {
+    for ( Food x : food) {
+      plant.toEat(x);
+    }
   }
-  }
+}
 
 
 void showFood() {
@@ -312,10 +311,10 @@ void resetBools() {
   }
 } //end resetBools()=========================================================================================================================================================
 
-void openShop(){
-  if(shop){
-  s.display();
-   shop = false;
+void openShop() {
+  if (shop) {
+    s.display();
+    shop = false;
   }
 }
 
