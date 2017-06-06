@@ -122,6 +122,7 @@ void draw() { //creates screen
     }
     environment.tempChange();
     text("Temperature: " + environment.temperature, 800, 500);
+    tempModPlant();
     checkFood();
     removeFood();
   }
@@ -329,6 +330,38 @@ void makeLifeTimes() { //keeps a record of how long all plants and bacteria have
     bacteriaLifeTimes.add(bacteria.lifeTime);
   }
 } //end makeLifeTimes()======================================================================================================================================================
+
+//if temperature is too high or too low, the plants will begin to shrink
+void tempModPlant() {
+  if (environment.temperature > 80) {
+    for (Plant x : plants) {
+      x.size -= 1;
+    }
+  } else if (environment.temperature > 90) {
+    for (Plant x : plants) {
+      x.size -= 2;
+    }
+  } else if (environment.temperature > 10) {
+    for (Plant x : plants) {
+      x.sisze -= 4;
+    }
+  } else if (envrionment.temperature < 50) {
+    for (Plant x : plants) {
+      x.size -= 1;
+    }
+  } else if (envrionment.temperature < 40) {
+    for (Plant x : plants) {
+      x.size -= 2;
+    }
+  } else if (envrionment.temperature < 30) {
+    for (Plant x : plants) {
+      x.size -= 3;
+    }
+  }
+} //end tempModPlant()======================================================================================================================================================
+
+
+
 
 ///////////////...............SORTS...............///////////////
 void sort( ArrayList<Integer> _heap) {
