@@ -343,17 +343,17 @@ void tempModPlant() {
     }
   } else if (environment.temperature > 10) {
     for (Plant x : plants) {
-      x.sisze -= 4;
+      x.size -= 4;
     }
-  } else if (envrionment.temperature < 50) {
+  } else if (environment.temperature < 50) {
     for (Plant x : plants) {
       x.size -= 1;
     }
-  } else if (envrionment.temperature < 40) {
+  } else if (environment.temperature < 40) {
     for (Plant x : plants) {
       x.size -= 2;
     }
-  } else if (envrionment.temperature < 30) {
+  } else if (environment.temperature < 30) {
     for (Plant x : plants) {
       x.size -= 3;
     }
