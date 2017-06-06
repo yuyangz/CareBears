@@ -95,6 +95,10 @@ void draw() { //creates screen
     showTheRain();
     showRaining();
     showTheSun();
+    showFood();
+    for (Food eatMe : food) {
+      eatMe.display();
+    }
     for (int i = 0; i < plants.size(); i++) {
       plants.get(i).run(environment);
     }
@@ -262,7 +266,8 @@ void showTheGrid() {
 
 void showFood() {
   if (fooddrop) {
-    environment.dropFood(30);
+    environment.dropFood(300);
+    fooddrop = false;
   }
 } //end dropFood()===========================================================================================================================================================
 

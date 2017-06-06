@@ -120,8 +120,8 @@ class Environment {
   //drops food onto the map
   //small circles or pellets of random color will appear in random locations across the screen
   void dropFood (int intensity) { //allows the presence of food based on a certain intensity
-    for (int row = 5; row < 795; row += 3) {
-      for (int col = 5; col < 595; col += 3) {
+    for (int row = 5; row < grid.length - 5; row += random(3)+1) {
+      for (int col = 5; col < grid[0].length -5; col += random(3)+1) {
         if (random(intensity) <= 1) {
           food.add(new Food( row, col ));
         }
