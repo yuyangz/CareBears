@@ -5,6 +5,7 @@ class Environment {
   int[][] soil;
   int[][] sun;
   int temperature;
+  int time;
 
   Environment(int w, int h ) {
     grid = new int[w][h];
@@ -13,6 +14,7 @@ class Environment {
     soil = new int[w][h];
     sun = new int[w][h];
     temperature = 65;
+    time = 0;
   } //end Environment()======================================================================================================================================================
 
   //enters sunlight onto the map
@@ -133,21 +135,18 @@ class Environment {
     println("Nourishment has come"); //gives statement that shows that sun has been released
     text("Nourishment has come", (width-(0.2*width))/2-("Nourishment has come".length()*4), 10);
   } //end dropFood(int intensity)============================================================================================================================================
-  
- void tempChange(){
-  //int time = millis();
-  //if (millis() - time == 0)
- // {
- //  temperature += 1;
-  //  time = millis();
- // }
-   
-   if (temperature > 80){
-     //increase 3 degrees per 5 seconds
-   }
-   else if (temperature < 50){
-     //decrease 1 degree every 5 seconds
-   }
- }
-     
-}
+
+  void tempChange() {
+    time = millis();
+    if (time%10000 <= 500) {
+      temperature += 1;
+    }
+
+    if (temperature > 80) {
+      //increase 3 degrees per 5 seconds
+    } else if (temperature < 50) {
+      //decrease 1 degree every 5 seconds
+    }
+  } //end tempChange()=========================================================================================================================================================
+
+} //end Environment
