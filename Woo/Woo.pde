@@ -26,6 +26,7 @@ Button startGame;
 
 /////.....ENVIRONMENTAL VARIABLES...../////
 Environment environment;
+Plant plant;
 boolean rain, showRain; //generates array[height][width] with random coordinates having water
 // plants w waterPriority n will go in order or priority, and will take all the water in a circle of radius r
 boolean sunlight, showSunlight; //allows sunlight to be processed
@@ -284,12 +285,19 @@ void showTheGrid() {
   }
 } //end showTheGrid()========================================================================================================================================================
 
+void checkFood(){
+  for( Food x : food){
+    plant.toEat(x);
+  }
+  }
+
+
 void showFood() {
   if (fooddrop) {
     environment.dropFood(2000);
     fooddrop = false;
   }
-} //end dropFood()===========================================================================================================================================================
+} //end showFood()===========================================================================================================================================================
 
 //turns all the boolean variables to false, so any graphs don't stay on after they are released
 //currently does not work

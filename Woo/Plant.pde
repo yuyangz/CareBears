@@ -168,8 +168,8 @@ class Plant implements Comparable<Plant> {
     }
   }// end compareTo()========================================================================================================================================================
 
-  void toEat(Food f) {
 
+  void toEat(Food f) {
     float distance = dist(this.xcor, this.ycor, f.xcor, f.ycor);
     if (distance < this.size/2 + 2.5) {
       f.eaten = true;
