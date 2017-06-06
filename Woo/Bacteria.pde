@@ -1,4 +1,4 @@
-class Bacteria {
+  class Bacteria {
   int xcor, ycor;
   int dx, dy;
   int size;

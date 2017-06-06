@@ -52,7 +52,7 @@ void setup() {
   size(1000, 600);
 
   ///LOAD IMAGES///
-  startPic = loadImage("plantsvzombies.jpg");
+  startPic = loadImage("Start.jpg");
 
   ///START GAME///
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
@@ -130,7 +130,8 @@ void draw() { //creates screen
   }
   
   if (endGame){
-    background(0, 0, 0);
+    background(95, 37, 41);
+    text("You're a bad farmer", 450,300);
   }
  
     
@@ -371,6 +372,8 @@ void tempModPlant() {
 void endSim(){
   if (environment.temperature > 105 || environment.temperature < 25){
     endGame = true;
+    buttons.add(new Button(200, 200,  width/10, height/10, color(191,161, 125), color(255,0,0), "Statistics"));
+    buttons.add(new Button(400, 200, width/10, height/10, color(191,161, 125), color(255,0,0), "END"));
   }
 }
     
