@@ -1,12 +1,14 @@
+//////////..........GLOBAL VARIABLES..........//////////
 boolean startScreen;
 boolean playing;
 boolean endGame;
 boolean areYouSure;
 boolean sortStats;
 
-//IMAGES//
+/////.....IMAGES...../////
 PImage startPic;
 
+/////.....PLANTS AND BACTERIA...../////
 ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
 ArrayList<Plant> allPlants = new ArrayList<Plant>(); 
 ArrayList<Integer> plantLifeTimes = new ArrayList<Integer>(); 
@@ -15,13 +17,11 @@ ArrayList<Bacteria> bacteria = new ArrayList<Bacteria>(); //hold bacterias in an
 ArrayList<Bacteria> allBacteria = new ArrayList<Bacteria>();
 ArrayList<Integer> bacteriaLifeTimes = new ArrayList<Integer>(); 
 
-
-////BUTTON//////
+/////.....BUTTON...../////
 ArrayList<Button> buttons = new ArrayList<Button>(); //hold buttons in an array
 Button startGame;
 
-
-
+/////.....ENVIRONMENTAL VARIABLES...../////
 Environment environment;
 boolean rain, showRain; //generates array[height][width] with random coordinates having water
 // plants w waterPriority n will go in order or priority, and will take all the water in a circle of radius r
@@ -30,13 +30,15 @@ boolean sunlight, showSunlight; //allows sunlight to be processed
 //boolean earthquake;
 //boolean thunderstorm;
 
-boolean showGrid; //displays grid for plants
+/////.....TIMER...../////
+long time; //to be used as a temporal reference point 
+Timer plantTimer; //cooldown time for plants
+Timer bacteriaTimer; //cooldown time for bacteria
 
+/////.....OTHER...../////
+boolean showGrid; //displays grid for plants
 boolean b; //will be used in the future for reset
-////TIMER/////
-long time;
-Timer plantTimer;
-Timer bacteriaTimer;
+//===========================================================================================================================================================================
 
 void setup() { 
   startScreen = true;
@@ -45,26 +47,29 @@ void setup() {
   ///LOAD IMAGES///
   startPic = loadImage("plantsvzombies.jpg");
 
-  //startGame
+  ///START GAME///
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
 
-  ////ORGANISMS////
+  /////.....ORGANISMS...../////
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
-  /////TIMERS/////
+
+  /////.....TIMERS...../////
   plantTimer = new Timer("Plant", 0);
   bacteriaTimer = new Timer("Bacteria", 1);
-  /////ALLORGANISMS/////
+
+  /////.....ALL ORGANISMS...../////
   allPlants.add(plants.get(plants.size()-1));
   allBacteria.add(bacteria.get(plants.size()-1));
-  /////ENVIRONMENT/////
+
+  /////.....ENVIRONMENT...../////
   for (int i = 0; i < 1; i++) {
     environment.rain(1);
     environment.rain(2);
   }
-}
+} //end setup()==============================================================================================================================================================
 
 void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.2*width), 0, width/10, height/10, color(0, 0, 120), color(120, 0, 0), "Rain"));
@@ -72,7 +77,8 @@ void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.2*width), height/10, width/10, height/10, color(255, 255, 0), color(120, 0, 0), "Sunlight"));
   buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
   buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
-}
+} //end makeButtons()========================================================================================================================================================
+
 void draw() { //creates screen
   if (startScreen) {
     image(startPic, 0, 0);
@@ -101,20 +107,22 @@ void draw() { //creates screen
       }
     }
   }
-}
+} //end draw()===============================================================================================================================================================
 
 void runButtons() {
   for (int i = 0; i < buttons.size(); i++) {
     buttons.get(i).update();
   }
-}
+} //end runButtons()=========================================================================================================================================================
+
 void runTimers() {
   plantTimer.run();
   bacteriaTimer.run();
-}
+} //end runTimers()==========================================================================================================================================================
 
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
 void mouseClicked() {
+  //start screen mechanics
   if (startScreen) {
     if (startGame.mouseOver()) {
       startScreen=false;
@@ -122,6 +130,9 @@ void mouseClicked() {
       draw();
     }
   }
+
+  /////button mechanics (after exiting start screen)
+  //for plant and bacteria
   if (playing) {
     for (Button button : buttons) { 
       //button when pressed will be on until pressed off
@@ -147,7 +158,7 @@ void mouseClicked() {
       }
     }
 
-
+    //for weather  
     for (Button button : buttons) {
       //button will only be on for one press
       if (button.mouseOver()) { 
@@ -164,7 +175,7 @@ void mouseClicked() {
       }
     }
   }
-}
+} //end mouseClicked()=======================================================================================================================================================
 
 //removes plants when they have a size that is less than or equal to 0
 //this means they have shrunk to the point where they are negative size
@@ -174,7 +185,7 @@ void removeDeadPlants() {
       plants.remove(i);
     }
   }
-}
+} //end removeDeadPlants()===================================================================================================================================================
 
 //pressing keys allows the user to make it rain, to see the rainfall graph, to see the blocked grid, and to in the future reset
 void keyPressed() {
@@ -199,14 +210,15 @@ void keyPressed() {
     plants.add(new Plant((int)random(0.8*width), (int)random(height)));
     bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
   }
-}
+} //end keyPressed()=========================================================================================================================================================
 
 //method for showing the rainfall graph
 void showTheRain() {
   if (showRain) {
     environment.showRain();
   }
-}
+} //end showTheRain()========================================================================================================================================================
+
 //method to make it rain
 //rain is made false so there will not be a continious stream of rain.
 void showRaining() {
@@ -214,7 +226,8 @@ void showRaining() {
     environment.rain(30);
     rain = false;
   }
-}
+} //end showRaining()========================================================================================================================================================
+
 //method to make the sun come out (leads to evaporated water)
 //sunlight will be released once and then turned off so there will not be a continious stream of light.
 void showTheSun() {
@@ -222,14 +235,16 @@ void showTheSun() {
     environment.sunlight(30);
     sunlight = false;
   }
-}
+} //end showTheSun()=========================================================================================================================================================
+
 //method to show the grid
 //checks if showGrid is true, if so, grid will be drawn onto the board.
 void showTheGrid() {
   if (showGrid) {
     environment.getGrid();
   }
-}
+} //end showTheGrid()========================================================================================================================================================
+
 //turns all the boolean variables to false, so any graphs don't stay on after they are released
 //currently does not work
 void resetBools() {
@@ -241,19 +256,18 @@ void resetBools() {
     //earthquake = false;
     showGrid = false;
   }
-}
+} //end resetBools()=========================================================================================================================================================
 
-void makeLifeTimes() {
-   for (Plant plant : allPlants) {
-      plantLifeTimes.add(plant.lifeTime); 
-   }
-   for (Bacteria bacteria : allBacteria) {
-     bacteriaLifeTimes.add(bacteria.lifeTime);
-   }
-}
+void makeLifeTimes() { //keeps a record of how long all plants and bacteria have lived
+  for (Plant plant : allPlants) {
+    plantLifeTimes.add(plant.lifeTime);
+  }
+  for (Bacteria bacteria : allBacteria) {
+    bacteriaLifeTimes.add(bacteria.lifeTime);
+  }
+} //end makeLifeTimes()======================================================================================================================================================
 
-
-////SORTS////
+///////////////...............SORTS...............///////////////
 void sort( ArrayList<Integer> _heap) {
   int size = _heap.size();
   for (int x = size / 2 - 1; x >= 0; x -= 1) {
@@ -266,9 +280,7 @@ void sort( ArrayList<Integer> _heap) {
 
     heapify(_heap, y, 0);
   }
-}
-
-
+} //end sort(ArrayList<Integer> _heap)=======================================================================================================================================
 
 void heapify( ArrayList<Integer>_heap, int size, int x) {
   int largest = x;
@@ -286,4 +298,4 @@ void heapify( ArrayList<Integer>_heap, int size, int x) {
     _heap.set(largest, temp);
   }
   heapify(_heap, size, largest);
-}
+} //end heapify()============================================================================================================================================================
