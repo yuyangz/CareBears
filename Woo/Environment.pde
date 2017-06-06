@@ -135,7 +135,7 @@ class Environment {
   } //end dropFood(int intensity)============================================================================================================================================
   
  void tempChange(){
-  int time = millis();
+  //int time = millis();
   //if (millis() - time == 0)
  // {
  //  temperature += 1;
