@@ -9,7 +9,7 @@ class Food {
     r = (int)random(255);
     g = (int)random(255);
     b = (int)random(255);
-    boolean eaten = false;
+    eaten = false;
   }
 
   void display() { //displays each food "pellet"
