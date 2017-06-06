@@ -1,4 +1,4 @@
-class Plant {
+class Plant implements Comparable<Plant>{
 
   int xcor, ycor;
   int size;
@@ -154,11 +154,22 @@ class Plant {
   //grows plant once a second
   void run(Environment e) { //display growth of plants
     //if ((frameCount - birthDate) % 60 == 0) { 
+    lifeTime++;
     intPlantTimer.run();
     if (intPlantTimer.time == 0) {
       grow(e, plants);
       intPlantTimer.reset();
     }
     display();
+  }
+
+  int compareTo (Plant other) {
+    if (this.lifeTime > (other).lifeTime) {
+      return 1;
+    } else if (this.lifeTime < ((Plant)other).lifeTime) {
+      return -1;
+    } else {
+      return 0;
+    }
   }
 }

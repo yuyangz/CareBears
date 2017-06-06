@@ -7,7 +7,8 @@ boolean sortStats;
 //IMAGES//
 PImage startPic;
 
-ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
+ALHeap<Plant> plants = new ALHeap<Plant>(); //hold plants in an array
+//ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
 ArrayList<Plant> allPlants = new ArrayList<Plant>(); 
 ArrayList<Bacteria> bacteria = new ArrayList<Bacteria>(); //hold bacterias in an array
 ArrayList<Bacteria> allBacteria = new ArrayList<Bacteria>();
