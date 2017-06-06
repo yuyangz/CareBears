@@ -42,6 +42,8 @@ Timer bacteriaTimer; //cooldown time for bacteria
 /////.....OTHER...../////
 boolean showGrid; //displays grid for plants
 boolean b; //will be used in the future for reset
+boolean shop;
+Shop s;
 //===========================================================================================================================================================================
 
 void setup() { 
@@ -55,6 +57,7 @@ void setup() {
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
+  s = new Shop();
 
   /////.....ORGANISMS...../////
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
@@ -82,6 +85,7 @@ void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
   buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
   buttons.add(new Button(width - (int)(0.1*width), height/5, width/10, height/10, color(255, 175, 175), color(255, 0, 0), "Food"));
+  buttons.add(new Button(width - (int)(0.2*width), height/5, width/10, height/10, color(255, 162, 51), color(255, 0, 0), "Shop")); 
 } //end makeButtons()========================================================================================================================================================
 
 void draw() { //creates screen
@@ -96,6 +100,7 @@ void draw() { //creates screen
     showRaining();
     showTheSun();
     showFood();
+    openShop();
     for (Food eatMe : food) {
       eatMe.display();
     }
@@ -166,7 +171,15 @@ void mouseClicked() {
         }
       }
     }
-
+    for (Button button : buttons) {
+      if (button.mouseOver()) {
+        if (button.name == "Shop") {
+          shop = true;
+        } else {
+          button.click();
+        }
+      }
+    }
     //for weather  
     for (Button button : buttons) {
       //button will only be on for one press
@@ -219,7 +232,7 @@ void keyPressed() {
     //environment.getGrid();
   }
 
-  //used for reset, but currenlt doesn't not work
+  //used for reset, but currently doesn't not work
   if (key == 'b') {
     frameRate(600);
     size(1000, 600);
@@ -266,7 +279,7 @@ void showTheGrid() {
 
 void showFood() {
   if (fooddrop) {
-    environment.dropFood(300);
+    environment.dropFood(2000);
     fooddrop = false;
   }
 } //end dropFood()===========================================================================================================================================================
@@ -283,6 +296,14 @@ void resetBools() {
     showGrid = false;
   }
 } //end resetBools()=========================================================================================================================================================
+
+void openShop(){
+  if(shop){
+  s.display();
+   shop = false;
+  }
+}
+
 
 void makeLifeTimes() { //keeps a record of how long all plants and bacteria have lived
   for (Plant plant : allPlants) {
