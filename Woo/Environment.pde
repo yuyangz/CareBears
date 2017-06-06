@@ -4,6 +4,7 @@ class Environment {
   int[][] snow;
   int[][] soil;
   int[][] sun;
+  int temperature;
 
   Environment(int w, int h ) {
     grid = new int[w][h];
@@ -11,6 +12,7 @@ class Environment {
     snow = new int[w][h];
     soil = new int[w][h];
     sun = new int[w][h];
+    temperature = 65;
   } //end Environment()======================================================================================================================================================
 
   //enters sunlight onto the map
@@ -130,4 +132,14 @@ class Environment {
     println("Nourishment has come"); //gives statement that shows that sun has been released
     text("Nourishment has come", (width-(0.2*width))/2-("Nourishment has come".length()*4), 10);
   } //end dropFood(int intensity)============================================================================================================================================
+  
+ void tempChange(){
+  int time = millis();
+  if (millis() - time == 0)
+  {
+    temperature += 1;
+    time = millis();
+  }
+ }
+     
 }

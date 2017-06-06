@@ -120,7 +120,11 @@ void draw() { //creates screen
         z.eat(a);
       }
     }
+    environment.tempChange();
+  text("Temperature: " + environment.temperature, 800,500);
   }
+  
+  
 } //end draw()===============================================================================================================================================================
 
 void runButtons() {
@@ -171,15 +175,7 @@ void mouseClicked() {
         }
       }
     }
-    for (Button button : buttons) {
-      if (button.mouseOver()) {
-        if (button.name == "Shop") {
-          shop = true;
-        } else {
-          button.click();
-        }
-      }
-    }
+  
     //for weather  
     for (Button button : buttons) {
       //button will only be on for one press
@@ -198,6 +194,17 @@ void mouseClicked() {
         }
       }
     }
+    /*
+     for (Button button : buttons) {
+      if (button.mouseOver()) {
+        if (button.name == "Shop") {
+          shop = true;
+        } else {
+          button.click();
+        }
+      }
+    }
+    */
   }
 } //end mouseClicked()=======================================================================================================================================================
 
