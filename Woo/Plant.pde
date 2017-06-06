@@ -1,5 +1,4 @@
 class Plant implements Comparable<Plant> {
-
   int xcor, ycor;
   int size;
   int maxSize;

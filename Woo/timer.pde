@@ -35,14 +35,14 @@ class Timer {
       if (time == 0) {
         text("PLANTS: Ready!", width*0.8, 400);
       } else {
-        text("PLANTS: " + time,  width*0.8, 400);
+        text("PLANTS: " + time, width*0.8, 400);
       }
     }
     if (type == "Bacteria" ) {
       if (time == 0) {
-        text("BACTERIA: Ready!",  width*0.8, 450);
+        text("BACTERIA: Ready!", width*0.8, 450);
       } else {
-        text("BACTERIA: " + time,  width*0.8, 450);
+        text("BACTERIA: " + time, width*0.8, 450);
       }
     }
   }

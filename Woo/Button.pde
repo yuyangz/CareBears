@@ -9,7 +9,7 @@ class Button {
   String name;
   boolean active = false;
 
-//deafult construcot, specifies location, size, color, and name
+  //deafult construcot, specifies location, size, color, and name
   Button(int x, int y, int w, int h, color rectColor, color rectHighlight, String name) {
     this.x = x;
     this.y = y;
@@ -20,7 +20,7 @@ class Button {
     this.name = name;
   }
 
-//returns whether or not the mouse is over the button
+  //returns whether or not the mouse is over the button
   boolean mouseOver() {
     if (mouseX >= x && mouseX <= x+w && 
       mouseY >= y && mouseY <= y+h) {
@@ -30,13 +30,13 @@ class Button {
     }
   }
 
-//shows the button on the display window
-//updates to show a different color if the mouse is over
+  //shows the button on the display window
+  //updates to show a different color if the mouse is over
   void display() {
     stroke(255);
     fill(rectColor);
     if (active) {
-      fill(color(120,0,0));
+      fill(color(120, 0, 0));
     }
     if (mouseOver()) {
       fill(rectHighlight);
@@ -48,7 +48,7 @@ class Button {
 
 
   //Clicking the button leads to the button becoming active
-  
+
   void click() {
     if (mouseOver()) {
       if (name == "Rain") {
