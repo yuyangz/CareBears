@@ -14,8 +14,6 @@ class Plant implements Comparable<Plant> {
   Timer intPlantTimer;
   Timer peakTimer;
 
-
-
   //default constructor for plants
   Plant( int x, int y) { //initizalization of plants
     xcor = x;
@@ -32,10 +30,7 @@ class Plant implements Comparable<Plant> {
     peakStated = false;
 
     intPlantTimer = new Timer("Internal Plant", 0);
-  }
-
-
-
+  } //end Plant()============================================================================================================================================================
 
   void collision(Plant other) {
     float distance = dist(this.xcor, this.ycor, other.xcor, other.ycor);
@@ -49,12 +44,11 @@ class Plant implements Comparable<Plant> {
         other.peakStated = true;
       }
     }
-  }
+  } //end collision()========================================================================================================================================================
 
   int health() { //uses size as the health count
     return size;
-  }
-
+  } //end health()===========================================================================================================================================================
 
   //takes water from the surrounding environment
   //returns amount of water taken
@@ -91,7 +85,7 @@ class Plant implements Comparable<Plant> {
       }
     }
     return waterTaken;
-  }
+  } //end takeWater()========================================================================================================================================================
 
   //increments the size of the plant based on hwo much water it received from the environment
   void grow(Environment e, ArrayList<Plant> plants ) { //allows plant to grow
@@ -142,7 +136,7 @@ class Plant implements Comparable<Plant> {
         waterPriority--;
       }
     }
-  }
+  } //end grow()=============================================================================================================================================================
 
   //each plant is an ellipse
   //colors approach green as it is healthy, and then approach purple as it is dying
@@ -150,7 +144,7 @@ class Plant implements Comparable<Plant> {
     stroke(r, g, b);
     fill(color(r, g, b));
     ellipse(xcor, ycor, size, size);
-  }
+  } //end display()==========================================================================================================================================================
 
   //grows plant once a second
   void run(Environment e) { //display growth of plants
@@ -162,7 +156,7 @@ class Plant implements Comparable<Plant> {
       intPlantTimer.reset();
     }
     display();
-  }
+  } //end run()==============================================================================================================================================================
 
   int compareTo (Plant other) {
     if (this.lifeTime > (other).lifeTime) {
@@ -172,5 +166,5 @@ class Plant implements Comparable<Plant> {
     } else {
       return 0;
     }
-  }
+  }// end compareTo()========================================================================================================================================================
 }

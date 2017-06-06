@@ -5,14 +5,13 @@ class Environment {
   int[][] soil;
   int[][] sun;
 
-
   Environment(int w, int h ) {
     grid = new int[w][h];
     rain = new int[w][h];
     snow = new int[w][h];
     soil = new int[w][h];
     sun = new int[w][h];
-  }
+  } //end Environment()======================================================================================================================================================
 
   //enters sunlight onto the map
   //sunlight will be uniform in the sun array, but will decrease water levels randomly
@@ -36,7 +35,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4), 10);
-  }
+  } //end sunlight(int intensity)============================================================================================================================================
 
   //makes it rain by adding random values to individual spots on the rain array
   void rain(int intensity) { //provides rain to each individual coordinate point on the grid
@@ -61,7 +60,7 @@ class Environment {
     text("It has rained", (width-(0.2*width))/2-("It has rained".length()*4), 10);
 
     frameRate(60);
-  }
+  } //end rain(int intensity)================================================================================================================================================
 
   //draws line in concurrence with the rainfall graph
   void getGrid() { //displays grid so that the user can more easily place plants
@@ -81,7 +80,7 @@ class Environment {
       line(0, y, grid.length, y);
       y += grid[0].length / 20;
     }
-  }
+  } //end getGrid()==========================================================================================================================================================
 
   //splits map into boxes concurrent with the grid
   //adds total water drops in that section in the rain array
@@ -116,5 +115,19 @@ class Environment {
       g-=2;
       b-=1;
     }
-  }
+  } //end showRain()=========================================================================================================================================================
+
+  //drops food onto the map
+  //small circles or pellets of random color will appear in random locations across the screen
+  void dropFood (int intensity) { //allows the presence of food based on a certain intensity
+    for (int row = 5; row < 795; row += 3) {
+      for (int col = 5; col < 595; col += 3) {
+        if (random(intensity) <= 1) {
+          food.add(new Food( row, col ));
+        }
+      }
+    }
+    println("Nourishment has come"); //gives statement that shows that sun has been released
+    text("Nourishment has come", (width-(0.2*width))/2-("Nourishment has come".length()*4), 10);
+  } //end dropFood(int intensity)============================================================================================================================================
 }

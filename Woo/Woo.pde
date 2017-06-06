@@ -17,6 +17,9 @@ ArrayList<Bacteria> bacteria = new ArrayList<Bacteria>(); //hold bacterias in an
 ArrayList<Bacteria> allBacteria = new ArrayList<Bacteria>();
 ArrayList<Integer> bacteriaLifeTimes = new ArrayList<Integer>(); 
 
+/////.....FOOD...../////
+ArrayList<Food> food = new ArrayList<Food>(); //hold food
+
 /////.....BUTTON...../////
 ArrayList<Button> buttons = new ArrayList<Button>(); //hold buttons in an array
 Button startGame;
@@ -29,6 +32,7 @@ boolean sunlight, showSunlight; //allows sunlight to be processed
 //boolean snow;
 //boolean earthquake;
 //boolean thunderstorm;
+boolean fooddrop;
 
 /////.....TIMER...../////
 long time; //to be used as a temporal reference point 
@@ -77,7 +81,7 @@ void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.2*width), height/10, width/10, height/10, color(255, 255, 0), color(120, 0, 0), "Sunlight"));
   buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
   buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
-  buttons.add(new Button(width - (int)(0.1*width), height/5, width/10, height/10, color(255, 175, 175), color(255, 175, 175), "Food"));
+  buttons.add(new Button(width - (int)(0.1*width), height/5, width/10, height/10, color(255, 175, 175), color(255, 0, 0), "Food"));
 } //end makeButtons()========================================================================================================================================================
 
 void draw() { //creates screen
@@ -167,6 +171,8 @@ void mouseClicked() {
           rain = true;
         } else if (button.name == "Sunlight") {
           sunlight = true;
+        } else if (button.name == "Food") {
+          fooddrop = true;
         } else {
           //else if (button.name == "Plant"){
           //button.active = !button.active;
@@ -184,6 +190,14 @@ void removeDeadPlants() {
   for (int i = plants.size() - 1; i >= 0; i--) {
     if (plants.get(i).size <= 0) { 
       plants.remove(i);
+    }
+  }
+} //end removeDeadPlants()===================================================================================================================================================
+
+void removeFood() {
+  for (int i = food.size() - 1; i >= 0; i--) {
+    if (food.get(i).eaten == true) { 
+      food.remove(i);
     }
   }
 } //end removeDeadPlants()===================================================================================================================================================
@@ -245,6 +259,12 @@ void showTheGrid() {
     environment.getGrid();
   }
 } //end showTheGrid()========================================================================================================================================================
+
+void showFood() {
+  if (fooddrop) {
+    environment.dropFood(30);
+  }
+} //end dropFood()===========================================================================================================================================================
 
 //turns all the boolean variables to false, so any graphs don't stay on after they are released
 //currently does not work

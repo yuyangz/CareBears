@@ -18,7 +18,7 @@ class Button {
     this.rectColor = rectColor;
     this.rectHighlight = rectHighlight;
     this.name = name;
-  }
+  } //end Button()===========================================================================================================================================================
 
   //returns whether or not the mouse is over the button
   boolean mouseOver() {
@@ -28,7 +28,7 @@ class Button {
     } else {
       return false;
     }
-  }
+  } //end mouseOver()=========================================================================================================================================================
 
   //shows the button on the display window
   //updates to show a different color if the mouse is over
@@ -44,11 +44,9 @@ class Button {
     rect(x, y, w, h);
     fill(255);
     text(name, x+(int)(w/2)-(name.length()*4), y+(int)(h/2));
-  }
-
+  } //end display()==========================================================================================================================================================
 
   //Clicking the button leads to the button becoming active
-
   void click() {
     if (mouseOver()) {
       if (name == "Rain") {
