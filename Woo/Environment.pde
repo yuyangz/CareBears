@@ -6,6 +6,7 @@ class Environment {
   int[][] sun;
   int temperature;
   int time;
+  int increment;
 
   Environment(int w, int h ) {
     grid = new int[w][h];
@@ -15,6 +16,7 @@ class Environment {
     sun = new int[w][h];
     temperature = 65;
     time = 0;
+    increment = 1;
   } //end Environment()======================================================================================================================================================
 
   //enters sunlight onto the map
@@ -139,14 +141,15 @@ class Environment {
   void tempChange() {
     time = millis();
     if (time%10000 <= 20) {
-      temperature += 1;
+      temperature += increment;
     }
 
-    if (temperature > 80) {
-      //increase 3 degrees per 5 seconds
+    if (temperature >= 50 && temperature <= 80) {
+      increment = 1;
+    } else if (temperature > 80) {
+      increment = 3;
     } else if (temperature < 50) {
-      //decrease 1 degree every 5 seconds
+      increment = -1;
     }
   } //end tempChange()=========================================================================================================================================================
-
 } //end Environment
