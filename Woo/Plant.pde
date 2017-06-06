@@ -9,6 +9,7 @@ class Plant implements Comparable<Plant> {
   int birthDate;
   int r, g, b;
   int temp;
+  int time;
   boolean peakStated; //prime of life/ largest size
 
   Timer intPlantTimer;
@@ -29,6 +30,7 @@ class Plant implements Comparable<Plant> {
     int g = 120;
     peakStated = false;
 
+   time = 0;
     intPlantTimer = new Timer("Internal Plant", 0);
   } //end Plant()============================================================================================================================================================
 
@@ -89,51 +91,54 @@ class Plant implements Comparable<Plant> {
 
   //increments the size of the plant based on hwo much water it received from the environment
   void grow(Environment e, ArrayList<Plant> plants ) { //allows plant to grow
-    //Plant second = new Plant(mouseX, mouseY); 
+    //Plant second = new Plant(mouseX, mouseY);   
+  //  time = millis();
     for (Plant other : plants) {
       if (this != other) {
         collision(other);
       }
     }
-    if (!peakStated) {// && checkWater(e)) { //if plant is not at its max size
-      float findGrowth = takeWater(e)/waterNeed;
-      if (findGrowth == 1) {  //plant will grow based on specific growth rates and waterNeed
-        size += growthRate;
-        waterNeed *= growthRate;
-      } else if (findGrowth > 0.75) { 
-        size += growthRate/2;
-        waterNeed *= growthRate/2;
-      } else if (findGrowth >= 0.5) {
-        size += 0;
-        waterNeed *= growthRate/3;
-      } else if (findGrowth >= 0.25) {
-        size -= growthRate/2;
+   if (time%10000 <= 20) {
+      if (!peakStated) {// && checkWater(e)) { //if plant is not at its max size
+        float findGrowth = takeWater(e)/waterNeed;
+        if (findGrowth == 1) {  //plant will grow based on specific growth rates and waterNeed
+          size += growthRate;
+          waterNeed *= growthRate;
+        } else if (findGrowth > 0.75) { 
+          size += growthRate/2;
+          waterNeed *= growthRate/2;
+        } else if (findGrowth >= 0.5) {
+          size += 0;
+          waterNeed *= growthRate/3;
+        } else if (findGrowth >= 0.25) {
+          size -= growthRate/2;
+        } else {
+          size -= growthRate;
+        }
+        if (g < 255) { 
+          g += (int)random(30);
+        }
+        if (random(3) <= 1) {
+          waterPriority++;
+        }
+        if (size >= maxSize) {
+          peakStated = true;
+        }
+        //if (dist(this.xcor, this.ycor, second.xcor, second.ycor) <= 0) {
+        //  peakStated = true;
+        //}
       } else {
-        size -= growthRate;
-      }
-      if (g < 255) { 
-        g += (int)random(30);
-      }
-      if (random(3) <= 1) {
-        waterPriority++;
-      }
-      if (size >= maxSize) {
-        peakStated = true;
-      }
-      //if (dist(this.xcor, this.ycor, second.xcor, second.ycor) <= 0) {
-      //  peakStated = true;
-      //}
-    } else {
-      if (size <= 0) {
-        size = 0;
-        return;
-      }
-      size -= 1 + growthRate/2;
-      g -= (int)random(20);
-      r += (int)random(10);
-      b += (int)random(10);
-      if (random(3) <= 1) {
-        waterPriority--;
+        if (size <= 0) {
+          size = 0;
+          return;
+        }
+        size -= 1 + growthRate/2;
+        g -= (int)random(20);
+        r += (int)random(10);
+        b += (int)random(10);
+        if (random(3) <= 1) {
+          waterPriority--;
+        }
       }
     }
   } //end grow()=============================================================================================================================================================

@@ -41,7 +41,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4), 10);
-    temperature += 5;
+   // temperature += 5;
   } //end sunlight(int intensity)============================================================================================================================================
 
   //makes it rain by adding random values to individual spots on the rain array
@@ -65,7 +65,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("It has rained", (width-(0.2*width))/2-("It has rained".length()*4), 10);
-    temperature -= 5;
+   // temperature -= 5;
     frameRate(60);
   } //end rain(int intensity)================================================================================================================================================
 
