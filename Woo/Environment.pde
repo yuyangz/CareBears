@@ -138,7 +138,7 @@ class Environment {
 
   void tempChange() {
     time = millis();
-    if (time%10000 <= 500) {
+    if (time%10000 <= 20) {
       temperature += 1;
     }
 
