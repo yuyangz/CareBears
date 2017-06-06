@@ -127,9 +127,7 @@ tales of wisdom gained...
 --------------------------------------------------------------
     Ibnul: Planned implementation of pollen.
     Joshel: Planned implementation of pollen.
-    Yuyang: Updated water levels so that it will not become negative. Attempted to update  
-    plants so that collisions would not occur. Attempted to create reset button. Limited 
-    areas in which plants can be grown depending on amount of avgwater. Proposed issues.
+    Yuyang: Updated water levels so that it will not become negative. Attempted to update plants so that collisions would not occur. Attempted to create reset button. Limited areas in which plants can be grown depending on amount of avgwater. Proposed issues.
 ==============================================================
 
 2017-05-29 (Day 13):
@@ -139,10 +137,58 @@ tales of wisdom gained...
     Yuyang: Attempted to create grid.
 ==============================================================
 
-
-yyyy-mm-dd
+2017-05-30 (Day 14):
 --------------------------------------------------------------
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
-<Member> :: <Thing member did.>
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-05-31 (Day 15):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-06-01 (Day 16):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-06-02 (Day 17):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-06-03 (Day 18):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-06-04 (Day 19):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-06-05 (Day 20):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
+==============================================================
+
+2017-06-06 (Day 21):
+--------------------------------------------------------------
+    Ibnul ::
+    Joshel :: 
+    Yuyang ::
 ==============================================================
