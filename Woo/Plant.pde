@@ -30,7 +30,7 @@ class Plant implements Comparable<Plant> {
     int g = 120;
     peakStated = false;
 
-   time = 0;
+    time = 0;
     intPlantTimer = new Timer("Internal Plant", 0);
   } //end Plant()============================================================================================================================================================
 
@@ -92,14 +92,15 @@ class Plant implements Comparable<Plant> {
   //increments the size of the plant based on hwo much water it received from the environment
   void grow(Environment e, ArrayList<Plant> plants ) { //allows plant to grow
     //Plant second = new Plant(mouseX, mouseY);   
-  //  time = millis();
+    time = millis();
     for (Plant other : plants) {
       if (this != other) {
         collision(other);
       }
     }
-   if (time%10000 <= 20) {
-      if (!peakStated) {// && checkWater(e)) { //if plant is not at its max size
+    
+    if (time%500 <= 20) {
+      if (!peakStated) {  // && checkWater(e)) { //if plant is not at its max size
         float findGrowth = takeWater(e)/waterNeed;
         if (findGrowth == 1) {  //plant will grow based on specific growth rates and waterNeed
           size += growthRate;
