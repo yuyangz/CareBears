@@ -7,11 +7,14 @@ boolean sortStats;
 //IMAGES//
 PImage startPic;
 
-ALHeap<Plant> plants = new ALHeap<Plant>(); //hold plants in an array
-//ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
+ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
 ArrayList<Plant> allPlants = new ArrayList<Plant>(); 
+ArrayList<Integer> plantLifeTimes = new ArrayList<Integer>(); 
+
 ArrayList<Bacteria> bacteria = new ArrayList<Bacteria>(); //hold bacterias in an array
 ArrayList<Bacteria> allBacteria = new ArrayList<Bacteria>();
+ArrayList<Integer> bacteriaLifeTimes = new ArrayList<Integer>(); 
+
 
 ////BUTTON//////
 ArrayList<Button> buttons = new ArrayList<Button>(); //hold buttons in an array
@@ -46,7 +49,7 @@ void setup() {
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
-  
+
   ////ORGANISMS////
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
@@ -113,12 +116,11 @@ void runTimers() {
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
 void mouseClicked() {
   if (startScreen) {
-     if (startGame.mouseOver()){
-       startScreen=false;
-       playing = true;
-       draw();
-     }
-    
+    if (startGame.mouseOver()) {
+      startScreen=false;
+      playing = true;
+      draw();
+    }
   }
   if (playing) {
     for (Button button : buttons) { 
@@ -239,4 +241,49 @@ void resetBools() {
     //earthquake = false;
     showGrid = false;
   }
+}
+
+void makeLifeTimes() {
+   for (Plant plant : allPlants) {
+      plantLifeTimes.add(plant.lifeTime); 
+   }
+   for (Bacteria bacteria : allBacteria) {
+     bacteriaLifeTimes.add(bacteria.lifeTime);
+   }
+}
+
+
+////SORTS////
+void sort( ArrayList<Integer> _heap) {
+  int size = _heap.size();
+  for (int x = size / 2 - 1; x >= 0; x -= 1) {
+    heapify(_heap, size, x);
+  }
+  for (int y = size - 1; y >= 0; y -= 1) {
+    int temp = _heap.get(0);
+    _heap.set(0, y);
+    _heap.set(y, temp);
+
+    heapify(_heap, y, 0);
+  }
+}
+
+
+
+void heapify( ArrayList<Integer>_heap, int size, int x) {
+  int largest = x;
+  int left = 2*x + 1;
+  int right= 2*x + 2;
+  if (_heap.get(left) > _heap.get(largest)) {
+    largest = left;
+  }
+  if (_heap.get(right) > _heap.get(largest)) {
+    largest = right;
+  }
+  if (largest != x) {
+    int temp = _heap.get(x);
+    _heap.set(x, _heap.get(largest));
+    _heap.set(largest, temp);
+  }
+  heapify(_heap, size, largest);
 }

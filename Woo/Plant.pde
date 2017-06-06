@@ -1,4 +1,4 @@
-class Plant implements Comparable<Plant>{
+class Plant implements Comparable<Plant> {
 
   int xcor, ycor;
   int size;
@@ -68,17 +68,19 @@ class Plant implements Comparable<Plant>{
     int xcenter = xcor;
     while (temp > 0) {
       isWater = false;
-      for (int ydisplacement = -1* (int)random(size/2*1); ydisplacement < (int)random(size/2*1); ydisplacement++) {
-        for (int xdisplacement = -1* (int)random(size/2*1); xdisplacement < (int)random(size/2*1); xdisplacement++) {
-          if ((int)dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size/2*1) {
-            if ((xcenter+xdisplacement >= 0 && xcenter+xdisplacement < e.rain.length) && (ycenter+ydisplacement >= 0 && ycenter+ydisplacement < e.rain[0].length) ) {
-              if (e.rain[xcenter+xdisplacement][ycenter+ydisplacement] > 0) {
-                e.rain[xcenter+xdisplacement][ycenter+ydisplacement] -= 1;
-                temp -= 1;
-                waterTaken+=1;
-                isWater = true;
-                if (temp == 0) {
-                  return waterTaken;
+      for (int i = 0; i < 100; i++) {
+        for (int ydisplacement = -1* (int)random(size/2*1); ydisplacement < (int)random(size/2*1); ydisplacement++) {
+          for (int xdisplacement = -1* (int)random(size/2*1); xdisplacement < (int)random(size/2*1); xdisplacement++) {
+            if ((int)dist(xcenter+xdisplacement, ycenter+ydisplacement, xcor, ycor) < size/2*1) {
+              if ((xcenter+xdisplacement >= 0 && xcenter+xdisplacement < e.rain.length) && (ycenter+ydisplacement >= 0 && ycenter+ydisplacement < e.rain[0].length) ) {
+                if (e.rain[xcenter+xdisplacement][ycenter+ydisplacement] > 0) {
+                  e.rain[xcenter+xdisplacement][ycenter+ydisplacement] -= 1;
+                  temp -= 1;
+                  waterTaken+=1;
+                  isWater = true;
+                  if (temp == 0) {
+                    return waterTaken;
+                  }
                 }
               }
             }
