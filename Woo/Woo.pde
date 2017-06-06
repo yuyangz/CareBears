@@ -122,6 +122,8 @@ void draw() { //creates screen
     }
     environment.tempChange();
     text("Temperature: " + environment.temperature, 800, 500);
+    checkFood();
+    removeFood();
   }
 } //end draw()===============================================================================================================================================================
 

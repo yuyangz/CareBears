@@ -174,7 +174,7 @@ class Plant implements Comparable<Plant> {
     if (distance < this.size/2 + 2.5) {
       f.eaten = true;
       this.maxSize += 10;
-      this.size +=2;
+      this.size += 2;
     }
   }
 }
