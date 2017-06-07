@@ -13,11 +13,11 @@ PImage dirt;
 /////.....PLANTS AND BACTERIA...../////
 ArrayList<Plant> plants; //hold plants in an array
 ArrayList<Plant> allPlants; 
-ArrayList<Integer> plantLifeTimes; 
+int[] plantLifeTimes; 
 
 ArrayList<Bacteria> bacteria; //hold bacterias in an array
 ArrayList<Bacteria> allBacteria;
-ArrayList<Integer> bacteriaLifeTimes; 
+int[] bacteriaLifeTimes; 
 
 Timer bacteriaDrop;
 
@@ -33,6 +33,7 @@ Button areYouSureButton;
 Button lost;
 Button stats;
 Button goBackToStart;
+Button doneSorting;
 
 /////.....ENVIRONMENTAL VARIABLES...../////
 Environment environment;
@@ -79,17 +80,19 @@ void setup() {
   lost = new Button((int)(0.4*width), (int)(height*0.4), (int)(width*0.2), (int)(height*0.2), color(0, 0, 120), color(120, 0, 0), "Continue?");
   //endGame
   stats = new Button(200, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "STATS");
-  goBackToStart = new Button(600, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "Go Back To Start");
+  goBackToStart = new Button(600, 350, 300, 100, color(191, 161, 125), color(255, 0, 0), "Go Back To Start");
+  //sortStats
+  doneSorting = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Done Sorting?");
 
 
   /////.....ORGANISMS...../////
   plants = new ArrayList<Plant>(); //hold plants in an array
   allPlants = new ArrayList<Plant>(); 
-  plantLifeTimes = new ArrayList<Integer>(); 
+  //plantLifeTimes = new ArrayList<Integer>(); 
 
   bacteria = new ArrayList<Bacteria>(); //hold bacterias in an array
   allBacteria = new ArrayList<Bacteria>();
-  bacteriaLifeTimes = new ArrayList<Integer>(); 
+  //bacteriaLifeTimes = new ArrayList<Integer>(); 
 
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
@@ -101,7 +104,7 @@ void setup() {
   for (int i = 0; i < 1000; i++) {
     genFood.push(new Food((int)random(environment.grid.length), (int)random(environment.grid[0].length)));
   }
-  
+
 
   /////.....TIMERS...../////
   plantTimer = new Timer("Plant", 3);
@@ -109,7 +112,7 @@ void setup() {
   bactTime = 0;
   bacteriaDrop = new Timer("Bacteria Drop", 4);
   foodTimer = new Timer("Food Drop", 3);
-  
+
   /////.....ALL ORGANISMS...../////
   allPlants.add(plants.get(plants.size()-1));
   allBacteria.add(bacteria.get(plants.size()-1));
@@ -147,7 +150,7 @@ void draw() { //creates screen
     growBact();
     killBact();
     if (foodTimer.time == 0) {
-      environment.dropFood(1 , food, genFood);
+      environment.dropFood(1, food, genFood);
       foodTimer.reset();
     }
     for (Food eatMe : food) {
@@ -207,8 +210,23 @@ void draw() { //creates screen
     return;
   }
   if (sortStats) {
-    
-    
+    background(100);
+    text("Sorting based on longest lifetime...", 100, 100);
+    heapSort(plantLifeTimes);
+    text("Plants:", 200, 200);
+    for (int i = plantLifeTimes.length - 1; i > 0 && (plantLifeTimes.length - 1) - i < 5; i--) {
+    //for (int i = 0; i < plantLifeTimes.length && i < 5; i++) {
+      text(plantLifeTimes[i], 200, 250 + 50*((plantLifeTimes.length -1 ) - i ));
+    }
+    heapSort(bacteriaLifeTimes);
+    text("Bacteria:", 600, 200);
+    for (int i = bacteriaLifeTimes.length - 1; i > 0 && (bacteriaLifeTimes.length - 1) - i < 5; i--) {
+    //for (int i = 0; i < bacteriaLifeTimes.length && i < 5; i++) {
+      text(bacteriaLifeTimes[i], 600, 250 + 50*((bacteriaLifeTimes.length -1 ) - i ));
+    }
+
+
+    doneSorting.update();
   }
 } //end draw()===============================================================================================================================================================
 
@@ -315,6 +333,12 @@ void mouseClicked() {
       endGame = false;
       startScreen = true;
       setup();
+      draw();
+    }
+    if (stats.mouseOver()) {
+      endGame = false;
+      sortStats= true;
+      makeLifeTimes();
       draw();
     }
     return;
@@ -449,11 +473,13 @@ void resetBools() {
 } //end resetBools()=========================================================================================================================================================
 
 void makeLifeTimes() { //keeps a record of how long all plants and bacteria have lived
-  for (Plant plant : allPlants) {
-    plantLifeTimes.add(plant.lifeTime);
+  plantLifeTimes = new int[allPlants.size()];
+  for (int i = 0; i < allPlants.size(); i++) {
+    plantLifeTimes[i] = allPlants.get(i).lifeTime;
   }
-  for (Bacteria bacteria : allBacteria) {
-    bacteriaLifeTimes.add(bacteria.lifeTime);
+  bacteriaLifeTimes = new int[allBacteria.size()];
+  for (int i = 0; i < allBacteria.size(); i++) {
+    bacteriaLifeTimes[i] = allBacteria.get(i).lifeTime;
   }
 } //end makeLifeTimes()======================================================================================================================================================
 
@@ -504,34 +530,42 @@ void killBact() {
   }
 }//end killBact()======================================================================================================================================================
 ///////////////...............SORTS...............///////////////
-void sort( ArrayList<Integer> _heap) {
-  int size = _heap.size();
-  for (int x = size / 2 - 1; x >= 0; x -= 1) {
-    heapify(_heap, size, x);
+void heapSort(int[] arr) {
+  for (int i=0; i<arr.length; i++) {
+    int pos = i;
+    while (arr[pos] > arr[(pos-1)/2]) {
+      swap((pos-1)/2, pos, arr);
+      pos = (pos-1)/2;
+    }
   }
-  for (int y = size - 1; y >= 0; y -= 1) {
-    int temp = _heap.get(0);
-    _heap.set(0, y);
-    _heap.set(y, temp);
+  for (int i=arr.length-1; i>0; i--) {
+    int big = arr[0];
+    arr[0] = arr[i];
+    int pos = 0;
+    while (maxChildPos(pos, i, arr)!= -1 && arr[pos] < arr[maxChildPos(pos, i, arr)]) {
+      int mcp = maxChildPos(pos, i, arr);
+      swap(pos, mcp, arr);
+      pos = mcp;
+    }
+    arr[i] = big;
+  }
+}//O(nlogn)
 
-    heapify(_heap, y, 0);
+static int maxChildPos( int pos, int last, int[] arr ) {
+  if (pos < 0 || pos >= last || (pos*2)+1 >= last) { 
+    return -1;
   }
-} //end sort(ArrayList<Integer> _heap)=======================================================================================================================================
+  if ((pos*2)+2 >= last) { 
+    return (pos*2)+1;
+  }
+  if (arr[(pos*2)+1] > arr[(pos*2)+2]) { 
+    return (pos*2)+1;
+  }
+  return (pos*2)+2;
+}//O(1)
 
-void heapify( ArrayList<Integer>_heap, int size, int x) {
-  int largest = x;
-  int left = 2*x + 1;
-  int right= 2*x + 2;
-  if (_heap.get(left) > _heap.get(largest)) {
-    largest = left;
-  }
-  if (_heap.get(right) > _heap.get(largest)) {
-    largest = right;
-  }
-  if (largest != x) {
-    int temp = _heap.get(x);
-    _heap.set(x, _heap.get(largest));
-    _heap.set(largest, temp);
-  }
-  heapify(_heap, size, largest);
-} //end heapify()============================================================================================================================================================
+static void swap( int x, int y, int[] o ) {
+  int tmp = o[x];
+  o[x] = o[y];
+  o[y] = tmp;
+}//O(1)
