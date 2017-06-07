@@ -7,6 +7,7 @@ boolean sortStats;
 
 /////.....IMAGES...../////
 PImage startPic;
+PImage dirt;
 
 /////.....PLANTS AND BACTERIA...../////
 ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
@@ -55,6 +56,7 @@ void setup() {
 
   ///LOAD IMAGES///
   startPic = loadImage("Start.jpg");
+  dirt = loadImage("dirt.jpg");
 
   ///START GAME///
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
@@ -98,7 +100,7 @@ void draw() { //creates screen
     startGame.update();
   }
   if (playing) {
-    background(255);
+    image(dirt,0,0);
     runButtons();
     showTheRain();
     showRaining();
