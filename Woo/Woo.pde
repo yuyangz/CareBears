@@ -100,7 +100,7 @@ void draw() { //creates screen
     startGame.update();
   }
   if (playing) {
-    image(dirt,0,0);
+    image(dirt, -200,0);
     runButtons();
     showTheRain();
     showRaining();
@@ -129,7 +129,9 @@ void draw() { //creates screen
       }
     }
     environment.tempChange();
+    fill(255,255,255);
     text("Temperature: " + environment.temperature, 800, 500);
+    textSize(20);
     tempModPlant();
     checkBactPlant();
     checkFood();
@@ -140,6 +142,7 @@ void draw() { //creates screen
   if (endGame) {
     background(95, 37, 41);
     text("You're a bad farmer", 450, 300);
+    textSize(25);
     stats.update();
     end.update();
   }

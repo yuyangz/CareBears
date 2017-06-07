@@ -32,15 +32,19 @@ class Timer {
     }
     if (type == "Plant" ) {
       if (time == 0) {
+        fill(255,255,255);
         text("PLANTS: Ready!", width*0.8, 400);
       } else {
+        fill(255,255,255);
         text("PLANTS: " + time, width*0.8, 400);
       }
     }
     if (type == "Bacteria" ) {
       if (time == 0) {
+        fill(255,255,255);
         text("BACTERIA: Ready!", width*0.8, 450);
       } else {
+        fill(255,255,255);
         text("BACTERIA: " + time, width*0.8, 450);
       }
     }
