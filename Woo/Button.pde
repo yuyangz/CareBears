@@ -55,7 +55,7 @@ class Button {
         active = !active;
       }
     } else {
-      text("Put the mouse on the button please", 5, 5);
+      //text("Put the mouse on the button please", 5, 5);
     }
   }
 //end click()======================================================================================================================================================

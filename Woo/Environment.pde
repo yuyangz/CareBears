@@ -15,7 +15,7 @@ class Environment {
     snow = new int[w][h];
     soil = new int[w][h];
     sun = new int[w][h];
-    temperature = 65;
+    temperature = 75;
     time = 0;
     increment = 1;
 
@@ -25,19 +25,22 @@ class Environment {
   //enters sunlight onto the map
   //sunlight will be uniform in the sun array, but will decrease water levels randomly
   void sunlight (int intensity) { //allows the presence of sunlight based on a certain intensity
-    for (int row = 0; row < sun.length; row += 3) {
-      for (int col = 0; col < sun[row].length; col += 3) {
-        sun[row][col] += intensity;
+    for (int row = (int)random(3); row < sun.length; row += 3) {
+      for (int col = (int)random(3); col < sun[row].length; col += 3) {
+        //sun[row][col] += intensity;
         if (random(intensity) <= 1) {
           rain[row][col] -= random(4);  //decreases the water in each spot of the coordinate system
-          stroke(0, 0, 120);
-          fill(0, 0, 120);
-          ellipse(row, col, 1, 1);
+          //stroke(0, 0, 120);
+          //fill(0, 0, 120);
+          //ellipse(row, col, 1, 1);
+          stroke(255, 255, 0);
+          fill(120, 120, 0);
+          ellipse(row, col, 1, 1 );
         }
         //rain[row][col] -=;
-        stroke(255, 255, 0);
-        fill(120, 120, 0);
-        ellipse(row, col, 1, 1 );
+        //stroke(255, 255, 0);
+        //fill(120, 120, 0);
+        //ellipse(row, col, 1, 1 );
       }
     }
     println("God has released light"); //gives statement that shows that sun has been released
@@ -49,13 +52,8 @@ class Environment {
 
   //makes it rain by adding random values to individual spots on the rain array
   void rain(int intensity) { //provides rain to each individual coordinate point on the grid
-    //print(rain.length, rain[0].length);
-    //int time = millis();
-    //while (millis() < time + 1000) {
-    //  ellipse((int)random(width-(width*0.2)), (int)random(height), 1, 1);
-    //}
-    for (int row = 0; row < rain.length; row+=3) {
-      for (int col = 0; col < rain[row].length; col+= 3) { 
+    for (int row = (int)random(3); row < rain.length; row+=3) {
+      for (int col = (int)random(3); col < rain[row].length; col+= 3) { 
         if (random(intensity) <= 1) {
           rain[row][col] += 1+ random(4); 
           stroke(0, 0, 120);

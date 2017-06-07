@@ -21,6 +21,9 @@ int[] bacteriaLifeTimes;
 
 Timer bacteriaDrop;
 
+long time;
+long timePlayed;
+
 /////.....FOOD...../////
 ArrayList<Food> food;
 ALStack<Food> genFood; //hold food
@@ -44,7 +47,7 @@ boolean sunlight, showSunlight; //allows sunlight to be processed
 boolean fooddrop;
 
 /////.....TIMER...../////
-long time; //to be used as a temporal reference point 
+//long time; //to be used as a temporal reference point 
 Timer plantTimer; //cooldown time for plants
 Timer bacteriaTimer; //cooldown time for bacteria
 
@@ -58,6 +61,7 @@ int bactTime;
 void setup() { 
   startScreen = true;
   size(1000, 600);
+  textSize(20);
 
 
 
@@ -94,8 +98,9 @@ void setup() {
   allBacteria = new ArrayList<Bacteria>();
   //bacteriaLifeTimes = new ArrayList<Integer>(); 
 
-  plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
-  bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
+  //testers
+  //plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
+  //bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
 
 
   /////.....FOOD...../////
@@ -110,12 +115,12 @@ void setup() {
   plantTimer = new Timer("Plant", 3);
   bacteriaTimer = new Timer("Bacteria", 1);
   bactTime = 0;
-  bacteriaDrop = new Timer("Bacteria Drop", 4);
+  bacteriaDrop = new Timer("Bacteria Drop", 7);
   foodTimer = new Timer("Food Drop", 3);
 
   /////.....ALL ORGANISMS...../////
-  allPlants.add(plants.get(plants.size()-1));
-  allBacteria.add(bacteria.get(plants.size()-1));
+  //allPlants.add(plants.get(plants.size()-1));
+  //allBacteria.add(bacteria.get(plants.size()-1));
 
   /////.....ENVIRONMENT...../////
   for (int i = 0; i < 1; i++) {
@@ -143,7 +148,7 @@ void draw() { //creates screen
     image(dirt, -200, 0);
     environment.run();
     runButtons();
-    showTheRain();
+    //showTheRain();
     showRaining();
     showTheSun();
     showFood();
@@ -163,6 +168,8 @@ void draw() { //creates screen
       bacteria.get(i).run();
     }
     removeDeadPlants();
+    showTheRain();
+
     showTheGrid();
     resetBools();
     runTimers();
@@ -203,29 +210,31 @@ void draw() { //creates screen
   if (endGame) {
     background(100, 100, 100);
     stats.update();
-    text("Button below is awesome!", stats.x, stats.y - 200);
+    text("Click below to see a stat!", stats.x, stats.y - 200);
 
     goBackToStart.update();
-    text("Button below will lag!", goBackToStart.x, goBackToStart.y - 200);
+    text("Click below to restart!", goBackToStart.x, goBackToStart.y - 200);
     return;
   }
   if (sortStats) {
     background(100);
-    text("Sorting based on longest lifetime...", 100, 100);
+    int minutes = (int)((timePlayed/1000.0)/60);
+    int seconds = (int)(((timePlayed/1000.0)/60 - (int)((timePlayed/1000.0)/60)) * 60);
+    text("Sorting based on longest lifetime... (measured in frames)", 100, 100);
+    text("Total Game Time: " + minutes + "minutes and " + seconds + "seconds", 100, 150);
+
     heapSort(plantLifeTimes);
     text("Plants:", 200, 200);
-    for (int i = plantLifeTimes.length - 1; i > 0 && (plantLifeTimes.length - 1) - i < 5; i--) {
-    //for (int i = 0; i < plantLifeTimes.length && i < 5; i++) {
+    for (int i = plantLifeTimes.length - 1; i >= 0 && (plantLifeTimes.length - 1) - i < 5; i--) {
+      //for (int i = 0; i < plantLifeTimes.length && i < 5; i++) {
       text(plantLifeTimes[i], 200, 250 + 50*((plantLifeTimes.length -1 ) - i ));
     }
     heapSort(bacteriaLifeTimes);
     text("Bacteria:", 600, 200);
-    for (int i = bacteriaLifeTimes.length - 1; i > 0 && (bacteriaLifeTimes.length - 1) - i < 5; i--) {
-    //for (int i = 0; i < bacteriaLifeTimes.length && i < 5; i++) {
+    for (int i = bacteriaLifeTimes.length - 1; i >= 0 && (bacteriaLifeTimes.length - 1) - i < 5; i--) {
+      //for (int i = 0; i < bacteriaLifeTimes.length && i < 5; i++) {
       text(bacteriaLifeTimes[i], 600, 250 + 50*((bacteriaLifeTimes.length -1 ) - i ));
     }
-
-
     doneSorting.update();
   }
 } //end draw()===============================================================================================================================================================
@@ -250,6 +259,7 @@ void mouseClicked() {
     if (startGame.mouseOver()) {
       startScreen=false;
       playing = true;
+      time = millis();
       draw();
     }
     return;
@@ -286,6 +296,7 @@ void mouseClicked() {
         } else if (button.name == "End Game") {
           areYouSure = true;
           playing = false;
+          timePlayed = millis() - time;
           draw();
         } else {
           //else if (button.name == "Plant"){
@@ -343,6 +354,14 @@ void mouseClicked() {
     }
     return;
   }
+  if (sortStats) { 
+    if (doneSorting.mouseOver()) {
+      sortStats = false;
+      startScreen = true;
+      setup();
+      draw();
+    }
+  }
 } //end mouseClicked()=======================================================================================================================================================
 
 //bacteria grows and is added to arrayList
@@ -379,6 +398,9 @@ void keyPressed() {
   if (key == 'r') { //connects to showRainning
     rain = true;
   }
+  if (key == 's') { //connects to showRainning
+    sunlight = true;
+  }
   if (key == 'q') { //connects to showTheRain
     showRain = true;
   }
@@ -387,13 +409,10 @@ void keyPressed() {
     //environment.getGrid();
   }
 
-  //used for reset, but currently doesn't not work
+  //add plant and bacteria for demo
   if (key == 'b') {
-    frameRate(600);
-    size(1000, 600);
-    environment = new Environment(width-(int)(0.2*width), height);
-    makeButtons();
-    buttons.get(0).display();
+    environment.rain(30);
+    environment.temperature += 5;
     plants.add(new Plant((int)random(0.8*width), (int)random(height)));
     bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
   }
@@ -402,7 +421,9 @@ void keyPressed() {
 //method for showing the rainfall graph
 void showTheRain() {
   if (showRain) {
+    textSize(10);
     environment.showRain();
+    textSize(20);
   }
 } //end showTheRain()========================================================================================================================================================
 
@@ -517,6 +538,9 @@ void endSim() {
   if (environment.temperature > 105 || environment.temperature < 25) {
     playing = false;
     lostGame = true;
+    timePlayed = millis() - time;
+    draw();
+    return;
   }
 }//end endSim()======================================================================================================================================================
 

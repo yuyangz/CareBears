@@ -179,21 +179,21 @@ With this project, we learned about the importance of comment and spacing. With 
 
 2017-06-04 (Day 19):
 --------------------------------------------------------------
-    Ibnul :: Considered the idea of implementation coins and shops to give the user some variety in planting.
+    Ibnul :: Considered the idea of implementation coins and shops to give the user some variety in planting. Decided it might stray to far from the original topic proposal, the point was to simulate the environment, not create a game.
     Joshel :: Suggested the idea of using checking collision through arrayLists.
     Yuyang :: Worked on collision for plants and bacteria. Modified timer. Usage of nested for loops to check if two plants are touching.
 ==============================================================
 
 2017-06-05 (Day 20):
 --------------------------------------------------------------
-    Ibnul :: Added a start screen with a start button (Imported background). Fixed collision, bad raining, and bacteria class. Updated timers. Implemented heaps and heap sort.
+    Ibnul :: Added a start screen with a start button (Imported background). Fixed collision, bad raining, and bacteria class. Updated timers through the use of the Timer class, which has really simplified many aspects of things. Began to implement heaps and heap sort.
     Joshel :: Added food class and its function. Added food button to screen.
     Yuyang :: Attempted to make shop and coins. Updated collision (Compares distance to sum of radii).
 ==============================================================
 
 2017-06-06 (Day 21):
 --------------------------------------------------------------
-    Ibnul ::  Updated end screen with the implementation of button for end and statistics. Statistics such as longest lasting plant, time played, etc will be displayed through heaps. Food will now be released with stacks. Timer has been fixed so that the timing is more steady.
-    Joshel :: Finalized UML diagrams and flow charts. Updated artwork for start screen. Modified timer. However minor counting errors still occur. Temperature has been modified so it increments more steadily. Growth rate is also more stable. Updated flowchart.
+    Ibnul ::  Created a series of buttons for navigating around the program. Updated end screen with the implementation of button for end and statistics. Statistics such as longest lasting plant, time played, etc will be displayed through heapSort. Food has been changed so that it resides in stacks, giving the program a great way to timely disperse it into the environment. Fixed timer for bacterial spawn rate, and for plant growth rate, and created a timer to track when food is dropped. By use of buttons and state variables, has made a way for the user to start the game over once complete. Made small change in temperature as well.
+    Joshel :: Finalized UML diagrams and flow charts. Updated artwork for start screen. Modified timer. However minor counting errors still occurred until Ibnul fixed them. Temperature has been modified so it increments more steadily. Growth rate is also more stable. Updated flowchart.
     Yuyang :: Removal of shop and coins. Updated temperature based on rainfall and sunlight(sunlight would increase temp, and rain would decrease temp). Food is updated so plants can now consume it and grow and increase its maxSize. Bacteria can collide with plants and cause plants to decrease. Temperature can affect the growth of plants and stability of bacteria. If temperature is too high or too low, plants will start to shrink. Same for bacteria. Fixed plant growth rates so that they grow every few second. Updated UML. Added dirt background.
 ==============================================================
