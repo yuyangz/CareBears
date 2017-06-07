@@ -103,6 +103,7 @@ void draw() { //creates screen
     showFood();
     openShop();
     growBact();
+    killBact();
     for (Food eatMe : food) {
       eatMe.display();
     }
@@ -398,6 +399,16 @@ void endSim() {
   }
 }
 
+
+void killBact(){
+  if (environment.temperature > 80 || environment.temperature < 50){
+    for (Bacteria b: bacteria){
+      b.health -= 5;
+      b.shrink();
+    }
+  }
+}
+      
 
 
 ///////////////...............SORTS...............///////////////

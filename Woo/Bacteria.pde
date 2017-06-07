@@ -2,6 +2,7 @@
   int xcor, ycor;
   int dx, dy;
   int size;
+  int health;
   int maxSize;
   int growthRate;
   int waterPriority;
@@ -15,6 +16,7 @@
   Bacteria( int x, int y) {
     xcor = x;
     ycor = y;
+    health = 10 + (int)(random (10));
     dx = dy = (int)random(5) +5;
     size = 10;
     //maxSize = 30 + (int)random(10);
@@ -51,6 +53,12 @@
       p.size -= 1;
     }
   } //end eat()==============================================================================================================================================================
+
+void shrink(){
+  if (health <= 0){
+    size -= 1;
+  }
+}
 
   //displayed as a circle for now, but will later be changed to be more distinguishable
   void display() {
