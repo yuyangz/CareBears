@@ -43,7 +43,7 @@ Timer bacteriaTimer; //cooldown time for bacteria
 boolean showGrid; //displays grid for plants
 boolean b; //will be used in the future for reset
 boolean shop;
-
+int bactTime;
 Shop s;
 //===========================================================================================================================================================================
 
@@ -67,7 +67,7 @@ void setup() {
   /////.....TIMERS...../////
   plantTimer = new Timer("Plant", 0);
   bacteriaTimer = new Timer("Bacteria", 1);
-
+  bactTime = 0;
   /////.....ALL ORGANISMS...../////
   allPlants.add(plants.get(plants.size()-1));
   allBacteria.add(bacteria.get(plants.size()-1));
@@ -83,10 +83,10 @@ void makeButtons() { //creates buttons
   buttons.add(new Button(width - (int)(0.2*width), 0, width/10, height/10, color(0, 0, 120), color(120, 0, 0), "Rain"));
   buttons.add(new Button(width - (int)(0.1*width), 0, width/10, height/10, color(0, 120, 0), color(120, 0, 0), "Plant"));
   buttons.add(new Button(width - (int)(0.2*width), height/10, width/10, height/10, color(255, 255, 0), color(120, 0, 0), "Sunlight"));
-  buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
+  //buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
   buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
-  buttons.add(new Button(width - (int)(0.1*width), height/5, width/10, height/10, color(255, 175, 175), color(255, 0, 0), "Food"));
-  buttons.add(new Button(width - (int)(0.2*width), height/5, width/10, height/10, color(255, 162, 51), color(255, 0, 0), "Shop"));
+  buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(255, 175, 175), color(255, 0, 0), "Food"));
+  buttons.add(new Button(width - (int)(0.2*width), height/5, width/5, height/10, color(255, 162, 51), color(255, 0, 0), "Shop"));
 } //end makeButtons()========================================================================================================================================================
 
 void draw() { //creates screen
@@ -102,6 +102,7 @@ void draw() { //creates screen
     showTheSun();
     showFood();
     openShop();
+    growBact();
     for (Food eatMe : food) {
       eatMe.display();
     }
@@ -128,13 +129,11 @@ void draw() { //creates screen
     removeFood();
     endSim();
   }
-  
-  if (endGame){
+
+  if (endGame) {
     background(95, 37, 41);
-    text("You're a bad farmer", 450,300);
+    text("You're a bad farmer", 450, 300);
   }
- 
-    
 } //end draw()===============================================================================================================================================================
 
 void runButtons() {
@@ -145,7 +144,7 @@ void runButtons() {
 
 void runTimers() {
   plantTimer.run();
-  bacteriaTimer.run();
+  //bacteriaTimer.run();
 } //end runTimers()==========================================================================================================================================================
 
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
@@ -174,14 +173,16 @@ void mouseClicked() {
               plantTimer.reset();
             }
           }
+          /*
           if (bacteriaTimer.time == 0) {
-            if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.      
-              bacteria.add(new Bacteria(mouseX, mouseY));
-              allBacteria.add(bacteria.get(bacteria.size()-1));
-              print("bacteriaed");
-              bacteriaTimer.reset();
-            }
-          }
+           if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.      
+           bacteria.add(new Bacteria(mouseX, mouseY));
+           allBacteria.add(bacteria.get(bacteria.size()-1));
+           print("bacteriaed");
+           bacteriaTimer.reset();
+           }
+           }
+           */
         }
       }
     }
@@ -217,6 +218,16 @@ void mouseClicked() {
      */
   }
 } //end mouseClicked()=======================================================================================================================================================
+
+void growBact() {
+  time = millis();
+  if (time%10000 <= 20) {
+    bacteria.add(new Bacteria((int)random(800), (int)random(600)));
+    allBacteria.add(bacteria.get(bacteria.size()-1));
+    print("bacteriaed");
+  }
+}
+
 
 //removes plants when they have a size that is less than or equal to 0
 //this means they have shrunk to the point where they are negative size
@@ -369,14 +380,14 @@ void tempModPlant() {
   }
 }//end tempModPlant()======================================================================================================================================================
 
-void endSim(){
-  if (environment.temperature > 105 || environment.temperature < 25){
+void endSim() {
+  if (environment.temperature > 105 || environment.temperature < 25) {
     endGame = true;
-    buttons.add(new Button(200, 200,  width/10, height/10, color(191,161, 125), color(255,0,0), "Statistics"));
-    buttons.add(new Button(400, 200, width/10, height/10, color(191,161, 125), color(255,0,0), "END"));
+    buttons.add(new Button(200, 200, width/10, height/10, color(191, 161, 125), color(255, 0, 0), "Statistics"));
+    buttons.add(new Button(400, 200, width/10, height/10, color(191, 161, 125), color(255, 0, 0), "END"));
   }
 }
-    
+
 
 
 ///////////////...............SORTS...............///////////////
