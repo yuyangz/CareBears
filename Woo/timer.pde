@@ -15,7 +15,7 @@ class Timer {
     //font = createFont("Arial", 100);
     this.type = type;
     this.interval = interval;
-    fill(0);
+    //fill(0);
     time = interval;
   } //end Timer(String type, int interval)===================================================================================================================================
 
@@ -39,10 +39,10 @@ class Timer {
         text("PLANTS: " + time, width*0.8, 400);
       }
     }
-    if (type == "Bacteria" ) {
+    if (type == "Bacteria Drop" ) {
       if (time == 0) {
         fill(255,255,255);
-        text("BACTERIA: Ready!", width*0.8, 450);
+        text("BACTERIA: Dropping!", width*0.8, 450);
       } else {
         fill(255,255,255);
         text("BACTERIA: " + time, width*0.8, 450);

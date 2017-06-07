@@ -17,7 +17,7 @@
     xcor = x;
     ycor = y;
     health = 10 + (int)(random (10));
-    dx = dy = (int)random(5) +5;
+    dx = dy = (int)random(5) +2;
     size = 10;
     //maxSize = 30 + (int)random(10);
     //growthRate = 1 +(int)random(5);

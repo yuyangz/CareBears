@@ -1,8 +1,9 @@
 //////////..........GLOBAL VARIABLES..........//////////
 boolean startScreen;
 boolean playing;
-boolean endGame;
+boolean lostGame;
 boolean areYouSure;
+boolean endGame;
 boolean sortStats;
 
 /////.....IMAGES...../////
@@ -10,31 +11,33 @@ PImage startPic;
 PImage dirt;
 
 /////.....PLANTS AND BACTERIA...../////
-ArrayList<Plant> plants = new ArrayList<Plant>(); //hold plants in an array
-ArrayList<Plant> allPlants = new ArrayList<Plant>(); 
-ArrayList<Integer> plantLifeTimes = new ArrayList<Integer>(); 
+ArrayList<Plant> plants; //hold plants in an array
+ArrayList<Plant> allPlants; 
+ArrayList<Integer> plantLifeTimes; 
 
-ArrayList<Bacteria> bacteria = new ArrayList<Bacteria>(); //hold bacterias in an array
-ArrayList<Bacteria> allBacteria = new ArrayList<Bacteria>();
-ArrayList<Integer> bacteriaLifeTimes = new ArrayList<Integer>(); 
+ArrayList<Bacteria> bacteria; //hold bacterias in an array
+ArrayList<Bacteria> allBacteria;
+ArrayList<Integer> bacteriaLifeTimes; 
+
+Timer bacteriaDrop;
 
 /////.....FOOD...../////
-ArrayList<Food> food = new ArrayList<Food>(); //hold food
+ArrayList<Food> food; //hold food
 
 /////.....BUTTON...../////
-ArrayList<Button> buttons = new ArrayList<Button>(); //hold buttons in an array
+ArrayList<Button> buttons; //hold buttons in an array
 Button startGame;
-Button stats = new Button(200, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "Statistics");
-Button end = new Button(600, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "END");
+Button areYouSureButton;
+Button lost;
+Button stats;
+Button goBackToStart;
 
 /////.....ENVIRONMENTAL VARIABLES...../////
 Environment environment;
 boolean rain, showRain; //generates array[height][width] with random coordinates having water
 // plants w waterPriority n will go in order or priority, and will take all the water in a circle of radius r
 boolean sunlight, showSunlight; //allows sunlight to be processed
-//boolean snow;
-//boolean earthquake;
-//boolean thunderstorm;
+
 boolean fooddrop;
 
 /////.....TIMER...../////
@@ -54,9 +57,14 @@ void setup() {
   startScreen = true;
   size(1000, 600);
 
+
+
   ///LOAD IMAGES///
   startPic = loadImage("Start.jpg");
   dirt = loadImage("dirt.jpg");
+
+  ///MAKE BUTTONS///
+  buttons = new ArrayList<Button>();
 
   ///START GAME///
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
@@ -64,14 +72,37 @@ void setup() {
   makeButtons();
   s = new Shop();
 
+  ///LATER GAME///
+  //areYouSure
+  areYouSureButton = new Button((int)(0.4*width), (int)(height*0.4), (int)(width*0.2), (int)(height*0.2), color(0, 0, 120), color(120, 0, 0), "Are You Sure?");
+  //lostGame
+  lost = new Button((int)(0.4*width), (int)(height*0.4), (int)(width*0.2), (int)(height*0.2), color(0, 0, 120), color(120, 0, 0), "Continue?");
+  //endGame
+  stats = new Button(200, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "STATS");
+  goBackToStart = new Button(600, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "Go Back To Start");
+
+
   /////.....ORGANISMS...../////
+  plants = new ArrayList<Plant>(); //hold plants in an array
+  allPlants = new ArrayList<Plant>(); 
+  plantLifeTimes = new ArrayList<Integer>(); 
+
+  bacteria = new ArrayList<Bacteria>(); //hold bacterias in an array
+  allBacteria = new ArrayList<Bacteria>();
+  bacteriaLifeTimes = new ArrayList<Integer>(); 
+
   plants.add(new Plant((int)random(0.4*width)+(int)(width*0.2), (int)random(height)));
   bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
+
+
+  /////.....FOOD...../////
+  food = new ArrayList<Food>();
 
   /////.....TIMERS...../////
   plantTimer = new Timer("Plant", 0);
   bacteriaTimer = new Timer("Bacteria", 1);
   bactTime = 0;
+  bacteriaDrop = new Timer("Bacteria Drop", 4);
   /////.....ALL ORGANISMS...../////
   allPlants.add(plants.get(plants.size()-1));
   allBacteria.add(bacteria.get(plants.size()-1));
@@ -81,7 +112,6 @@ void setup() {
     environment.rain(1);
     environment.rain(2);
   }
-  
 } //end setup()==============================================================================================================================================================
 
 void makeButtons() { //creates buttons
@@ -98,9 +128,11 @@ void draw() { //creates screen
   if (startScreen) {
     image(startPic, 0, 0);
     startGame.update();
+    return;
   }
   if (playing) {
-    image(dirt, -200,0);
+    image(dirt, -200, 0);
+    environment.run();
     runButtons();
     showTheRain();
     showRaining();
@@ -128,8 +160,8 @@ void draw() { //creates screen
         z.eat(a);
       }
     }
-    environment.tempChange();
-    fill(255,255,255);
+    //environment.tempChange();
+    fill(255, 255, 255);
     text("Temperature: " + environment.temperature, 800, 500);
     textSize(20);
     tempModPlant();
@@ -137,14 +169,33 @@ void draw() { //creates screen
     checkFood();
     removeFood();
     endSim();
+    return;
+  }
+
+  if (areYouSure) {
+    image(dirt, -200, 0);
+    areYouSureButton.update();
+    text("Click Anywhere Outside The Button to Continue Playing", 20, 100);
+    return;
+  }
+
+
+  if (lostGame) {
+    background(95, 37, 41);
+    text("You're a bad farmer", 370, 200);
+    textSize(25);
+    lost.update();
+    return;
   }
 
   if (endGame) {
-    background(95, 37, 41);
-    text("You're a bad farmer", 450, 300);
-    textSize(25);
+    background(100, 100, 100);
     stats.update();
-    end.update();
+    text("Button below is awesome!", stats.x, stats.y - 200);
+
+    goBackToStart.update();
+    text("Button below will lag!", goBackToStart.x, goBackToStart.y - 200);
+    return;
   }
 } //end draw()===============================================================================================================================================================
 
@@ -157,6 +208,7 @@ void runButtons() {
 void runTimers() {
   plantTimer.run();
   //bacteriaTimer.run();
+  bacteriaDrop.run();
 } //end runTimers()==========================================================================================================================================================
 
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
@@ -168,8 +220,8 @@ void mouseClicked() {
       playing = true;
       draw();
     }
-  }
-
+    return;
+  } 
   /////button mechanics (after exiting start screen)
   //for plant and bacteria
   if (playing) {
@@ -209,6 +261,10 @@ void mouseClicked() {
           sunlight = true;
         } else if (button.name == "Food") {
           fooddrop = true;
+        } else if (button.name == "End Game") {
+          areYouSure = true;
+          playing = false;
+          draw();
         } else {
           //else if (button.name == "Plant"){
           //button.active = !button.active;
@@ -217,17 +273,17 @@ void mouseClicked() {
         }
       }
     }
-    
-    for (Button button : buttons){
-      if (button.mouseOver()){
-        if(button.name == "END"){       
+
+    for (Button button : buttons) {
+      if (button.mouseOver()) {
+        if (button.name == "END") {       
           print("Idk why we have this button");
         }
-      }else{
+      } else {
         button.click();
       }
     }
-      
+
     /*
      for (Button button : buttons) {
      if (button.mouseOver()) {
@@ -239,15 +295,45 @@ void mouseClicked() {
      }
      }
      */
+    return;
+  } 
+  if (areYouSure) {
+    if (areYouSureButton.mouseOver()) {
+      areYouSure = false;
+      endGame = true;
+      draw();
+    } else {
+      areYouSure = false;
+      playing = true;
+      draw();
+    }
+    return;
+  }
+  if (lostGame) {
+    if (lost.mouseOver()) {
+      lostGame = false; 
+      endGame = true;
+      draw();
+    }
+    return;
+  }
+  if (endGame) {
+    if (goBackToStart.mouseOver()) {
+      endGame = false;
+      startScreen = true;
+      setup();
+      draw();
+    }
+    return;
   }
 } //end mouseClicked()=======================================================================================================================================================
 
 void growBact() {
-  time = millis();
-  if (time%10000 <= 20) {
-    bacteria.add(new Bacteria((int)random(800), (int)random(600)));
+  if (bacteriaDrop.time == 0) {
+    bacteria.add(new Bacteria((int)random(environment.grid.length), (int)random(environment.grid[0].length)));
     allBacteria.add(bacteria.get(bacteria.size()-1));
     print("bacteriaed");
+    bacteriaDrop.reset();
   }
 }
 
@@ -329,9 +415,9 @@ void showTheGrid() {
 } //end showTheGrid()========================================================================================================================================================
 
 
-void checkBactPlant(){
-  for (Bacteria bact: bacteria){
-    for (Plant plant: plants){
+void checkBactPlant() {
+  for (Bacteria bact : bacteria) {
+    for (Plant plant : plants) {
       bact.eat(plant);
     }
   }
@@ -414,20 +500,21 @@ void tempModPlant() {
 
 void endSim() {
   if (environment.temperature > 105 || environment.temperature < 25) {
-    endGame = true;
+    playing = false;
+    lostGame = true;
   }
 }
 
 
-void killBact(){
-  if (environment.temperature > 80 || environment.temperature < 50){
-    for (Bacteria b: bacteria){
+void killBact() {
+  if (environment.temperature > 80 || environment.temperature < 50) {
+    for (Bacteria b : bacteria) {
       b.health -= 5;
       b.shrink();
     }
   }
 }
-      
+
 
 
 ///////////////...............SORTS...............///////////////

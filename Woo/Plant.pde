@@ -31,7 +31,7 @@ class Plant implements Comparable<Plant> {
     peakStated = false;
 
     time = 0;
-    intPlantTimer = new Timer("Internal Plant", 0);
+    intPlantTimer = new Timer("Internal Plant", 3);
   } //end Plant()============================================================================================================================================================
 
   void collision(Plant other) {
@@ -98,49 +98,49 @@ class Plant implements Comparable<Plant> {
         collision(other);
       }
     }
-    
-    if (time%500 <= 20) {
-      if (!peakStated) {  // && checkWater(e)) { //if plant is not at its max size
-        float findGrowth = takeWater(e)/waterNeed;
-        if (findGrowth == 1) {  //plant will grow based on specific growth rates and waterNeed
-          size += growthRate;
-          waterNeed *= growthRate;
-        } else if (findGrowth > 0.75) { 
-          size += growthRate/2;
-          waterNeed *= growthRate/2;
-        } else if (findGrowth >= 0.5) {
-          size += 0;
-          waterNeed *= growthRate/3;
-        } else if (findGrowth >= 0.25) {
-          size -= growthRate/2;
-        } else {
-          size -= growthRate;
-        }
-        if (g < 255) { 
-          g += (int)random(30);
-        }
-        if (random(3) <= 1) {
-          waterPriority++;
-        }
-        if (size >= maxSize) {
-          peakStated = true;
-        }
-        //if (dist(this.xcor, this.ycor, second.xcor, second.ycor) <= 0) {
-        //  peakStated = true;
-        //}
+
+    //if (time%500 <= 20) {
+    if (!peakStated) {  // && checkWater(e)) { //if plant is not at its max size
+      float findGrowth = takeWater(e)/waterNeed;
+      if (findGrowth == 1) {  //plant will grow based on specific growth rates and waterNeed
+        size += growthRate;
+        waterNeed *= growthRate;
+      } else if (findGrowth > 0.75) { 
+        size += growthRate/2;
+        waterNeed *= growthRate/2;
+      } else if (findGrowth >= 0.5) {
+        size += 0;
+        waterNeed *= growthRate/3;
+      } else if (findGrowth >= 0.25) {
+        size -= growthRate/2;
       } else {
-        if (size <= 0) {
-          size = 0;
-          return;
-        }
-        size -= 1 + growthRate/2;
-        g -= (int)random(20);
-        r += (int)random(10);
-        b += (int)random(10);
-        if (random(3) <= 1) {
-          waterPriority--;
-        }
+        size -= growthRate;
       }
+      if (g < 255) { 
+        g += (int)random(30);
+      }
+      if (random(3) <= 1) {
+        waterPriority++;
+      }
+      if (size >= maxSize) {
+        peakStated = true;
+      }
+      //if (dist(this.xcor, this.ycor, second.xcor, second.ycor) <= 0) {
+      //  peakStated = true;
+      //}
+    } else {
+      if (size <= 0) {
+        size = 0;
+        return;
+      }
+      size -= 1 + growthRate/2;
+      g -= (int)random(20);
+      r += (int)random(10);
+      b += (int)random(10);
+      if (random(3) <= 1) {
+        waterPriority--;
+      }
+      //}
     }
   } //end grow()=============================================================================================================================================================
 
@@ -154,7 +154,6 @@ class Plant implements Comparable<Plant> {
 
   //grows plant once a second
   void run(Environment e) { //display growth of plants
-    //if ((frameCount - birthDate) % 60 == 0) { 
     lifeTime++;
     intPlantTimer.run();
     if (intPlantTimer.time == 0) {

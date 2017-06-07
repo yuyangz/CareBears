@@ -7,6 +7,7 @@ class Environment {
   int temperature;
   int time;
   int increment;
+  Timer tempTimer;
 
   Environment(int w, int h ) {
     grid = new int[w][h];
@@ -17,6 +18,8 @@ class Environment {
     temperature = 65;
     time = 0;
     increment = 1;
+
+    tempTimer = new Timer("Temperature", 5);
   } //end Environment()======================================================================================================================================================
 
   //enters sunlight onto the map
@@ -41,7 +44,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("God has released light", (width-(0.2*width))/2-("God has released light".length()*4), 10);
-   // temperature += 5;
+    temperature += 5;
   } //end sunlight(int intensity)============================================================================================================================================
 
   //makes it rain by adding random values to individual spots on the rain array
@@ -65,7 +68,7 @@ class Environment {
     fill(120);
     stroke(120);
     text("It has rained", (width-(0.2*width))/2-("It has rained".length()*4), 10);
-   // temperature -= 5;
+    temperature -= 5;
     frameRate(60);
   } //end rain(int intensity)================================================================================================================================================
 
@@ -139,17 +142,22 @@ class Environment {
   } //end dropFood(int intensity)============================================================================================================================================
 
   void tempChange() {
-    time = millis();
-    if (time%10000 <= 20) {
-      temperature += increment;
-    }
-
     if (temperature >= 50 && temperature <= 80) {
       increment = 1;
     } else if (temperature > 80) {
-      increment = 3;
+      increment = 2;
     } else if (temperature < 50) {
-      increment = -1;
+      increment = -2;
     }
+    temperature += increment;
   } //end tempChange()=========================================================================================================================================================
+
+
+  void run() {
+    tempTimer.run();
+    if (tempTimer.time == 0) {
+      tempChange();
+      tempTimer.reset();
+    }
+  }
 } //end Environment
