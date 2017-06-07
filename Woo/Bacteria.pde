@@ -58,6 +58,9 @@ void shrink(){
   if (health <= 0){
     size -= 1;
   }
+  if (size <= 0){
+    size = 0;
+  }
 }
 
   //displayed as a circle for now, but will later be changed to be more distinguishable
