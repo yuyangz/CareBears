@@ -23,6 +23,8 @@ ArrayList<Food> food = new ArrayList<Food>(); //hold food
 /////.....BUTTON...../////
 ArrayList<Button> buttons = new ArrayList<Button>(); //hold buttons in an array
 Button startGame;
+Button stats = new Button(200, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "Statistics");
+Button end = new Button(600, 350, 200, 100, color(191, 161, 125), color(255, 0, 0), "END");
 
 /////.....ENVIRONMENTAL VARIABLES...../////
 Environment environment;
@@ -77,6 +79,7 @@ void setup() {
     environment.rain(1);
     environment.rain(2);
   }
+  
 } //end setup()==============================================================================================================================================================
 
 void makeButtons() { //creates buttons
@@ -135,6 +138,8 @@ void draw() { //creates screen
   if (endGame) {
     background(95, 37, 41);
     text("You're a bad farmer", 450, 300);
+    stats.update();
+    end.update();
   }
 } //end draw()===============================================================================================================================================================
 
@@ -394,8 +399,6 @@ void tempModPlant() {
 void endSim() {
   if (environment.temperature > 105 || environment.temperature < 25) {
     endGame = true;
-    buttons.add(new Button(200, 200, width/10, height/10, color(191, 161, 125), color(255, 0, 0), "Statistics"));
-    buttons.add(new Button(400, 200, width/10, height/10, color(191, 161, 125), color(255, 0, 0), "END"));
   }
 }
 
