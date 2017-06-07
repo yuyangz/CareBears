@@ -50,7 +50,6 @@ boolean showGrid; //displays grid for plants
 boolean b; //will be used in the future for reset
 boolean shop;
 int bactTime;
-Shop s;
 //===========================================================================================================================================================================
 
 void setup() { 
@@ -70,7 +69,6 @@ void setup() {
   startGame = new Button((int)(0.3*width), (int)(height*0.8), (int)(width*0.4), (int)(height*0.15), color(0, 0, 120), color(120, 0, 0), "Start the Game!");
   environment = new Environment(width-(int)(0.2*width), height);
   makeButtons();
-  s = new Shop();
 
   ///LATER GAME///
   //areYouSure
@@ -138,7 +136,6 @@ void draw() { //creates screen
     showRaining();
     showTheSun();
     showFood();
-    openShop();
     growBact();
     killBact();
     for (Food eatMe : food) {
@@ -452,12 +449,7 @@ void resetBools() {
   }
 } //end resetBools()=========================================================================================================================================================
 
-void openShop() {
-  if (shop) {
-    s.display();
-    shop = false;
-  }
-}
+
 
 
 void makeLifeTimes() { //keeps a record of how long all plants and bacteria have lived
