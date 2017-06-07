@@ -11,11 +11,11 @@ There are two arrays that contain plants and bacteria, respectively, as well as 
 # Launch Instructions
 1) Open terminal
 2) Go into desired directory:
-**$ cd <directory name>**
+* ``` $ cd <directory name>```
 3) Clone the repo into a new directory:
-**$ git clone git@github.com:yuyangz/CareBears.git**
+* ``` $ git clone git@github.com:yuyangz/CareBears.git```
 4) Go into CareBears/:
-**$ cd CareBears/**
+* ``` $ cd CareBears/```
 5) Open Woo.pde file with processing:
-**$ processing Woo/Woo.pde**
+* ``` $ processing Woo/Woo.pde```
 6) Press the play button near the top left corner.
