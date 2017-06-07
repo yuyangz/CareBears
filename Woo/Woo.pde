@@ -22,7 +22,9 @@ ArrayList<Integer> bacteriaLifeTimes;
 Timer bacteriaDrop;
 
 /////.....FOOD...../////
-ArrayList<Food> food; //hold food
+ArrayList<Food> food;
+ALStack<Food> genFood; //hold food
+Timer foodTimer;
 
 /////.....BUTTON...../////
 ArrayList<Button> buttons; //hold buttons in an array
@@ -95,12 +97,19 @@ void setup() {
 
   /////.....FOOD...../////
   food = new ArrayList<Food>();
+  genFood = new ALStack<Food>();
+  for (int i = 0; i < 1000; i++) {
+    genFood.push(new Food((int)random(environment.grid.length), (int)random(environment.grid[0].length)));
+  }
+  
 
   /////.....TIMERS...../////
-  plantTimer = new Timer("Plant", 0);
+  plantTimer = new Timer("Plant", 3);
   bacteriaTimer = new Timer("Bacteria", 1);
   bactTime = 0;
   bacteriaDrop = new Timer("Bacteria Drop", 4);
+  foodTimer = new Timer("Food Drop", 3);
+  
   /////.....ALL ORGANISMS...../////
   allPlants.add(plants.get(plants.size()-1));
   allBacteria.add(bacteria.get(plants.size()-1));
@@ -137,6 +146,10 @@ void draw() { //creates screen
     showFood();
     growBact();
     killBact();
+    if (foodTimer.time == 0) {
+      environment.dropFood(1 , food, genFood);
+      foodTimer.reset();
+    }
     for (Food eatMe : food) {
       eatMe.display();
     }
@@ -193,6 +206,10 @@ void draw() { //creates screen
     text("Button below will lag!", goBackToStart.x, goBackToStart.y - 200);
     return;
   }
+  if (sortStats) {
+    
+    
+  }
 } //end draw()===============================================================================================================================================================
 
 void runButtons() {
@@ -205,6 +222,7 @@ void runTimers() {
   plantTimer.run();
   //bacteriaTimer.run();
   bacteriaDrop.run();
+  foodTimer.run();
 } //end runTimers()==========================================================================================================================================================
 
 //goes over what happens when a button is clicked, or if a button is active a plant or bacteria is dropped
@@ -412,7 +430,7 @@ void checkFood() {
 //displays food
 void showFood() {
   if (fooddrop) {
-    environment.dropFood(2000);
+    environment.dropFood(20, food, genFood);
     fooddrop = false;
   }
 } //end showFood()===========================================================================================================================================================

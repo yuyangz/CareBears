@@ -129,13 +129,14 @@ class Environment {
 
   //drops food onto the map
   //small circles or pellets of random color will appear in random locations across the screen
-  void dropFood (int intensity) { //allows the presence of food based on a certain intensity
-    for (int row = 5; row < grid.length - 5; row += random(3)+1) {
-      for (int col = 5; col < grid[0].length -5; col += random(3)+1) {
-        if (random(intensity) <= 1) {
-          food.add(new Food( row, col ));
+  void dropFood (int num, ArrayList<Food> arraylist, ALStack<Food> stack) { //allows the presence of food based on a certain intensity
+    for (int i = 0; i < num; i++) {
+      if (stack.isEmpty()) {
+        for (int j = 0; j <1000; j++) {
+          stack.push(new Food((int)random(grid.length), (int)random(grid[0].length)));
         }
       }
+      arraylist.add(stack.pop());
     }
     println("Nourishment has come"); //gives statement that shows that sun has been released
     text("Nourishment has come", (width-(0.2*width))/2-("Nourishment has come".length()*4), 10);

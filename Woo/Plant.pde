@@ -11,6 +11,7 @@ class Plant implements Comparable<Plant> {
   int temp;
   int time;
   boolean peakStated; //prime of life/ largest size
+  int foodEaten;
 
   Timer intPlantTimer;
   Timer peakTimer;
@@ -29,9 +30,10 @@ class Plant implements Comparable<Plant> {
     int r = b = 0;
     int g = 120;
     peakStated = false;
+    foodEaten = 0;
 
     time = 0;
-    intPlantTimer = new Timer("Internal Plant", 3);
+    intPlantTimer = new Timer("Internal Plant", 1);
   } //end Plant()============================================================================================================================================================
 
   void collision(Plant other) {
@@ -180,6 +182,7 @@ class Plant implements Comparable<Plant> {
       f.eaten = true;
       this.maxSize += 10;
       this.size += 2;
+      foodEaten++;
     }
   }//end toEat(Food f)======================================================================================================================================================  
 }
