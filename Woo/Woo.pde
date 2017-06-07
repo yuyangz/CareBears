@@ -207,11 +207,24 @@ void mouseClicked() {
         } else {
           //else if (button.name == "Plant"){
           //button.active = !button.active;
-          //} else {
+          //}        else {
           button.click();
         }
       }
     }
+    
+    for (Button button : buttons){
+      if (button.mouseOver()){
+        if(button.name == "END"){
+          playing = false;
+          endGame = false;
+          startScreen = true;
+        }
+      }else{
+        button.click();
+      }
+    }
+      
     /*
      for (Button button : buttons) {
      if (button.mouseOver()) {
