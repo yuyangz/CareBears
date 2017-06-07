@@ -119,7 +119,6 @@ void makeButtons() { //creates buttons
   //buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(120, 120, 120), color(0, 120, 0), "Bacteria"));
   buttons.add(new Button(width - (int)(0.2*width), height - (height/10), width/5, height/10, color(120, 120, 120), color(0, 120, 0), "End Game"));
   buttons.add(new Button(width - (int)(0.1*width), height/10, width/10, height/10, color(255, 175, 175), color(255, 0, 0), "Food"));
-  buttons.add(new Button(width - (int)(0.2*width), height/5, width/5, height/10, color(255, 162, 51), color(255, 0, 0), "Shop"));
 } //end makeButtons()========================================================================================================================================================
 
 void draw() { //creates screen
