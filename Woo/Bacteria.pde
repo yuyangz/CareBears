@@ -47,13 +47,15 @@
     }
   } //end move()=============================================================================================================================================================
 
+//when bacteria collides with plant, it will "eat" the plant
   void eat(Plant p) {
     float distance = dist(this.xcor, this.ycor, p.xcor,p.ycor);
     if (distance < this.size/2 + p.size /2) {
       p.size -= 1;
     }
   } //end eat()==============================================================================================================================================================
-
+  
+//causes bacteria to shrink when health is too low
 void shrink(){
   if (health <= 0){
     size -= 1;
@@ -62,6 +64,7 @@ void shrink(){
     size = 0;
   }
 }
+//end shrink()======================================================================================================================================================
 
   //displayed as a circle for now, but will later be changed to be more distinguishable
   void display() {

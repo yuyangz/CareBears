@@ -219,7 +219,7 @@ void mouseClicked() {
     return;
   } 
   /////button mechanics (after exiting start screen)
-  //for plant and bacteria
+  //for plant 
   if (playing) {
     for (Button button : buttons) { 
       //button when pressed will be on until pressed off
@@ -233,22 +233,12 @@ void mouseClicked() {
               plantTimer.reset();
             }
           }
-          /*
-          if (bacteriaTimer.time == 0) {
-           if (button.name == "Bacteria") { //if button is pressed for bacteria, a bacteria will be added.      
-           bacteria.add(new Bacteria(mouseX, mouseY));
-           allBacteria.add(bacteria.get(bacteria.size()-1));
-           print("bacteriaed");
-           bacteriaTimer.reset();
-           }
-           }
-           */
         }
       }
     }
 
-    //for weather  
-    for (Button button : buttons) {
+    //for environment  
+    for (Button button : buttons) { 
       //button will only be on for one press
       if (button.mouseOver()) { 
         if (button.name == "Rain") {
@@ -270,7 +260,7 @@ void mouseClicked() {
       }
     }
 
-    for (Button button : buttons) {
+    for (Button button : buttons) {//used to end game.
       if (button.mouseOver()) {
         if (button.name == "END") {       
           print("Idk why we have this button");
@@ -280,20 +270,9 @@ void mouseClicked() {
       }
     }
 
-    /*
-     for (Button button : buttons) {
-     if (button.mouseOver()) {
-     if (button.name == "Shop") {
-     shop = true;
-     } else {
-     button.click();
-     }
-     }
-     }
-     */
     return;
   } 
-  if (areYouSure) {
+  if (areYouSure) {//confirms that the user would like to quit
     if (areYouSureButton.mouseOver()) {
       areYouSure = false;
       endGame = true;
@@ -305,7 +284,7 @@ void mouseClicked() {
     }
     return;
   }
-  if (lostGame) {
+  if (lostGame) { //if game is over...
     if (lost.mouseOver()) {
       lostGame = false; 
       endGame = true;
@@ -313,7 +292,7 @@ void mouseClicked() {
     }
     return;
   }
-  if (endGame) {
+  if (endGame) {//game is official over...
     if (goBackToStart.mouseOver()) {
       endGame = false;
       startScreen = true;
@@ -324,6 +303,7 @@ void mouseClicked() {
   }
 } //end mouseClicked()=======================================================================================================================================================
 
+//bacteria grows and is added to arrayList
 void growBact() {
   if (bacteriaDrop.time == 0) {
     bacteria.add(new Bacteria((int)random(environment.grid.length), (int)random(environment.grid[0].length)));
@@ -332,7 +312,7 @@ void growBact() {
     bacteriaDrop.reset();
   }
 }
-
+//end growBact()======================================================================================================================================================
 
 //removes plants when they have a size that is less than or equal to 0
 //this means they have shrunk to the point where they are negative size
@@ -410,15 +390,16 @@ void showTheGrid() {
   }
 } //end showTheGrid()========================================================================================================================================================
 
-
+//checks if every bacteria is near/ontop of a plant; if so, shrink plant.
 void checkBactPlant() {
   for (Bacteria bact : bacteria) {
     for (Plant plant : plants) {
       bact.eat(plant);
     }
   }
-}
+}//end checkBactPlant()======================================================================================================================================================
 
+//checks if every plant is near/ontop of a food particle; if so, eat.
 void checkFood() {
   for (Plant plant : plants) {
     for ( Food x : food) {
@@ -426,8 +407,9 @@ void checkFood() {
     }
   }
 }
+//end checkFood()======================================================================================================================================================
 
-
+//displays food
 void showFood() {
   if (fooddrop) {
     environment.dropFood(2000);
@@ -447,9 +429,6 @@ void resetBools() {
     showGrid = false;
   }
 } //end resetBools()=========================================================================================================================================================
-
-
-
 
 void makeLifeTimes() { //keeps a record of how long all plants and bacteria have lived
   for (Plant plant : allPlants) {
@@ -489,14 +468,15 @@ void tempModPlant() {
   }
 }//end tempModPlant()======================================================================================================================================================
 
+//ends the simulation if the temperature is too high or too low
 void endSim() {
   if (environment.temperature > 105 || environment.temperature < 25) {
     playing = false;
     lostGame = true;
   }
-}
+}//end endSim()======================================================================================================================================================
 
-
+//bactria lowests health and calls shrink method if temperatures are too extreme
 void killBact() {
   if (environment.temperature > 80 || environment.temperature < 50) {
     for (Bacteria b : bacteria) {
@@ -504,10 +484,7 @@ void killBact() {
       b.shrink();
     }
   }
-}
-
-
-
+}//end killBact()======================================================================================================================================================
 ///////////////...............SORTS...............///////////////
 void sort( ArrayList<Integer> _heap) {
   int size = _heap.size();

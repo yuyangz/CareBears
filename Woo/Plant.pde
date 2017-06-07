@@ -173,7 +173,7 @@ class Plant implements Comparable<Plant> {
     }
   }// end compareTo()========================================================================================================================================================
 
-
+//if plant touches food, it will "eat" it and increase stats
   void toEat(Food f) {
     float distance = dist(this.xcor, this.ycor, f.xcor, f.ycor);
     if (distance < this.size/2 + 2.5) {
@@ -181,5 +181,5 @@ class Plant implements Comparable<Plant> {
       this.maxSize += 10;
       this.size += 2;
     }
-  }
+  }//end toEat(Food f)======================================================================================================================================================  
 }
