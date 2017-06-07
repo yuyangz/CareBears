@@ -15,7 +15,7 @@ class Environment {
     soil = new int[w][h];
     sun = new int[w][h];
     temperature = 60;
-    time = millis;
+    time = 0;
     increment = 1;
   } //end Environment()======================================================================================================================================================
 

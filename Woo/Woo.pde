@@ -125,6 +125,7 @@ void draw() { //creates screen
     environment.tempChange();
     text("Temperature: " + environment.temperature, 800, 500);
     tempModPlant();
+    checkBactPlant();
     checkFood();
     removeFood();
     endSim();
@@ -304,6 +305,15 @@ void showTheGrid() {
     environment.getGrid();
   }
 } //end showTheGrid()========================================================================================================================================================
+
+
+void checkBactPlant(){
+  for (Bacteria bact: bacteria){
+    for (Plant plant: plants){
+      bact.eat(plant);
+    }
+  }
+}
 
 void checkFood() {
   for (Plant plant : plants) {
