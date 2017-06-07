@@ -69,15 +69,15 @@ tales of wisdom gained...
 
 2017-05-19 (Day 03):
 --------------------------------------------------------------
-    Ibnul: Discussed project plans for certain features and dates.
-    Joshel: Discussed project plans for certain features and dates.
-    Yuyang: Discussed project plans for certain features and dates.
+    Ibnul: Discussed project plans for certain features and dates. Updated plan.
+    Joshel: Discussed project plans for certain features and dates. Minor update to plan and fixed spacings in plan. 
+    Yuyang: Discussed project plans for certain features and dates. Updated plan, fixed names, updated dates, and modified plan.
 |==============================================================
 
 2017-05-20 (Day 04):
 --------------------------------------------------------------
     Ibnul: Created initial processing file, and started code on general plant class and main tab. Plants can grow until the peak of their life, and shrink past that. Later further ideas will likely replace how this works.
-    Joshel:
+    Joshel: Contributed to plan and planned out details regarding plants on paper.
     Yuyang: Expended on plan to more specific details. Began considering variables for plants and how the user may control the environment.
 |==============================================================
 
@@ -92,19 +92,19 @@ tales of wisdom gained...
 --------------------------------------------------------------
     Ibnul: Worked on updating new plan.
     Joshel: Worked on updating new plan.
-    Yuyang: Worked on updating new plan.
+    Yuyang: Worked on updating new plan. 
 |==============================================================
 
 2017-05-23 (Day 07):
 --------------------------------------------------------------
     Ibnul: Continued work on the protocols for rain and pushed code. Ran into a problem where we will need a fake animation to show the user it has rained, because the current way of doing it finishes in one frame. Worked on creating flowcharts and UML diagrams.
-    Joshel: Worked on creating flowcharts and UML diagrams.
-    Yuyang: Worked on creating flowcharts and UML diagrams.
+    Joshel: Worked on creating flowcharts and UML diagrams. Update to movement of bacteria and growth of plants.
+    Yuyang: Worked on creating flowcharts and UML diagrams. Began to consider the implementation of temperature and how sunlight and rain will affect it.
 |==============================================================
 
 2017-05-24 (Day 08):
 --------------------------------------------------------------
-    Ibnul:Updated environment interface. Added rain features and updated animations.
+    Ibnul:Updated environment interface. Added rain features and updated animations. Updated proposal. 
     Joshel:Contributed to the concepts behind rain and and certain animations.
     Yuyang: Contributed to the concepts behind rain and and certain animations.
 ==============================================================
@@ -120,7 +120,7 @@ tales of wisdom gained...
 --------------------------------------------------------------
     Ibnul: Added bacteria button, updated sunlight.
     Joshel: Consulted group with ideas regarding future implementation of pollen.
-    Yuyang: Updated plant health.
+    Yuyang: Updated plant health. Consulted group with ideas regarding implementation of food.
 ==============================================================
 
 2017-05-28 (Day 12):
@@ -141,21 +141,21 @@ tales of wisdom gained...
 --------------------------------------------------------------
     Ibnul :: Fixed devlog template. Updated implementation of rain and water consumption for plants.
     Joshel :: Updated README file.
-    Yuyang :: Updated README file. Updated devlog.
+    Yuyang :: Updated README file. Updated devlog. Updated plan.
 ==============================================================
 
 2017-05-31 (Day 15):
 --------------------------------------------------------------
-    Ibnul :: Updated comments within code.
-    Joshel :: Updated comments within code.
-    Yuyang :: Updated comments within code.
+    Ibnul :: Updated comments within code.Considered interactions of different arrayLists.
+    Joshel :: Updated comments within code. Considered the placement of bacteria and food.
+    Yuyang :: Updated comments within code.Began to consider implementation of end screen.
 ==============================================================
 
 2017-06-01 (Day 16):
 --------------------------------------------------------------
-    Ibnul :: Worked on adding a cooldown for placing plants and bacteria.  Updated plant growth.
-    Joshel :: Worked on adding a cooldown for placing plants and bacteria.  Updated plant growth.
-    Yuyang :: Worked on adding a cooldown for placing plants and bacteria.  Updated plant growth.
+    Ibnul :: Worked on adding a cooldown for placing plants and bacteria. 
+    Joshel :: Updated plant growth(Updated takeWater). Fixed out of bound errors for taking water.
+    Yuyang :: Modified timers and planned intervals in which plants/bacterias/temperature would update.
 ==============================================================
 
 2017-06-02 (Day 17):
@@ -167,28 +167,28 @@ tales of wisdom gained...
 
 2017-06-03 (Day 18):
 --------------------------------------------------------------
-    Ibnul :: Updated/fixed timer. Added collision for plants and bacteria. 
-    Joshel :: Updated/fixed timer. Added collision for plants and bacteria.
-    Yuyang :: Updated/fixed timer. Added collision for plants and bacteria.
+    Ibnul :: Pitched in ideas for the implementation of timer and collision between plants.
+    Joshel :: Recommended the usage of millis() and distance to calculate time for timers and collision of plants.
+    Yuyang :: Added collision for plants and bacteria (When 2 plants touch , the smaller plant will shrink). Attempted to fix so that plants cannot overlap. Attempted to implement eat for bacteria.
 ==============================================================
 
 2017-06-04 (Day 19):
 --------------------------------------------------------------
-    Ibnul :: Worked on collision for plants and bacteria.
-    Joshel :: Worked on collision for plants and bacteria.
-    Yuyang :: Worked on collision for plants and bacteria.
+    Ibnul :: Considered the idea of implementation coins and shops to give the user some variety in planting.
+    Joshel :: Suggested the idea of using checking collision through arrayLists.
+    Yuyang :: Worked on collision for plants and bacteria. Modified timer. Usage of nested for loops to check if two plants are touching.
 ==============================================================
 
 2017-06-05 (Day 20):
 --------------------------------------------------------------
-    Ibnul :: Added a start screen with a start button. Fixed collision, bad raining, and bacteria class. Updated timers.
+    Ibnul :: Added a start screen with a start button (Imported background). Fixed collision, bad raining, and bacteria class. Updated timers. Implemented heaps and heap sort.
     Joshel :: Added food class and its function. Added food button to screen.
-    Yuyang :: Attempted to make shop and coins.
+    Yuyang :: Attempted to make shop and coins. Updated collision (Compares distance to sum of radii).
 ==============================================================
 
 2017-06-06 (Day 21):
 --------------------------------------------------------------
-    Ibnul :: Finalized UML diagrams and flow charts. Fixed food display on screen. 
-    Joshel :: Finalized UML diagrams and flow charts. Updated devlog. Worked on implementation of temperature and respective timer.
-    Yuyang :: Finalized UML diagrams and flow charts. Added temperature to environment and worked on how it affected organism classes. Fixed plant growth rates and how they ate food.
+    Ibnul ::  Updated end screen with the implementation of button for end and statistics. Statistics such as longest lasting plant, time played, etc will be displayed through heaps. Food will now be released with stacks. Timer has been fixed so that the timing is more steady.
+    Joshel :: Finalized UML diagrams and flow charts. Updated artwork for start screen. Modified timer. However minor counting errors still occur. Temperature has been modified so it increments more steadily. Growth rate is also more stable. Updated flowchart.
+    Yuyang :: Removal of shop and coins. Updated temperature based on rainfall and sunlight(sunlight would increase temp, and rain would decrease temp). Food is updated so plants can now consume it and grow and increase its maxSize. Bacteria can collide with plants and cause plants to decrease. Temperature can affect the growth of plants and stability of bacteria. If temperature is too high or too low, plants will start to shrink. Same for bacteria. Fixed plant growth rates so that they grow every few second. Updated UML. Added dirt background.
 ==============================================================
