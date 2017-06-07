@@ -139,56 +139,56 @@ tales of wisdom gained...
 
 2017-05-30 (Day 14):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Fixed devlog template. Updated implementation of rain and water consumption for plants.
+    Joshel :: Updated README file.
+    Yuyang :: Updated README file. Updated devlog.
 ==============================================================
 
 2017-05-31 (Day 15):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Updated comments within code.
+    Joshel :: Updated comments within code.
+    Yuyang :: Updated comments within code.
 ==============================================================
 
 2017-06-01 (Day 16):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Worked on adding a cooldown for placing plants and bacteria.  Updated plant growth.
+    Joshel :: Worked on adding a cooldown for placing plants and bacteria.  Updated plant growth.
+    Yuyang :: Worked on adding a cooldown for placing plants and bacteria.  Updated plant growth.
 ==============================================================
 
 2017-06-02 (Day 17):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Updated plan.
+    Joshel :: Updated plan.
+    Yuyang :: Updated plan.
 ==============================================================
 
 2017-06-03 (Day 18):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Updated/fixed timer. Added collision for plants and bacteria. 
+    Joshel :: Updated/fixed timer. Added collision for plants and bacteria.
+    Yuyang :: Updated/fixed timer. Added collision for plants and bacteria.
 ==============================================================
 
 2017-06-04 (Day 19):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Worked on collision for plants and bacteria.
+    Joshel :: Worked on collision for plants and bacteria.
+    Yuyang :: Worked on collision for plants and bacteria.
 ==============================================================
 
 2017-06-05 (Day 20):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Added a start screen with a start button. Fixed collision, bad raining, and bacteria class. Updated timers.
+    Joshel :: Added food class and its function. Added food button to screen.
+    Yuyang :: Attempted to make shop and coins.
 ==============================================================
 
 2017-06-06 (Day 21):
 --------------------------------------------------------------
-    Ibnul ::
-    Joshel :: 
-    Yuyang ::
+    Ibnul :: Finalized UML diagrams and flow charts. Fixed food display on screen. 
+    Joshel :: Finalized UML diagrams and flow charts. Updated devlog. Worked on implementation of temperature and respective timer.
+    Yuyang :: Finalized UML diagrams and flow charts. Added temperature to environment and worked on how it affected organism classes. Fixed plant growth rates and how they ate food.
 ==============================================================
