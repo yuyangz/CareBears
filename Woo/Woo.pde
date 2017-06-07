@@ -414,7 +414,9 @@ void keyPressed() {
     environment.rain(30);
     environment.temperature += 5;
     plants.add(new Plant((int)random(0.8*width), (int)random(height)));
+    allPlants.add(plants.get(plants.size()-1));
     bacteria.add(new Bacteria((int)random(0.8*width), (int)random(height)));
+    allBacteria.add(bacteria.get(plants.size()-1));
   }
 } //end keyPressed()=========================================================================================================================================================
 
