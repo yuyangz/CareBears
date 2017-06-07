@@ -215,10 +215,8 @@ void mouseClicked() {
     
     for (Button button : buttons){
       if (button.mouseOver()){
-        if(button.name == "END"){
-          playing = false;
-          endGame = false;
-          startScreen = true;
+        if(button.name == "END"){       
+          print("Idk why we have this button");
         }
       }else{
         button.click();
