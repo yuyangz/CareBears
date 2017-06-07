@@ -21,24 +21,29 @@ Flesh out each category whenever necessary, appropriate.
 ------------------------------------------
 OBSTACLES OVERCOME
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow we so BOSS bc...
+Initially we had difficulties figuring out the coordinate grid and the placement of our objects were rather awkward. However, with a little bit of math we were able to fix issues such as water placement and placement of buttons. In addition, we also had certain issues with objects colliding and overlapping. We were able to fix this by calculating the distance and when the distance between the two objects was less than or equal to 0, we would do a certain action.
+
 
 UNRESOLVED ISSUES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-blah blah pesky bug...
-maybe some of these will move into the Obs.Ovrcm section...
+Certain aspects of the simulation are not as smooth as we want it to be. For example, when loading the simulation, the load screen takes a while to open up. In addition, when pressing the sunlight button, the button is seen to delay a little before functioning. There is also an issue with text that should be centered on buttons. While some buttons have its name centered, other buttons such as sunlight do not.
+
 
 COOL STUFF LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-wow! oo!...
+The main thing that we learned that was cool to all of us was the usage of processing. Due to last semester restrictions, we were all very excited to have actual graphics and see things move around. The implementation of buttons was also very cool as it changed our conception of what a button actually is (simply a range of coordinates which create a shape and when the mouse is over it, it will change color/do a certain action).
+
 
 MID-DEVELOPMENT DESIGN CHANGES
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-we changed ___ to ___ bc...
+We removed shop and coins due to restriction on time. In addition, due to the fact that our project is mainly a simulation and not a game, adding coins did not seem necessary.
+Temperature was added to increase the amount of environmental factors. While we had sunlight made, we did not have a purpose for it initially. With temperature, we were able to use the sunlight to affect the temperature and balance out the rain.
+Bacteria is no longer button. While we initially had bacteria as a button where the user can place the bacteria, it did not seem reasonable and seemed to lack a purpose. Therefore, we made it so the bacteria would randomly spawn. With this, the bacteria would hit plants causing them to shrink. The only way to kill the bacteria would be to change the temperature.
+Statistics of simulation will be shown. With this we will be able to incorporate second semester material. Through the usage of heap sort, we are able to sort the plants and bacteria and return the largest plant, largest bacteria, etc.
 
 LESSONS LEARNED
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-tales of wisdom gained...
+With this project, we learned about the importance of comment and spacing. With this, our code became easier to read. We also found consistency to be very important. With consistency, we were all be able to format our code the same way and we all understood each other. We also learned about the importance of the driver file. While a driver is often used, through processing, we truly learned about its importance and how it ties everything together.
 ||||||||||||||||||||||||||||||||||||||||||
 
 
